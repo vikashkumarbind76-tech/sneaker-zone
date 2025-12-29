@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CartProvider } from '@/hooks/useCart';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import FeaturedProducts from '@/components/FeaturedProducts';
@@ -15,7 +14,7 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
-    <CartProvider>
+    <>
       <Helmet>
         <title>Royal Sneakers & Apparels | Brooklyn's Premium Streetwear Store</title>
         <meta 
@@ -48,7 +47,7 @@ const Index = () => {
           onClose={() => setIsCartOpen(false)} 
         />
       </div>
-    </CartProvider>
+    </>
   );
 };
 

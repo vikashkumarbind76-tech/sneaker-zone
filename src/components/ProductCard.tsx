@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
@@ -11,7 +12,9 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     addToCart({
       id: product.id,
       name: product.name,
@@ -23,7 +26,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <div className="group relative bg-card rounded-xl overflow-hidden shadow-soft-sm hover:shadow-soft-lg transition-all duration-500">
+    <Link 
+      to={`/product/${product.id}`}
+      className="group block relative bg-card rounded-xl overflow-hidden shadow-soft-sm hover:shadow-soft-lg transition-all duration-500"
+    >
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-secondary">
         <img 
@@ -49,8 +55,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
             onClick={handleAddToCart}
           >
             <ShoppingBag className="w-4 h-4 mr-2" />
-            Add to Cart
+            Quick Add
           </Button>
+        </div>
+
+        {/* View Details Overlay */}
+        <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/10 transition-colors duration-300 flex items-center justify-center">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-card/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium">
+            View Details
+          </span>
         </div>
       </div>
 
@@ -66,7 +79,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           ${product.price}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

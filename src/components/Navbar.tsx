@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, Crown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'Shop', href: '#shop' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Shop', href: '/shop' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 interface NavbarProps {
@@ -18,6 +19,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +29,11 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(href);
   };
 
   return (
@@ -44,24 +47,32 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <Crown className="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" />
             <span className="font-display text-2xl tracking-wider">
               ROYAL SNEAKERS
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
-              <button
+              <Link
                 key={link.name}
-                onClick={() => handleNavClick(link.href)}
-                className="font-medium text-foreground/80 hover:text-foreground transition-colors duration-200 relative group"
+                to={link.href}
+                className={`font-medium transition-colors duration-200 relative group ${
+                  isActiveLink(link.href) 
+                    ? 'text-foreground' 
+                    : 'text-foreground/70 hover:text-foreground'
+                }`}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-              </button>
+                <span 
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${
+                    isActiveLink(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} 
+                />
+              </Link>
             ))}
           </div>
 
@@ -104,13 +115,18 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
       >
         <div className="container-custom py-6 space-y-4">
           {navLinks.map(link => (
-            <button
+            <Link
               key={link.name}
-              onClick={() => handleNavClick(link.href)}
-              className="block w-full text-left font-display text-2xl py-2 text-foreground/80 hover:text-foreground transition-colors"
+              to={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`block font-display text-2xl py-2 transition-colors ${
+                isActiveLink(link.href) 
+                  ? 'text-foreground' 
+                  : 'text-foreground/70'
+              }`}
             >
               {link.name}
-            </button>
+            </Link>
           ))}
         </div>
       </div>
