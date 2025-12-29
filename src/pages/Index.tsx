@@ -1,13 +1,54 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { CartProvider } from '@/hooks/useCart';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import FeaturedProducts from '@/components/FeaturedProducts';
+import Shop from '@/components/Shop';
+import About from '@/components/About';
+import InstagramFeed from '@/components/InstagramFeed';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import CartDrawer from '@/components/CartDrawer';
 
 const Index = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <CartProvider>
+      <Helmet>
+        <title>Royal Sneakers & Apparels | Brooklyn's Premium Streetwear Store</title>
+        <meta 
+          name="description" 
+          content="Discover authentic sneakers and streetwear at Royal Sneakers & Apparels in Brooklyn, NY. Shop the latest drops from top brands. Visit us at 1347 Fulton St." 
+        />
+        <meta name="keywords" content="sneakers, streetwear, Brooklyn, shoes, apparel, fashion, Royal Sneakers" />
+        <meta property="og:title" content="Royal Sneakers & Apparels | Brooklyn's Premium Streetwear Store" />
+        <meta property="og:description" content="Brooklyn's premier destination for authentic sneakers and streetwear. Step into royalty." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://royalsneakers.com" />
+      </Helmet>
+
+      <div className="min-h-screen bg-background">
+        <Navbar onCartClick={() => setIsCartOpen(true)} />
+        
+        <main>
+          <Hero />
+          <FeaturedProducts />
+          <Shop />
+          <About />
+          <InstagramFeed />
+          <Contact />
+        </main>
+
+        <Footer />
+        
+        <CartDrawer 
+          isOpen={isCartOpen} 
+          onClose={() => setIsCartOpen(false)} 
+        />
       </div>
-    </div>
+    </CartProvider>
   );
 };
 
