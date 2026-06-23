@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>('');
-  const [selectedColor, setSelectedColor] = useState<string>('');
+  
   const [quantity, setQuantity] = useState(1);
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [showDetails, setShowDetails] = useState(true);
@@ -42,15 +42,10 @@ const ProductDetail = () => {
       toast.error('Please select a size');
       return;
     }
-    if (!selectedColor) {
-      toast.error('Please select a color');
-      return;
-    }
-    
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id,
-        name: `${product.name} - ${selectedColor} - Size ${selectedSize}`,
+        name: `${product.name} - Size ${selectedSize}`,
         price: product.price,
         image: product.image,
         category: product.category,
@@ -135,25 +130,6 @@ const ProductDetail = () => {
                 {product.description}
               </p>
 
-              {/* Color Selection */}
-              <div>
-                <p className="font-medium mb-3">Color: {selectedColor || 'Select a color'}</p>
-                <div className="flex flex-wrap gap-2">
-                  {product.colors.map(color => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                        selectedColor === color
-                          ? 'border-primary bg-primary text-primary-foreground'
-                          : 'border-border hover:border-primary'
-                      }`}
-                    >
-                      {color}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               {/* Size Selection */}
               <div>
