@@ -78,10 +78,14 @@ const Hero = () => {
           {/* Hero Image */}
           <div className="relative animate-fade-up delay-200">
             <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-xl">
-              <img 
-                src={heroImage} 
-                alt="Premium sneakers at Sneaker Zone Brooklyn"
+              <img
+                src={heroImage}
+                alt="Premium sneakers at Sneaker Zone"
                 className="w-full h-full object-cover animate-float"
+                width={1200}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
             </div>
