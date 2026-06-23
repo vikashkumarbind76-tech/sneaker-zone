@@ -98,6 +98,51 @@ const fetchProducts = async (): Promise<Product[]> => {
   return productRows.map((product: ProductRow) => mapProductRow(product, imagesByProductId.get(product.id) ?? []));
 };
 
+const fetchProduct = async (idOrSlug?: string): Promise<Product | undefined> => {
+  if (!idOrSlug) return undefined;
+
+  const numericId = Number(idOrSlug);
+  const productQuery = supabase
+    .from('products')
+    .select('id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku')
+    .limit(1);
+
+  const { data: productRow, error: productError } = Number.isFinite(numericId)
+    ? await productQuery.eq('id', numericId).maybeSingle()
+    : await productQuery.eq('slug', idOrSlug).maybeSingle();
+
+  if (productError) {
+    console.warn('[product-image-validation] Unable to load current product from backend', {
+      idOrSlug,
+      productError,
+    });
+    return localProducts.find(product => product.id === numericId || product.slug === idOrSlug);
+  }
+
+  if (!productRow) return undefined;
+
+  const { data: imageRows, error: imageError } = await supabase
+    .from('product_images')
+    .select('product_id,url,alt,sort_order')
+    .eq('product_id', productRow.id)
+    .order('sort_order', { ascending: true });
+
+  if (imageError) {
+    console.warn('[product-image-validation] Unable to load current product images; rendering unavailable state only', {
+      productId: productRow.id,
+      imageError,
+    });
+  }
+
+  const images = (imageRows ?? []).map((image: ProductImageRow) => ({
+    productId: image.product_id,
+    url: image.url,
+    alt: image.alt,
+  }));
+
+  return mapProductRow(productRow, images);
+};
+
 export const useProducts = () =>
   useQuery({
     queryKey: ['products-with-images'],
@@ -106,21 +151,17 @@ export const useProducts = () =>
   });
 
 export const useProduct = (idOrSlug?: string) => {
-  const productsQuery = useProducts();
+  const productQuery = useQuery({
+    queryKey: ['product-with-images', idOrSlug],
+    queryFn: () => fetchProduct(idOrSlug),
+    enabled: Boolean(idOrSlug),
+    staleTime: 0,
+  });
 
-  const product = useMemo(() => {
-    if (!idOrSlug) return undefined;
-
-    const numericId = Number(idOrSlug);
-    if (Number.isFinite(numericId)) {
-      return productsQuery.data?.find(item => item.id === numericId);
-    }
-
-    return productsQuery.data?.find(item => item.slug === idOrSlug);
-  }, [idOrSlug, productsQuery.data]);
+  const product = useMemo(() => productQuery.data, [productQuery.data]);
 
   return {
-    ...productsQuery,
+    ...productQuery,
     product,
   };
 };
