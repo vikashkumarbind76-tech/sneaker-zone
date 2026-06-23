@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
+import { useProducts } from '@/hooks/useProducts';
 import { toast } from 'sonner';
 import ImageUnavailable from '@/components/ImageUnavailable';
 import ProductImage from '@/components/ProductImage';
@@ -15,6 +16,7 @@ interface CartDrawerProps {
 const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
   const { items, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
   const { user } = useAuth();
+  const { data: products = [] } = useProducts();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -68,21 +70,25 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
               </div>
             ) : (
               <div className="space-y-4">
-                {items.map(item => (
-                  <div 
-                    key={item.id}
-                    className="flex gap-4 p-4 bg-secondary/50 rounded-lg"
-                  >
-                    {item.image ? (
-                      <ProductImage
-                        src={item.image} 
-                        alt={item.name}
-                        className="w-20 h-20 object-cover rounded-lg"
-                        fallbackClassName="h-20 w-20 rounded-lg text-xs"
-                      />
-                    ) : (
-                      <ImageUnavailable className="h-20 w-20 rounded-lg text-xs" />
-                    )}
+                {items.map(item => {
+                  const product = products.find(currentProduct => currentProduct.id === item.id);
+                  const productImage = product?.images[0];
+
+                  return (
+                    <div 
+                      key={item.id}
+                      className="flex gap-4 p-4 bg-secondary/50 rounded-lg"
+                    >
+                      {productImage ? (
+                        <ProductImage
+                          src={productImage.url} 
+                          alt={productImage.alt}
+                          className="w-20 h-20 object-cover rounded-lg"
+                          fallbackClassName="h-20 w-20 rounded-lg text-xs"
+                        />
+                      ) : (
+                        <ImageUnavailable className="h-20 w-20 rounded-lg text-xs" />
+                      )}
                     <div className="flex-1">
                       <h3 className="font-medium mb-1">{item.name}</h3>
                       <p className="text-sm text-muted-foreground capitalize mb-2">
@@ -122,7 +128,8 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                       </div>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
