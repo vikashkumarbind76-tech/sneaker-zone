@@ -1,0 +1,24 @@
+# Sneaker Zone
+
+> Sneaker Zone is an India-focused online destination for authentic sneakers, casual shoes, and streetwear apparel from brands like Nike, Puma, Adidas, Reebok, Asics, Skechers, Red Tape, Woodland, Bata, HRX, Levi's, and more — with INR pricing and India size charts.
+
+## Pages
+
+- [Home](/): Featured drops, brand highlights, and store overview.
+- [Shop](/shop): Full product catalog across sneakers, shoes, and apparel with category filters and sorting.
+- [About](/about): Sneaker Zone's story, values, and brand timeline.
+- [Contact](/contact): Store location, phone, email, hours, and map.
+
+## Products
+
+- [Nike Air Force 1 '07](/product/4): Iconic Nike low-top sneaker with INR pricing and India size chart.
+- [Puma Suede Classic XXI](/product/10): Heritage Puma suede sneaker for everyday wear.
+- [Adidas Ultraboost Light](/product/20): Premium Adidas running shoe with Boost cushioning.
+- [Red Tape RTE2014 Casual](/product/44): Casual Red Tape shoe popular in India.
+- [Woodland Leather Boot](/product/50): Rugged Woodland leather outdoor boot.
+- [HRX Active Training Tee](/product/65): HRX performance tee for training and gym.
+- [Levi's 511 Slim Jeans](/product/71): Classic Levi's slim-fit denim.
+
+## Optional
+
+- [Product detail pages](/product/1): Each product (IDs 1–103) has a dedicated page with description, material, SKU, size chart, color options, and add-to-cart.
