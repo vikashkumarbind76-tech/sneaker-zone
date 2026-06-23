@@ -36,6 +36,7 @@ const FeaturedProducts = () => {
               variant="outline" 
               size="icon"
               onClick={() => scroll('left')}
+              aria-label="Scroll featured products left"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -43,6 +44,7 @@ const FeaturedProducts = () => {
               variant="outline" 
               size="icon"
               onClick={() => scroll('right')}
+              aria-label="Scroll featured products right"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>

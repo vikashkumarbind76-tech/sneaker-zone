@@ -85,6 +85,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
               size="icon" 
               className="relative"
               onClick={onCartClick}
+              aria-label={`Open cart${totalItems > 0 ? `, ${totalItems} item${totalItems === 1 ? '' : 's'}` : ''}`}
             >
               <ShoppingBag className="w-5 h-5" />
               {totalItems > 0 && (
@@ -95,12 +96,12 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
             </Button>
 
             {user ? (
-              <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign out">
+              <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign out" aria-label="Sign out">
                 <LogOut className="w-5 h-5" />
               </Button>
             ) : (
               <Link to="/auth">
-                <Button variant="ghost" size="icon" title="Sign in">
+                <Button variant="ghost" size="icon" title="Sign in" aria-label="Sign in">
                   <UserIcon className="w-5 h-5" />
                 </Button>
               </Link>
@@ -112,6 +113,8 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
               size="icon"
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>

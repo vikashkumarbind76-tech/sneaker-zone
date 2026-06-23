@@ -33,8 +33,8 @@ const Hero = () => {
                 Brooklyn's Premium Streetwear
               </p>
               <h1 className="heading-xl animate-fade-up delay-100">
-                STEP INTO<br />
-                <span className="text-gradient">ROYALTY</span>
+                STEP INTO <span className="text-gradient">ROYALTY</span><br />
+                <span className="block text-2xl md:text-3xl font-display tracking-wide mt-3">Brooklyn's Premium Sneakers & Streetwear</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-md animate-fade-up delay-200">
                 Discover the latest sneakers and streetwear at Sneaker Zone. 

@@ -136,6 +136,7 @@ const ProductDetail = () => {
                   variant="ghost" 
                   size="icon"
                   className="absolute top-4 right-4 bg-card/80 backdrop-blur-sm"
+                  aria-label="Add to wishlist"
                 >
                   <Heart className="w-5 h-5" />
                 </Button>
@@ -257,13 +258,15 @@ const ProductDetail = () => {
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       className="p-3 hover:bg-secondary transition-colors"
+                      aria-label="Decrease quantity"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
-                    <span className="w-12 text-center font-medium">{quantity}</span>
+                    <span className="w-12 text-center font-medium" aria-live="polite">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
                       className="p-3 hover:bg-secondary transition-colors"
+                      aria-label="Increase quantity"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -282,7 +285,7 @@ const ProductDetail = () => {
                   <ShoppingBag className="w-5 h-5 mr-2" />
                   Add to Cart
                 </Button>
-                <Button variant="outline" size="icon" className="h-14 w-14">
+                <Button variant="outline" size="icon" className="h-14 w-14" aria-label="Share product">
                   <Share2 className="w-5 h-5" />
                 </Button>
               </div>
