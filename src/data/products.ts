@@ -355,3 +355,51 @@ export const products: Product[] = [
     sizes: jeansSizes, colors: ["Indigo", "Black"], material: "Cotton/Elastane", sku: "SZ-ADID-0050"
   },
 ];
+
+export const featuredProducts = products.filter(p => p.isFeatured);
+
+export const getProductById = (id: number): Product | undefined =>
+  products.find(p => p.id === id);
+
+export const sizeCharts: Record<Product['category'], { label: string; rows: { size: string; uk?: string; us?: string; eu?: string; cm?: string }[] }> = {
+  sneakers: {
+    label: 'Footwear Size Chart (Indian / UK)',
+    rows: [
+      { size: '6', uk: '6', us: '7', eu: '40', cm: '25.0' },
+      { size: '7', uk: '7', us: '8', eu: '41', cm: '25.7' },
+      { size: '8', uk: '8', us: '9', eu: '42', cm: '26.5' },
+      { size: '9', uk: '9', us: '10', eu: '43', cm: '27.3' },
+      { size: '10', uk: '10', us: '11', eu: '44', cm: '28.0' },
+      { size: '11', uk: '11', us: '12', eu: '45', cm: '28.8' },
+      { size: '12', uk: '12', us: '13', eu: '46', cm: '29.5' },
+    ],
+  },
+  shoes: {
+    label: 'Footwear Size Chart (Indian / UK)',
+    rows: [
+      { size: '6', uk: '6', us: '7', eu: '40', cm: '25.0' },
+      { size: '7', uk: '7', us: '8', eu: '41', cm: '25.7' },
+      { size: '8', uk: '8', us: '9', eu: '42', cm: '26.5' },
+      { size: '9', uk: '9', us: '10', eu: '43', cm: '27.3' },
+      { size: '10', uk: '10', us: '11', eu: '44', cm: '28.0' },
+      { size: '11', uk: '11', us: '12', eu: '45', cm: '28.8' },
+      { size: '12', uk: '12', us: '13', eu: '46', cm: '29.5' },
+    ],
+  },
+  apparel: {
+    label: 'Apparel Size Chart',
+    rows: [
+      { size: 'S', cm: 'Chest 91-96' },
+      { size: 'M', cm: 'Chest 97-102' },
+      { size: 'L', cm: 'Chest 103-108' },
+      { size: 'XL', cm: 'Chest 109-114' },
+      { size: 'XXL', cm: 'Chest 115-120' },
+      { size: '28', cm: 'Waist 71' },
+      { size: '30', cm: 'Waist 76' },
+      { size: '32', cm: 'Waist 81' },
+      { size: '34', cm: 'Waist 86' },
+      { size: '36', cm: 'Waist 91' },
+      { size: '38', cm: 'Waist 96' },
+    ],
+  },
+};
