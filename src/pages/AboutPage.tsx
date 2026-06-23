@@ -54,11 +54,12 @@ const AboutPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>About Us | Sneaker Zone Brooklyn</title>
+        <title>About Sneaker Zone | Brooklyn Streetwear</title>
         <meta 
           name="description" 
           content="Learn about Sneaker Zone - Brooklyn's premier destination for authentic sneakers and streetwear since 2014." 
         />
+        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/about" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

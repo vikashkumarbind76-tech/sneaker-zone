@@ -64,11 +64,12 @@ const ContactPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Contact Us | Sneaker Zone Brooklyn</title>
+        <title>Contact Sneaker Zone | Brooklyn</title>
         <meta 
           name="description" 
           content="Get in touch with Sneaker Zone. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
         />
+        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/contact" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

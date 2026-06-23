@@ -16,16 +16,17 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Sneaker Zone | Brooklyn's Premium Streetwear Store</title>
+        <title>Sneaker Zone — Brooklyn Sneakers & Streetwear</title>
         <meta 
           name="description" 
           content="Discover authentic sneakers and streetwear at Sneaker Zone in Brooklyn, NY. Shop the latest drops from top brands. Visit us at 1347 Fulton St." 
         />
         <meta name="keywords" content="sneakers, streetwear, Brooklyn, shoes, apparel, fashion, Sneaker Zone" />
-        <meta property="og:title" content="Sneaker Zone | Brooklyn's Premium Streetwear Store" />
+        <meta property="og:title" content="Sneaker Zone — Brooklyn Sneakers & Streetwear" />
         <meta property="og:description" content="Brooklyn's premier destination for authentic sneakers and streetwear. Step into royalty." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://sneakerzone.in" />
+        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/" />
+        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
