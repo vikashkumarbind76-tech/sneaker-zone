@@ -43,7 +43,7 @@ const InstagramFeed = () => {
             >
               {/* Placeholder Pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-muted-foreground/50" />
+                <Instagram className="w-8 h-8 text-muted-foreground" />
               </div>
 
               {/* Hover Overlay */}
