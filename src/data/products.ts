@@ -417,7 +417,7 @@ const productSeeds: ProductSeed[] = [
   },
 ];
 
-export const products: Product[] = productSeeds.map((product) => ({
+export const products: Product[] = productSeeds.map(({ image: _deprecatedImage, ...product }) => ({
   ...product,
   slug: createProductSlug(product),
   images: validateProductImages(
