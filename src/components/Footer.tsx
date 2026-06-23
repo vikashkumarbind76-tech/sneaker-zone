@@ -47,11 +47,11 @@ const Footer = () => {
                 SNEAKER ZONE
               </span>
             </a>
-            <p className="text-primary-foreground/70 max-w-sm">
+            <p className="text-primary-foreground/90 max-w-sm">
               Brooklyn's premier destination for authentic sneakers and streetwear. 
               Step into royalty with every visit.
             </p>
-            <div className="space-y-2 text-sm text-primary-foreground/70">
+            <div className="space-y-2 text-sm text-primary-foreground/90">
               <p className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 1347 Fulton St, Brooklyn, NY 11216
@@ -85,7 +85,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    className="text-sm text-primary-foreground/90 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
                   </button>
@@ -101,7 +101,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    className="text-sm text-primary-foreground/90 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
                   </button>
@@ -117,7 +117,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    className="text-sm text-primary-foreground/90 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
                   </button>
@@ -131,10 +131,10 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-primary-foreground/10">
         <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-primary-foreground/50">
+          <p className="text-sm text-primary-foreground/80">
             © {new Date().getFullYear()} Sneaker Zone. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-primary-foreground/50">
+          <div className="flex gap-6 text-sm text-primary-foreground/80">
             <a href="#" className="hover:text-primary-foreground transition-colors">
               Privacy Policy
             </a>

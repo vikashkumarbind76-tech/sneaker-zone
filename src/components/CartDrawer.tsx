@@ -42,7 +42,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
           <div className="flex-1 overflow-y-auto p-6">
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <ShoppingBag className="w-16 h-16 text-muted-foreground/30 mb-4" />
+                <ShoppingBag className="w-16 h-16 text-muted-foreground/60 mb-4" />
                 <p className="text-lg font-medium mb-2">Your cart is empty</p>
                 <p className="text-sm text-muted-foreground mb-6">
                   Add some items to get started
