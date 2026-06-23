@@ -82,6 +82,28 @@ const ProductDetail = () => {
         <title>{product.name} | Sneaker Zone</title>
         <meta name="description" content={product.description} />
         <link rel="canonical" href={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
+        <meta property="og:title" content={`${product.name} | Sneaker Zone`} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:url" content={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
+        <meta property="og:type" content="product" />
+        {product.images[0]?.url && <meta property="og:image" content={product.images[0].url} />}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          image: product.images.map(i => i.url).filter(Boolean),
+          description: product.description,
+          sku: product.sku,
+          category: product.category,
+          brand: { "@type": "Brand", name: "Sneaker Zone" },
+          offers: {
+            "@type": "Offer",
+            url: `https://royal-kicks-canvas.lovable.app/product/${product.id}`,
+            priceCurrency: "INR",
+            price: product.price,
+            availability: "https://schema.org/InStock",
+          },
+        })}</script>
       </Helmet>
 
       <Navbar onCartClick={() => setIsCartOpen(true)} />
@@ -215,7 +237,7 @@ const ProductDetail = () => {
               {showSizeChart && (
                 <div className="bg-secondary p-6 rounded-xl animate-fade-up">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-display text-xl">{sizeChart.title}</h3>
+                    <h2 className="font-display text-xl">{sizeChart.title}</h2>
                     <Button 
                       variant="ghost" 
                       size="sm"
