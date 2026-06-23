@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://royal-kicks-canvas.lovable.app/sitemap.xml
