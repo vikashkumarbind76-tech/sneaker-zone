@@ -1,7 +1,6 @@
 // Runs before `vite dev` and `vite build` (predev/prebuild hooks); writes public/sitemap.xml.
-import { writeFileSync } from "fs";
+import { writeFileSync, readFileSync } from "fs";
 import { resolve } from "path";
-import { products } from "../src/data/products";
 
 const BASE_URL = "https://royal-kicks-canvas.lovable.app";
 
@@ -11,13 +10,20 @@ interface SitemapEntry {
   priority?: string;
 }
 
+// Parse product IDs from src/data/products.ts without importing it
+// (the module imports .jpg assets which tsx cannot resolve).
+const productsSrc = readFileSync(resolve("src/data/products.ts"), "utf8");
+const productIds = Array.from(productsSrc.matchAll(/^\s*id:\s*(\d+),/gm)).map(
+  (m) => Number(m[1]),
+);
+
 const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/shop", changefreq: "daily", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.6" },
   { path: "/contact", changefreq: "monthly", priority: "0.6" },
-  ...products.map((p) => ({
-    path: `/product/${p.id}`,
+  ...productIds.map((id) => ({
+    path: `/product/${id}`,
     changefreq: "weekly" as const,
     priority: "0.7",
   })),
