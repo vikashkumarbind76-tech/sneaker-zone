@@ -37,10 +37,10 @@ const ShopPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Shop | Royal Sneakers & Apparels Brooklyn</title>
+        <title>Shop | Sneaker Zone Brooklyn</title>
         <meta 
           name="description" 
-          content="Browse our collection of premium sneakers, shoes, and streetwear. Find the latest drops and classic styles at Royal Sneakers & Apparels." 
+          content="Browse our collection of premium sneakers, shoes, and streetwear. Find the latest drops and classic styles at Sneaker Zone." 
         />
       </Helmet>
 

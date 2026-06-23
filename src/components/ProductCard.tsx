@@ -70,13 +70,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {/* Product Info */}
       <div className="p-4">
         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-          {product.category}
+          {product.brand} · {product.category}
         </p>
         <h3 className="font-display text-xl mb-2 group-hover:text-accent transition-colors">
           {product.name}
         </h3>
         <p className="font-medium text-lg">
-          ${product.price}
+          ₹{product.price.toLocaleString('en-IN')}
         </p>
       </div>
     </Link>

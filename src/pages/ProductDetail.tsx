@@ -62,7 +62,7 @@ const ProductDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{product.name} | Royal Sneakers & Apparels</title>
+        <title>{product.name} | Sneaker Zone</title>
         <meta name="description" content={product.description} />
       </Helmet>
 
@@ -129,7 +129,7 @@ const ProductDetail = () => {
                 <p className="text-sm text-muted-foreground">SKU: {product.sku}</p>
               </div>
 
-              <p className="font-display text-4xl">${product.price}</p>
+              <p className="font-display text-4xl">₹{product.price}</p>
 
               <p className="text-muted-foreground leading-relaxed">
                 {product.description}
@@ -266,7 +266,7 @@ const ProductDetail = () => {
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
                 <div className="text-center">
                   <Truck className="w-6 h-6 mx-auto mb-2 text-accent" />
-                  <p className="text-xs text-muted-foreground">Free Shipping Over $150</p>
+                  <p className="text-xs text-muted-foreground">Free Shipping Over ₹1999</p>
                 </div>
                 <div className="text-center">
                   <RotateCcw className="w-6 h-6 mx-auto mb-2 text-accent" />

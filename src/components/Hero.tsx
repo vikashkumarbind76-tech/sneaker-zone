@@ -37,7 +37,7 @@ const Hero = () => {
                 <span className="text-gradient">ROYALTY</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-md animate-fade-up delay-200">
-                Discover the latest sneakers and streetwear at Royal Sneakers & Apparels. 
+                Discover the latest sneakers and streetwear at Sneaker Zone. 
                 Where Brooklyn style meets premium fashion.
               </p>
             </div>
@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-xl">
               <img 
                 src={heroImage} 
-                alt="Premium sneakers at Royal Sneakers & Apparels Brooklyn"
+                alt="Premium sneakers at Sneaker Zone Brooklyn"
                 className="w-full h-full object-cover animate-float"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
