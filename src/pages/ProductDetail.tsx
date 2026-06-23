@@ -11,6 +11,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import ImageUnavailable from '@/components/ImageUnavailable';
+import ProductImage from '@/components/ProductImage';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -116,12 +117,11 @@ const ProductDetail = () => {
             <div className="space-y-4">
               <div className="relative aspect-square bg-secondary rounded-2xl overflow-hidden">
                 {activeImage ? (
-                  <img 
+                  <ProductImage
                     key={`${product.id}-${activeImage.url}`}
                     src={activeImage.url} 
                     alt={activeImage.alt}
                     loading="eager"
-                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -152,11 +152,9 @@ const ProductDetail = () => {
                       }`}
                       aria-label={`View ${image.alt}`}
                     >
-                      <img
+                      <ProductImage
                         src={image.url}
                         alt={image.alt}
-                        loading="lazy"
-                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </button>

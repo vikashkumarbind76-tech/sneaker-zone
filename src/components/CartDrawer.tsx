@@ -5,6 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 import ImageUnavailable from '@/components/ImageUnavailable';
+import ProductImage from '@/components/ProductImage';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -73,12 +74,11 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                     className="flex gap-4 p-4 bg-secondary/50 rounded-lg"
                   >
                     {item.image ? (
-                      <img 
+                      <ProductImage
                         src={item.image} 
                         alt={item.name}
-                        loading="lazy"
-                        decoding="async"
                         className="w-20 h-20 object-cover rounded-lg"
+                        fallbackClassName="h-20 w-20 rounded-lg text-xs"
                       />
                     ) : (
                       <ImageUnavailable className="h-20 w-20 rounded-lg text-xs" />
