@@ -1,24 +1,3 @@
-import snWhiteLow from '@/assets/p/sneaker-white-low.jpg';
-import snBlackRunner from '@/assets/p/sneaker-black-runner.jpg';
-import snRedHi from '@/assets/p/sneaker-red-hi.jpg';
-import snSuedeBeige from '@/assets/p/sneaker-suede-beige.jpg';
-import snNavyStripes from '@/assets/p/sneaker-navy-stripes.jpg';
-import snGreyPerf from '@/assets/p/sneaker-grey-perf.jpg';
-import snBlackLux from '@/assets/p/sneaker-black-lux.jpg';
-import snOliveChunky from '@/assets/p/sneaker-olive-chunky.jpg';
-import shBrownDerby from '@/assets/p/shoe-brown-derby.jpg';
-import shTanLoafer from '@/assets/p/shoe-tan-loafer.jpg';
-import shBootBrown from '@/assets/p/shoe-boot-brown.jpg';
-import shBlackOxford from '@/assets/p/shoe-black-oxford.jpg';
-import shGreySlipon from '@/assets/p/shoe-grey-slipon.jpg';
-import apBlackTee from '@/assets/p/apparel-black-tee.jpg';
-import apGreyHoodie from '@/assets/p/apparel-grey-hoodie.jpg';
-import apBlueJeans from '@/assets/p/apparel-blue-jeans.jpg';
-import apOliveShirt from '@/assets/p/apparel-olive-shirt.jpg';
-import apNavyPolo from '@/assets/p/apparel-navy-polo.jpg';
-import apBlackJoggers from '@/assets/p/apparel-black-joggers.jpg';
-import apWhiteGraphic from '@/assets/p/apparel-white-graphic.jpg';
-
 export interface Product {
   id: number;
   name: string;
@@ -43,10 +22,7 @@ export interface ProductImage {
   productId: number;
 }
 
-type ProductSeed = Omit<Product, 'slug' | 'images'> & {
-  /** Legacy asset reference kept only so old repeated mock images are not rendered. */
-  image: string;
-};
+type ProductSeed = Omit<Product, 'slug' | 'images'>;
 
 const sneakerSizes = ['6', '7', '8', '9', '10', '11', '12'];
 const apparelSizes = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -417,7 +393,7 @@ const productSeeds: ProductSeed[] = [
   },
 ];
 
-export const products: Product[] = productSeeds.map(({ image: _legacyImage, ...product }) => ({
+export const products: Product[] = productSeeds.map((product) => ({
   ...product,
   slug: createProductSlug(product),
   images: validateProductImages(
