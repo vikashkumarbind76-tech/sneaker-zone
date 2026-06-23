@@ -1,6 +1,9 @@
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -9,6 +12,18 @@ interface CartDrawerProps {
 
 const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
   const { items, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (!user) {
+      toast.error('Please sign in to checkout');
+      onClose();
+      navigate('/auth');
+      return;
+    }
+    toast.success('Proceeding to checkout...');
+  };
 
   return (
     <>
@@ -115,8 +130,8 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
               <p className="text-xs text-muted-foreground">
                 Shipping and taxes calculated at checkout
               </p>
-              <Button variant="accent" className="w-full" size="lg">
-                Checkout
+              <Button variant="accent" className="w-full" size="lg" onClick={handleCheckout}>
+                {user ? 'Checkout' : 'Sign in to Checkout'}
               </Button>
               <Button 
                 variant="ghost" 
