@@ -20,11 +20,24 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+const CART_IMAGE_MAPPING_VERSION = 'product-image-map-v2';
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
+    if (localStorage.getItem('cartImageMappingVersion') !== CART_IMAGE_MAPPING_VERSION) {
+      localStorage.setItem('cartImageMappingVersion', CART_IMAGE_MAPPING_VERSION);
+      localStorage.removeItem('cart');
+      return [];
+    }
+
     const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+      console.warn('[product-image-validation] Cleared unreadable cart cache', error);
+      localStorage.removeItem('cart');
+      return [];
+    }
   });
 
   useEffect(() => {

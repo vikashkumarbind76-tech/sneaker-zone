@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/data/products';
 import { toast } from 'sonner';
+import ImageUnavailable from '@/components/ImageUnavailable';
+import ProductImage from '@/components/ProductImage';
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +13,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const primaryImage = product.images[0];
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image,
+      image: primaryImage?.url ?? '',
       category: product.category,
     });
     toast.success(`${product.name} added to cart!`);
@@ -27,16 +30,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link 
-      to={`/product/${product.id}`}
+      to={`/product/${product.slug}`}
       className="group block relative bg-card rounded-xl overflow-hidden shadow-soft-sm hover:shadow-soft-lg transition-all duration-500"
     >
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-secondary">
-        <img 
-          src={product.image} 
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {primaryImage ? (
+          <ProductImage
+            src={primaryImage.url} 
+            alt={primaryImage.alt}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <ImageUnavailable />
+        )}
         
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">

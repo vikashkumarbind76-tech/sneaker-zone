@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { products } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 
 type Category = 'all' | 'sneakers' | 'shoes' | 'apparel';
 
@@ -13,6 +13,7 @@ const categories: { label: string; value: Category }[] = [
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const { data: products = [] } = useProducts();
 
   const filteredProducts = activeCategory === 'all' 
     ? products 

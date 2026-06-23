@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import ProductCard from '@/components/ProductCard';
-import { products } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 
 type Category = 'all' | 'sneakers' | 'shoes' | 'apparel';
 
@@ -20,6 +20,7 @@ const ShopPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [sortBy, setSortBy] = useState<'default' | 'price-low' | 'price-high' | 'newest'>('default');
+  const { data: products = [] } = useProducts();
 
   let filteredProducts = activeCategory === 'all' 
     ? products 
