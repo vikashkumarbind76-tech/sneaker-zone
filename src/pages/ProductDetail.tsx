@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ShoppingBag, Ruler, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
-import { getProductById, sizeCharts } from '@/data/products';
+import { sizeCharts } from '@/data/products';
+import { useProduct } from '@/hooks/useProducts';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
+import ImageUnavailable from '@/components/ImageUnavailable';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,8 +22,26 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [showDetails, setShowDetails] = useState(true);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const product = getProductById(Number(id));
+  const { product, isLoading } = useProduct(id);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+    setSelectedSize('');
+    setQuantity(1);
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="heading-lg mb-4">Loading Product</h1>
+          <p className="text-muted-foreground">Checking product-specific images...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -36,6 +56,7 @@ const ProductDetail = () => {
   }
 
   const sizeChart = sizeCharts[product.category];
+  const activeImage = product.images[activeImageIndex] ?? product.images[0];
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -47,7 +68,7 @@ const ProductDetail = () => {
         id: product.id,
         name: `${product.name} - Size ${selectedSize}`,
         price: product.price,
-        image: product.image,
+        image: product.images[0]?.url ?? '',
         category: product.category,
       });
     }
@@ -94,11 +115,18 @@ const ProductDetail = () => {
             {/* Product Image */}
             <div className="space-y-4">
               <div className="relative aspect-square bg-secondary rounded-2xl overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
+                {activeImage ? (
+                  <img 
+                    key={`${product.id}-${activeImage.url}`}
+                    src={activeImage.url} 
+                    alt={activeImage.alt}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <ImageUnavailable />
+                )}
                 {product.isNew && (
                   <span className="absolute top-4 left-4 bg-accent text-accent-foreground text-sm font-medium px-3 py-1 rounded-lg">
                     NEW
@@ -112,6 +140,29 @@ const ProductDetail = () => {
                   <Heart className="w-5 h-5" />
                 </Button>
               </div>
+              {product.images.length > 1 && (
+                <div className="grid grid-cols-4 gap-3">
+                  {product.images.map((image, index) => (
+                    <button
+                      key={`${product.id}-${image.url}`}
+                      type="button"
+                      onClick={() => setActiveImageIndex(index)}
+                      className={`aspect-square overflow-hidden rounded-xl border-2 bg-secondary transition-colors ${
+                        activeImageIndex === index ? 'border-accent' : 'border-border hover:border-accent/70'
+                      }`}
+                      aria-label={`View ${image.alt}`}
+                    >
+                      <img
+                        src={image.url}
+                        alt={image.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Product Info */}

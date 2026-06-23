@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/data/products';
 import { toast } from 'sonner';
+import ImageUnavailable from '@/components/ImageUnavailable';
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +12,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const primaryImage = product.images[0];
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image,
+      image: primaryImage?.url ?? '',
       category: product.category,
     });
     toast.success(`${product.name} added to cart!`);
@@ -32,11 +34,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
     >
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-secondary">
-        <img 
-          src={product.image} 
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {primaryImage ? (
+          <img 
+            src={primaryImage.url} 
+            alt={primaryImage.alt}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <ImageUnavailable />
+        )}
         
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">

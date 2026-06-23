@@ -2,10 +2,12 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ProductCard';
-import { featuredProducts } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 
 const FeaturedProducts = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { data: products = [] } = useProducts();
+  const featuredProducts = products.filter(product => product.isFeatured);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {

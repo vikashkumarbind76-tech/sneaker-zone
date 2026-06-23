@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
+import ImageUnavailable from '@/components/ImageUnavailable';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -71,11 +72,17 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                     key={item.id}
                     className="flex gap-4 p-4 bg-secondary/50 rounded-lg"
                   >
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="w-20 h-20 object-cover rounded-lg"
-                    />
+                    {item.image ? (
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-20 h-20 object-cover rounded-lg"
+                      />
+                    ) : (
+                      <ImageUnavailable className="h-20 w-20 rounded-lg text-xs" />
+                    )}
                     <div className="flex-1">
                       <h3 className="font-medium mb-1">{item.name}</h3>
                       <p className="text-sm text-muted-foreground capitalize mb-2">
