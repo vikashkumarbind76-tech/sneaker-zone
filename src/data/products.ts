@@ -22,7 +22,31 @@ export interface ProductImage {
   productId: number;
 }
 
-type ProductSeed = Omit<Product, 'slug' | 'images'>;
+type ProductSeed = Omit<Product, 'slug' | 'images'> & {
+  /** Deprecated legacy field ignored by the renderer so repeated mock assets never display. */
+  image?: string;
+};
+
+const snWhiteLow = '';
+const snBlackRunner = '';
+const snRedHi = '';
+const snSuedeBeige = '';
+const snNavyStripes = '';
+const snGreyPerf = '';
+const snBlackLux = '';
+const snOliveChunky = '';
+const shBrownDerby = '';
+const shTanLoafer = '';
+const shBootBrown = '';
+const shBlackOxford = '';
+const shGreySlipon = '';
+const apBlackTee = '';
+const apGreyHoodie = '';
+const apBlueJeans = '';
+const apOliveShirt = '';
+const apNavyPolo = '';
+const apBlackJoggers = '';
+const apWhiteGraphic = '';
 
 const sneakerSizes = ['6', '7', '8', '9', '10', '11', '12'];
 const apparelSizes = ['S', 'M', 'L', 'XL', 'XXL'];
