@@ -30,7 +30,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link 
-      to={`/product/${product.id}`}
+      to={`/product/${product.slug}`}
       className="group block relative bg-card rounded-xl overflow-hidden shadow-soft-sm hover:shadow-soft-lg transition-all duration-500"
     >
       {/* Image Container */}
