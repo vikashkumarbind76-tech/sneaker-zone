@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, Crown } from 'lucide-react';
+import { Menu, X, ShoppingBag, Crown, User as UserIcon, LogOut } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useAuth } from '@/hooks/useAuth';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -19,6 +20,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const { user, signOut } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -91,6 +93,18 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
                 </span>
               )}
             </Button>
+
+            {user ? (
+              <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign out">
+                <LogOut className="w-5 h-5" />
+              </Button>
+            ) : (
+              <Link to="/auth">
+                <Button variant="ghost" size="icon" title="Sign in">
+                  <UserIcon className="w-5 h-5" />
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <Button
