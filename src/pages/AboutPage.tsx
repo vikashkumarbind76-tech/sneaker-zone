@@ -60,6 +60,10 @@ const AboutPage = () => {
           content="Learn about Sneaker Zone - Brooklyn's premier destination for authentic sneakers and streetwear since 2014." 
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/about" />
+        <meta property="og:title" content="About Sneaker Zone | Brooklyn Streetwear" />
+        <meta property="og:description" content="Brooklyn's premier destination for authentic sneakers and streetwear since 2014." />
+        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/about" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

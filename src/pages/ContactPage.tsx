@@ -70,6 +70,10 @@ const ContactPage = () => {
           content="Get in touch with Sneaker Zone. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/contact" />
+        <meta property="og:title" content="Contact Sneaker Zone | Brooklyn" />
+        <meta property="og:description" content="Visit Sneaker Zone at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." />
+        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/contact" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
