@@ -36,2145 +36,322 @@ export interface Product {
   sku: string;
 }
 
+const sneakerSizes = ['6', '7', '8', '9', '10', '11', '12'];
+const apparelSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+const jeansSizes = ['28', '30', '32', '34', '36', '38'];
+
 export const products: Product[] = [
+  // ============ NIKE (8) ============
   {
-    id: 1,
-    name: "Air Max SC",
-    brand: "Nike",
-    price: 4499,
-    image: snGreyPerf,
-    category: 'sneakers',
-    isNew: true,
-    isFeatured: true,
-    description: "The Nike Air Max SC delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0001"
+    id: 1, name: "Air Force 1 '07", brand: "Nike", price: 8295, image: snWhiteLow, category: 'sneakers', isNew: true, isFeatured: true,
+    description: "An icon of basketball heritage, the Nike Air Force 1 '07 brings back the classic all-white low-top with premium leather and Nike Air cushioning.",
+    details: ["Full-grain leather upper", "Nike Air cushioning in the heel", "Perforated toe for breathability", "Rubber cupsole with pivot circle", "Iconic AF1 silhouette"],
+    sizes: sneakerSizes, colors: ["White", "Black", "Triple White"], material: "Leather, Rubber", sku: "SZ-NIKE-0001"
   },
   {
-    id: 2,
-    name: "Revolution 6",
-    brand: "Nike",
-    price: 3795,
-    image: snGreyPerf,
-    category: 'sneakers',
-    isFeatured: true,
-    description: "The Nike Revolution 6 delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0002"
+    id: 2, name: "Air Max SC", brand: "Nike", price: 5495, image: snGreyPerf, category: 'sneakers', isFeatured: true,
+    description: "The Nike Air Max SC pairs classic sportswear style with visible Max Air cushioning for all-day comfort on Indian streets.",
+    details: ["Leather and synthetic upper", "Visible Max Air heel unit", "Foam midsole for soft cushioning", "Rubber outsole with waffle pattern", "Padded collar and tongue"],
+    sizes: sneakerSizes, colors: ["Grey/White", "Black", "Navy"], material: "Leather, Mesh, Rubber", sku: "SZ-NIKE-0002"
   },
   {
-    id: 3,
-    name: "Court Vision Low",
-    brand: "Nike",
-    price: 5295,
-    image: snWhiteLow,
-    category: 'sneakers',
-    isFeatured: true,
-    description: "The Nike Court Vision Low delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0003"
+    id: 3, name: "Revolution 7 Running", brand: "Nike", price: 4795, image: snBlackRunner, category: 'sneakers',
+    description: "A lightweight everyday running shoe designed for new runners and daily walks, with soft foam underfoot.",
+    details: ["Engineered mesh upper", "Soft foam midsole", "Rubber outsole for traction", "Padded collar for ankle comfort", "Reflective heel details"],
+    sizes: sneakerSizes, colors: ["Black", "Grey", "Navy"], material: "Mesh, Rubber", sku: "SZ-NIKE-0003"
   },
   {
-    id: 4,
-    name: "Air Force 1 '07",
-    brand: "Nike",
-    price: 8995,
-    image: snWhiteLow,
-    category: 'sneakers',
-    isFeatured: true,
-    description: "The Nike Air Force 1 '07 delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0004"
+    id: 4, name: "Court Vision Low", brand: "Nike", price: 5295, image: snWhiteLow, category: 'sneakers',
+    description: "Inspired by '80s basketball, the Court Vision Low gives you classic court style with crisp white leather.",
+    details: ["Leather upper", "Foam midsole", "Rubber cupsole", "Perforations for airflow", "Low-cut for mobility"],
+    sizes: sneakerSizes, colors: ["White/Black", "All White"], material: "Leather, Rubber", sku: "SZ-NIKE-0004"
   },
   {
-    id: 5,
-    name: "Pegasus 40",
-    brand: "Nike",
-    price: 10995,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Nike Pegasus 40 delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0005"
+    id: 5, name: "Dunk High Retro", brand: "Nike", price: 9795, image: snRedHi, category: 'sneakers', isNew: true,
+    description: "The Nike Dunk High Retro returns with bold color blocking and a padded high-top collar for a true throwback feel.",
+    details: ["Leather upper with overlays", "Padded high-top collar", "Foam midsole", "Rubber outsole with pivot circle", "Heritage Dunk silhouette"],
+    sizes: sneakerSizes, colors: ["University Red/White", "Black/White"], material: "Leather, Rubber", sku: "SZ-NIKE-0005"
   },
   {
-    id: 6,
-    name: "Dunk Low Retro",
-    brand: "Nike",
-    price: 8995,
-    image: snBlackRunner,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Nike Dunk Low Retro delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0006"
+    id: 6, name: "Pegasus 40", brand: "Nike", price: 11295, image: snGreyPerf, category: 'sneakers', isFeatured: true,
+    description: "The trusty Nike Pegasus 40 delivers responsive React foam and Zoom Air units for confident daily miles.",
+    details: ["Engineered mesh upper", "React foam midsole", "Forefoot and heel Zoom Air units", "Waffle rubber outsole", "Midfoot band for lockdown"],
+    sizes: sneakerSizes, colors: ["Grey/Volt", "Black/White"], material: "Mesh, Foam, Rubber", sku: "SZ-NIKE-0006"
   },
   {
-    id: 7,
-    name: "Blazer Mid '77",
-    brand: "Nike",
-    price: 7995,
-    image: snRedHi,
-    category: 'sneakers',
-    description: "The Nike Blazer Mid '77 delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0007"
+    id: 7, name: "Sportswear Club Fleece Hoodie", brand: "Nike", price: 3495, image: apGreyHoodie, category: 'apparel',
+    description: "A soft brushed-fleece pullover hoodie with the classic embroidered Swoosh. Perfect for chilly mornings.",
+    details: ["80% cotton / 20% polyester fleece", "Brushed interior for warmth", "Kangaroo pocket", "Ribbed cuffs and hem", "Embroidered Nike Swoosh"],
+    sizes: apparelSizes, colors: ["Grey", "Black", "Navy"], material: "Cotton, Polyester", sku: "SZ-NIKE-0007"
   },
   {
-    id: 8,
-    name: "Air Jordan 1 Low",
-    brand: "Nike",
-    price: 9295,
-    image: snRedHi,
-    category: 'sneakers',
-    description: "The Nike Air Jordan 1 Low delivers iconic Nike style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Nike cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NIKE-0008"
+    id: 8, name: "Dri-FIT Training Tee", brand: "Nike", price: 1495, image: apBlackTee, category: 'apparel',
+    description: "Sweat-wicking Dri-FIT fabric keeps you dry through tough workouts and weekend runs.",
+    details: ["Nike Dri-FIT moisture-wicking fabric", "Standard fit", "Crew neck", "Printed Swoosh on chest", "Lightweight feel"],
+    sizes: apparelSizes, colors: ["Black", "White", "Navy"], material: "100% Polyester", sku: "SZ-NIKE-0008"
   },
+
+  // ============ ADIDAS (8) ============
   {
-    id: 9,
-    name: "Smash 3.0",
-    brand: "Puma",
-    price: 3499,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Puma Smash 3.0 delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0009"
+    id: 9, name: "Superstar", brand: "Adidas", price: 8999, image: snWhiteLow, category: 'sneakers', isFeatured: true,
+    description: "The legendary adidas Superstar with its iconic rubber shell toe and 3-Stripes — a true streetwear classic.",
+    details: ["Leather upper", "Signature rubber shell toe", "Serrated 3-Stripes", "Herringbone-pattern rubber cupsole", "Heritage Trefoil logo"],
+    sizes: sneakerSizes, colors: ["White/Black", "All White"], material: "Leather, Rubber", sku: "SZ-ADID-0009"
   },
   {
-    id: 10,
-    name: "Suede Classic XXI",
-    brand: "Puma",
-    price: 6499,
-    image: snSuedeBeige,
-    category: 'sneakers',
-    description: "The Puma Suede Classic XXI delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0010"
+    id: 10, name: "Stan Smith", brand: "Adidas", price: 7999, image: snWhiteLow, category: 'sneakers', isNew: true,
+    description: "Clean, minimalist tennis style. The adidas Stan Smith remains a timeless wardrobe staple.",
+    details: ["Primegreen recycled upper", "Perforated 3-Stripes", "Heel patch with Stan Smith signature", "Rubber cupsole", "Vegan-friendly construction"],
+    sizes: sneakerSizes, colors: ["White/Green", "White/Navy"], material: "Recycled Synthetic, Rubber", sku: "SZ-ADID-0010"
   },
   {
-    id: 11,
-    name: "RS-X Reinvent",
-    brand: "Puma",
-    price: 8999,
-    image: snOliveChunky,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Puma RS-X Reinvent delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0011"
+    id: 11, name: "Ultraboost Light", brand: "Adidas", price: 17999, image: snGreyPerf, category: 'sneakers', isFeatured: true,
+    description: "The lightest Ultraboost ever, with new BOOST Light foam for incredible energy return on every stride.",
+    details: ["Primeknit+ adaptive upper", "BOOST Light midsole", "Linear Energy Push system", "Stretchweb outsole with Continental rubber", "Heel counter for support"],
+    sizes: sneakerSizes, colors: ["Grey/Black", "Core Black"], material: "Primeknit, Rubber", sku: "SZ-ADID-0011"
   },
   {
-    id: 12,
-    name: "Cell Endura",
-    brand: "Puma",
-    price: 5999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Puma Cell Endura delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0012"
+    id: 12, name: "Galaxy 6 Running", brand: "Adidas", price: 3999, image: snBlackRunner, category: 'sneakers',
+    description: "An everyday running shoe with cushioned comfort built for beginners and daily training.",
+    details: ["Lightweight mesh upper", "Cloudfoam midsole", "Adiwear rubber outsole", "EVA sockliner", "Classic 3-Stripes branding"],
+    sizes: sneakerSizes, colors: ["Black", "Grey", "Navy"], material: "Mesh, Rubber", sku: "SZ-ADID-0012"
   },
   {
-    id: 13,
-    name: "Anzarun Lite",
-    brand: "Puma",
-    price: 2999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Puma Anzarun Lite delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0013"
+    id: 13, name: "Samba OG", brand: "Adidas", price: 10999, image: snNavyStripes, category: 'sneakers', isNew: true, isFeatured: true,
+    description: "The legendary indoor football shoe turned street icon. Premium leather, gum sole, and timeless silhouette.",
+    details: ["Full-grain leather upper", "Suede T-toe overlay", "Iconic gum rubber outsole", "Classic 3-Stripes", "Padded tongue"],
+    sizes: sneakerSizes, colors: ["Black/White Gum", "White/Navy Gum"], material: "Leather, Suede, Rubber", sku: "SZ-ADID-0013"
   },
   {
-    id: 14,
-    name: "Future Rider",
-    brand: "Puma",
-    price: 6999,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Puma Future Rider delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0014"
+    id: 14, name: "Forum Low", brand: "Adidas", price: 8499, image: snRedHi, category: 'sneakers',
+    description: "An '80s basketball classic with an unmistakable ankle strap and premium build.",
+    details: ["Leather upper", "Adjustable ankle strap", "Foam midsole", "Rubber cupsole", "Heritage Trefoil branding"],
+    sizes: sneakerSizes, colors: ["White/Red", "White/Black"], material: "Leather, Rubber", sku: "SZ-ADID-0014"
   },
   {
-    id: 15,
-    name: "Mayze Stack",
-    brand: "Puma",
-    price: 7499,
-    image: snSuedeBeige,
-    category: 'sneakers',
-    description: "The Puma Mayze Stack delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0015"
+    id: 15, name: "3-Stripes Track Pants", brand: "Adidas", price: 2999, image: apBlackJoggers, category: 'apparel',
+    description: "The iconic adidas 3-Stripes track pants — comfortable tricot fabric with a tapered, modern fit.",
+    details: ["Tricot polyester fabric", "Side 3-Stripes", "Elastic waist with drawcord", "Tapered leg", "Side hand pockets"],
+    sizes: apparelSizes, colors: ["Black", "Navy"], material: "100% Polyester Tricot", sku: "SZ-ADID-0015"
   },
   {
-    id: 16,
-    name: "Slipstream Lo",
-    brand: "Puma",
-    price: 7999,
-    image: snSuedeBeige,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Puma Slipstream Lo delivers iconic Puma style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Puma cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-PUMA-0016"
+    id: 16, name: "Essentials 3-Stripes Tee", brand: "Adidas", price: 1399, image: apBlackTee, category: 'apparel',
+    description: "Soft cotton tee with the signature adidas 3-Stripes across the chest. A wardrobe essential.",
+    details: ["100% cotton single jersey", "Regular fit", "Ribbed crew neck", "3-Stripes across chest", "Embroidered Trefoil"],
+    sizes: apparelSizes, colors: ["Black", "White", "Navy"], material: "100% Cotton", sku: "SZ-ADID-0016"
   },
+
+  // ============ PUMA (8) ============
   {
-    id: 17,
-    name: "Grand Court",
-    brand: "Adidas",
-    price: 4799,
-    image: snWhiteLow,
-    category: 'sneakers',
-    description: "The Adidas Grand Court delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0017"
+    id: 17, name: "Suede Classic XXI", brand: "Puma", price: 5499, image: snSuedeBeige, category: 'sneakers', isFeatured: true,
+    description: "The legendary PUMA Suede — 50+ years of street style in a premium suede upper.",
+    details: ["Premium suede upper", "Foam midsole", "Iconic PUMA Formstrip", "Rubber outsole", "Padded collar"],
+    sizes: sneakerSizes, colors: ["Sand/White", "Black/White", "Navy/White"], material: "Suede, Rubber", sku: "SZ-PUMA-0017"
   },
   {
-    id: 18,
-    name: "Runfalcon 3.0",
-    brand: "Adidas",
-    price: 3999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Adidas Runfalcon 3.0 delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0018"
+    id: 18, name: "Smash 3.0 L", brand: "Puma", price: 3999, image: snWhiteLow, category: 'sneakers',
+    description: "A clean, court-inspired sneaker with leather upper and timeless PUMA styling.",
+    details: ["Leather upper", "PUMA Formstrip overlay", "Soft foam sockliner", "Rubber outsole", "Low-profile silhouette"],
+    sizes: sneakerSizes, colors: ["White/Navy", "White/Black"], material: "Leather, Rubber", sku: "SZ-PUMA-0018"
   },
   {
-    id: 19,
-    name: "Galaxy 6",
-    brand: "Adidas",
-    price: 4499,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Adidas Galaxy 6 delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0019"
+    id: 19, name: "RS-X Reinvention", brand: "Puma", price: 8999, image: snOliveChunky, category: 'sneakers', isNew: true,
+    description: "Chunky, futuristic, and bold. The RS-X dials up volume with Running System cushioning.",
+    details: ["Mesh and synthetic upper", "RS cushioning technology", "Chunky rubber outsole", "Bold color blocking", "Reinforced heel"],
+    sizes: sneakerSizes, colors: ["Olive/Multi", "Black/Multi"], material: "Mesh, Synthetic, Rubber", sku: "SZ-PUMA-0019"
   },
   {
-    id: 20,
-    name: "Ultraboost Light",
-    brand: "Adidas",
-    price: 17999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Adidas Ultraboost Light delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0020"
+    id: 20, name: "Softride Enzo Evo", brand: "Puma", price: 5499, image: snBlackRunner, category: 'sneakers',
+    description: "Built for daily running with SOFTRIDE cushioning that adapts to every step.",
+    details: ["Engineered mesh upper", "SOFTRIDE foam midsole", "Rubber outsole", "Heel pull tab", "Lightweight design"],
+    sizes: sneakerSizes, colors: ["Black", "Grey/Red"], material: "Mesh, Foam, Rubber", sku: "SZ-PUMA-0020"
   },
   {
-    id: 21,
-    name: "NMD_R1",
-    brand: "Adidas",
-    price: 13999,
-    image: snNavyStripes,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Adidas NMD_R1 delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0021"
+    id: 21, name: "Cali Star", brand: "Puma", price: 6999, image: snWhiteLow, category: 'sneakers',
+    description: "California court style updated with chunky tooling and premium leather panels.",
+    details: ["Leather upper with star overlay", "Stacked rubber cupsole", "Foam sockliner", "Padded tongue and collar", "Bold PUMA branding"],
+    sizes: sneakerSizes, colors: ["White/Pink", "White/Black"], material: "Leather, Rubber", sku: "SZ-PUMA-0021"
   },
   {
-    id: 22,
-    name: "Stan Smith",
-    brand: "Adidas",
-    price: 8999,
-    image: snWhiteLow,
-    category: 'sneakers',
-    description: "The Adidas Stan Smith delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0022"
+    id: 22, name: "Essentials Logo Hoodie", brand: "Puma", price: 2799, image: apGreyHoodie, category: 'apparel',
+    description: "A cozy fleece hoodie with the classic PUMA No. 1 Logo printed on the chest.",
+    details: ["Cotton-rich fleece", "Drawcord-adjustable hood", "Kangaroo pocket", "Ribbed cuffs and hem", "Printed PUMA logo"],
+    sizes: apparelSizes, colors: ["Grey", "Black", "Navy"], material: "Cotton/Polyester Fleece", sku: "SZ-PUMA-0022"
   },
   {
-    id: 23,
-    name: "Samba OG",
-    brand: "Adidas",
-    price: 10999,
-    image: snSuedeBeige,
-    category: 'sneakers',
-    description: "The Adidas Samba OG delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0023"
+    id: 23, name: "Active Polo T-shirt", brand: "Puma", price: 1499, image: apNavyPolo, category: 'apparel',
+    description: "A breathable dryCELL polo for sport, golf, or casual weekend wear.",
+    details: ["dryCELL moisture-wicking fabric", "Self-fabric collar", "Two-button placket", "Embroidered PUMA Cat logo", "Regular fit"],
+    sizes: apparelSizes, colors: ["Navy", "White", "Black"], material: "100% Polyester", sku: "SZ-PUMA-0023"
   },
   {
-    id: 24,
-    name: "Forum Low",
-    brand: "Adidas",
-    price: 9499,
-    image: snRedHi,
-    category: 'sneakers',
-    description: "The Adidas Forum Low delivers iconic Adidas style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Adidas cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ADID-0024"
+    id: 24, name: "Train Favourite Joggers", brand: "Puma", price: 2299, image: apBlackJoggers, category: 'apparel',
+    description: "Slim-fit training joggers with dryCELL technology and a tapered, modern silhouette.",
+    details: ["dryCELL polyester fabric", "Elastic waist with drawcord", "Side hand pockets", "Tapered, slim fit", "PUMA Cat logo"],
+    sizes: apparelSizes, colors: ["Black", "Grey"], material: "Polyester/Elastane", sku: "SZ-PUMA-0024"
   },
+
+  // ============ RED TAPE (8) ============
   {
-    id: 25,
-    name: "Classic Leather",
-    brand: "Reebok",
-    price: 6499,
-    image: snWhiteLow,
-    category: 'sneakers',
-    description: "The Reebok Classic Leather delivers iconic Reebok style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Reebok cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-REEB-0025"
+    id: 25, name: "RTE0145 Walking Sneakers", brand: "Red Tape", price: 1799, image: snWhiteLow, category: 'sneakers', isFeatured: true,
+    description: "Red Tape's bestselling walking sneakers with shock-absorbing soles for all-day Indian city comfort.",
+    details: ["Soft synthetic upper", "Cushioned EVA midsole", "Shock-absorbing sole", "Lace-up closure", "Lightweight build"],
+    sizes: sneakerSizes, colors: ["White", "Black", "Navy"], material: "Synthetic, EVA, Rubber", sku: "SZ-REDT-0025"
   },
   {
-    id: 26,
-    name: "Club C 85",
-    brand: "Reebok",
-    price: 7499,
-    image: snWhiteLow,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Reebok Club C 85 delivers iconic Reebok style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Reebok cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-REEB-0026"
+    id: 26, name: "RTE2014 Casual Sneakers", brand: "Red Tape", price: 1999, image: snBlackRunner, category: 'sneakers',
+    description: "Sporty casual sneakers built for everyday wear, with breathable mesh and a flexible sole.",
+    details: ["Breathable mesh upper", "Memory-tech footbed", "Anti-slip outsole", "Padded collar", "Slip-resistant grip"],
+    sizes: sneakerSizes, colors: ["Black/White", "Grey"], material: "Mesh, Rubber", sku: "SZ-REDT-0026"
   },
   {
-    id: 27,
-    name: "Nano X3",
-    brand: "Reebok",
-    price: 10999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Reebok Nano X3 delivers iconic Reebok style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Reebok cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-REEB-0027"
+    id: 27, name: "Tan Leather Derby", brand: "Red Tape", price: 2499, image: shBrownDerby, category: 'shoes', isNew: true,
+    description: "Handcrafted genuine leather derby — formal yet versatile, perfect for office and evenings.",
+    details: ["Genuine leather upper", "Cushioned insole", "TPR outsole", "4-eyelet derby lacing", "Hand-finished detailing"],
+    sizes: sneakerSizes, colors: ["Tan", "Brown", "Black"], material: "Genuine Leather, TPR", sku: "SZ-REDT-0027"
   },
   {
-    id: 28,
-    name: "Floatride Energy 5",
-    brand: "Reebok",
-    price: 8999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Reebok Floatride Energy 5 delivers iconic Reebok style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Reebok cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-REEB-0028"
+    id: 28, name: "Black Formal Oxford", brand: "Red Tape", price: 2799, image: shBlackOxford, category: 'shoes', isFeatured: true,
+    description: "Classic closed-lace oxford in polished black leather — a non-negotiable formal essential.",
+    details: ["Premium leather upper", "Closed-lace oxford construction", "Memory cushion footbed", "Slip-resistant outsole", "Polished finish"],
+    sizes: sneakerSizes, colors: ["Black", "Brown"], material: "Leather, TPR", sku: "SZ-REDT-0028"
   },
   {
-    id: 29,
-    name: "Gel-Excite 10",
-    brand: "Asics",
-    price: 6499,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Asics Gel-Excite 10 delivers iconic Asics style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Asics cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ASIC-0029"
+    id: 29, name: "Tan Slip-on Loafers", brand: "Red Tape", price: 2299, image: shTanLoafer, category: 'shoes',
+    description: "Smart leather loafers that work just as well with chinos as with denim.",
+    details: ["Genuine leather upper", "Apron-toe styling", "Soft padded footbed", "Slip-on construction", "Durable TPR sole"],
+    sizes: sneakerSizes, colors: ["Tan", "Brown"], material: "Leather, TPR", sku: "SZ-REDT-0029"
   },
   {
-    id: 30,
-    name: "Gel-Kayano 30",
-    brand: "Asics",
-    price: 16999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The Asics Gel-Kayano 30 delivers iconic Asics style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Asics cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ASIC-0030"
+    id: 30, name: "Brown Leather Chukka Boot", brand: "Red Tape", price: 3299, image: shBootBrown, category: 'shoes', isNew: true,
+    description: "Rugged chukka boots in rich brown leather — built for travel and casual wear.",
+    details: ["Full-grain leather upper", "Padded ankle collar", "3-eyelet lace closure", "Rugged rubber sole", "Reinforced stitching"],
+    sizes: sneakerSizes, colors: ["Brown", "Tan", "Black"], material: "Leather, Rubber", sku: "SZ-REDT-0030"
   },
   {
-    id: 31,
-    name: "Novablast 4",
-    brand: "Asics",
-    price: 13999,
-    image: snGreyPerf,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Asics Novablast 4 delivers iconic Asics style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Asics cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-ASIC-0031"
+    id: 31, name: "Slim Fit Dark Wash Jeans", brand: "Red Tape", price: 1599, image: apBlueJeans, category: 'apparel',
+    description: "Slim-fit stretchable jeans in a versatile dark wash — easy to dress up or down.",
+    details: ["98% cotton / 2% elastane denim", "Slim fit", "5-pocket styling", "Mid rise", "Stretch comfort"],
+    sizes: jeansSizes, colors: ["Dark Blue", "Black", "Mid Blue"], material: "Cotton/Elastane Denim", sku: "SZ-REDT-0031"
   },
   {
-    id: 32,
-    name: "Go Walk 6",
-    brand: "Skechers",
-    price: 4999,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Skechers Go Walk 6 delivers iconic Skechers style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Skechers cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-SKEC-0032"
+    id: 32, name: "Olive Casual Shirt", brand: "Red Tape", price: 1299, image: apOliveShirt, category: 'apparel',
+    description: "A relaxed-fit cotton casual shirt in earthy olive — perfect for weekends.",
+    details: ["100% cotton weave", "Regular fit", "Spread collar", "Button-down front", "Chest pocket"],
+    sizes: apparelSizes, colors: ["Olive", "Beige", "White"], material: "100% Cotton", sku: "SZ-REDT-0032"
   },
+
+  // ============ SKECHERS (7) ============
   {
-    id: 33,
-    name: "D'Lites",
-    brand: "Skechers",
-    price: 5999,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Skechers D'Lites delivers iconic Skechers style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Skechers cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-SKEC-0033"
+    id: 33, name: "Go Walk 6", brand: "Skechers", price: 5499, image: snGreyPerf, category: 'sneakers', isFeatured: true,
+    description: "Skechers Go Walk 6 with Hyper Burst cushioning — engineered for ultimate walking comfort.",
+    details: ["Engineered mesh upper", "Hyper Burst ultra-light cushioning", "Air-Cooled Goga Mat insole", "Slip-on with bungee laces", "High-rebound outsole"],
+    sizes: sneakerSizes, colors: ["Grey", "Black", "Navy"], material: "Mesh, Foam, Rubber", sku: "SZ-SKEC-0033"
   },
   {
-    id: 34,
-    name: "Arch Fit",
-    brand: "Skechers",
-    price: 7499,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Skechers Arch Fit delivers iconic Skechers style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Skechers cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-SKEC-0034"
+    id: 34, name: "D'Lites 1.0", brand: "Skechers", price: 6499, image: snWhiteLow, category: 'sneakers',
+    description: "The cult-favourite chunky dad sneaker with stitched overlays and Memory Foam comfort.",
+    details: ["Leather and mesh upper", "Stitched overlay design", "Air-Cooled Memory Foam insole", "Shock-absorbing midsole", "Chunky rubber outsole"],
+    sizes: sneakerSizes, colors: ["White/Navy", "All White", "Black"], material: "Leather, Mesh, Rubber", sku: "SZ-SKEC-0034"
   },
   {
-    id: 35,
-    name: "574 Core",
-    brand: "New Balance",
-    price: 10499,
-    image: snNavyStripes,
-    category: 'sneakers',
-    description: "The New Balance 574 Core delivers iconic New Balance style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic New Balance cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NEW--0035"
+    id: 35, name: "Arch Fit Slip-on", brand: "Skechers", price: 6999, image: shGreySlipon, category: 'shoes', isNew: true,
+    description: "Slip-on comfort shoes with podiatrist-certified Arch Fit insole — perfect for all-day standing.",
+    details: ["Knit mesh upper", "Arch Fit removable insole", "Slip-on construction", "Air-Cooled comfort", "Flexible rubber outsole"],
+    sizes: sneakerSizes, colors: ["Grey", "Black", "Navy"], material: "Knit Mesh, Rubber", sku: "SZ-SKEC-0035"
   },
   {
-    id: 36,
-    name: "550 White Green",
-    brand: "New Balance",
-    price: 13999,
-    image: snNavyStripes,
-    category: 'sneakers',
-    isNew: true,
-    description: "The New Balance 550 White Green delivers iconic New Balance style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic New Balance cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-NEW--0036"
+    id: 36, name: "Max Cushioning Elite", brand: "Skechers", price: 8999, image: snBlackRunner, category: 'sneakers',
+    description: "Maximum stack-height cushioning for long runs and walks with incredible energy return.",
+    details: ["Engineered mesh upper", "ULTRA GO max cushioning", "Goga Mat insole", "Stability heel cradle", "Durable rubber outsole"],
+    sizes: sneakerSizes, colors: ["Black/White", "Grey"], material: "Mesh, Foam, Rubber", sku: "SZ-SKEC-0036"
   },
   {
-    id: 37,
-    name: "North Plus",
-    brand: "Campus",
-    price: 1399,
-    image: snOliveChunky,
-    category: 'sneakers',
-    description: "The Campus North Plus delivers iconic Campus style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Campus cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-CAMP-0037"
+    id: 37, name: "Track Scloric Sneaker", brand: "Skechers", price: 4999, image: snNavyStripes, category: 'sneakers',
+    description: "Retro-inspired runner with stripes and Memory Foam comfort for daily wear.",
+    details: ["Synthetic and mesh upper", "Air-Cooled Memory Foam", "Shock-absorbing midsole", "Lace-up closure", "Flex grooves outsole"],
+    sizes: sneakerSizes, colors: ["Navy/White", "Black/Red"], material: "Synthetic, Mesh", sku: "SZ-SKEC-0037"
   },
   {
-    id: 38,
-    name: "Maxico",
-    brand: "Campus",
-    price: 1599,
-    image: snOliveChunky,
-    category: 'sneakers',
-    description: "The Campus Maxico delivers iconic Campus style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Campus cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-CAMP-0038"
+    id: 38, name: "Status 2.0 Casual", brand: "Skechers", price: 5999, image: shBrownDerby, category: 'shoes',
+    description: "Smart casual leather lace-up with Memory Foam — bridges office and evening.",
+    details: ["Premium leather upper", "Lace-up plain-toe design", "Air-Cooled Memory Foam", "Shock-absorbing midsole", "Slip-resistant outsole"],
+    sizes: sneakerSizes, colors: ["Brown", "Black", "Tan"], material: "Leather, Rubber", sku: "SZ-SKEC-0038"
   },
   {
-    id: 39,
-    name: "First",
-    brand: "Campus",
-    price: 999,
-    image: snOliveChunky,
-    category: 'sneakers',
-    description: "The Campus First delivers iconic Campus style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Campus cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-CAMP-0039"
+    id: 39, name: "Performance Polo Tee", brand: "Skechers", price: 1799, image: apNavyPolo, category: 'apparel',
+    description: "Athletic polo with sweat-wicking fabric and four-way stretch for active days.",
+    details: ["Polyester/spandex blend", "Four-way stretch", "Moisture-wicking finish", "Ribbed self collar", "Embroidered logo"],
+    sizes: apparelSizes, colors: ["Navy", "Black", "White"], material: "Polyester/Spandex", sku: "SZ-SKEC-0039"
   },
+
+  // ============ SPARX (6) ============
   {
-    id: 40,
-    name: "SM-414",
-    brand: "Sparx",
-    price: 1299,
-    image: snBlackRunner,
-    category: 'sneakers',
-    description: "The Sparx SM-414 delivers iconic Sparx style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Sparx cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-SPAR-0040"
+    id: 40, name: "SM-414 Running Shoes", brand: "Sparx", price: 1299, image: snBlackRunner, category: 'sneakers', isFeatured: true,
+    description: "Affordable, durable running shoes from India's favourite homegrown sports brand.",
+    details: ["Mesh upper for breathability", "Phylon midsole", "Lightweight TPR outsole", "Lace-up closure", "Padded tongue and collar"],
+    sizes: sneakerSizes, colors: ["Black/Red", "Grey/Green", "Navy/Orange"], material: "Mesh, TPR", sku: "SZ-SPRX-0040"
   },
   {
-    id: 41,
-    name: "SX0492G",
-    brand: "Sparx",
-    price: 1199,
-    image: snBlackRunner,
-    category: 'sneakers',
-    isNew: true,
-    description: "The Sparx SX0492G delivers iconic Sparx style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic Sparx cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-SPAR-0041"
+    id: 41, name: "SM-323 Casual Sneakers", brand: "Sparx", price: 999, image: snWhiteLow, category: 'sneakers',
+    description: "Everyday casual sneakers — light on the pocket and built for daily Indian wear.",
+    details: ["Synthetic upper", "Cushioned insole", "Anti-skid TPR outsole", "Lace-up closure", "Lightweight construction"],
+    sizes: sneakerSizes, colors: ["White", "Black", "Navy"], material: "Synthetic, TPR", sku: "SZ-SPRX-0041"
   },
   {
-    id: 42,
-    name: "Fortify Running",
-    brand: "HRX",
-    price: 2499,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The HRX Fortify Running delivers iconic HRX style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic HRX cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-HRX-0042"
+    id: 42, name: "SX-0125 Walking Shoes", brand: "Sparx", price: 1499, image: snGreyPerf, category: 'sneakers',
+    description: "Performance walking shoes with shock-absorbing soles for everyday fitness walks.",
+    details: ["Engineered mesh upper", "EVA cushioned midsole", "Memory-tech insole", "Lace closure", "Durable rubber outsole"],
+    sizes: sneakerSizes, colors: ["Grey", "Black", "Blue"], material: "Mesh, EVA, Rubber", sku: "SZ-SPRX-0042"
   },
   {
-    id: 43,
-    name: "Energy Pro Trainer",
-    brand: "HRX",
-    price: 2799,
-    image: snGreyPerf,
-    category: 'sneakers',
-    description: "The HRX Energy Pro Trainer delivers iconic HRX style with modern comfort. Perfect for daily wear, sport, and street looks.",
-    details: [
-      "Breathable mesh / leather upper",
-      "Authentic HRX cushioning technology",
-      "Padded collar for ankle support",
-      "Grippy rubber outsole",
-      "Lightweight, low-profile silhouette"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black/White", "White", "Grey", "Navy"],
-    material: "Mesh, Synthetic, Rubber",
-    sku: "SZ-HRX-0043"
+    id: 43, name: "SD-0306 Floater Sandals", brand: "Sparx", price: 699, image: shGreySlipon, category: 'shoes',
+    description: "Lightweight floater sandals with adjustable straps — built for monsoon-friendly Indian wear.",
+    details: ["PU upper straps", "EVA cushioned footbed", "Hook-and-loop adjustability", "Anti-slip outsole", "Water-friendly construction"],
+    sizes: sneakerSizes, colors: ["Black", "Grey", "Brown"], material: "PU, EVA", sku: "SZ-SPRX-0043"
   },
   {
-    id: 44,
-    name: "RTE2014 Casual",
-    brand: "Red Tape",
-    price: 1899,
-    image: shBrownDerby,
-    category: 'shoes',
-    isNew: true,
-    isFeatured: true,
-    description: "Step out in confidence with the Red Tape RTE2014 Casual. Built by Red Tape for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Red Tape comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-RED--0044"
+    id: 44, name: "SC-0461 Sport Slip-on", brand: "Sparx", price: 1199, image: shGreySlipon, category: 'shoes', isNew: true,
+    description: "Easy slip-on sport shoes for gym, walks, and casual outings.",
+    details: ["Stretch knit upper", "Slip-on construction", "Cushioned insole", "Flexible TPR sole", "Pull-tab heel"],
+    sizes: sneakerSizes, colors: ["Grey/Black", "Navy/White"], material: "Knit, TPR", sku: "SZ-SPRX-0044"
   },
   {
-    id: 45,
-    name: "RSO0287 Loafer",
-    brand: "Red Tape",
-    price: 2299,
-    image: shTanLoafer,
-    category: 'shoes',
-    isFeatured: true,
-    description: "Step out in confidence with the Red Tape RSO0287 Loafer. Built by Red Tape for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Red Tape comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-RED--0045"
+    id: 45, name: "SX-0517 Trail Sneakers", brand: "Sparx", price: 1699, image: snOliveChunky, category: 'sneakers',
+    description: "Rugged trail-style sneakers with chunky grip for outdoor adventures.",
+    details: ["Synthetic and mesh upper", "Reinforced toe", "Aggressive lugged outsole", "Padded ankle collar", "Cushioned insole"],
+    sizes: sneakerSizes, colors: ["Olive/Black", "Grey/Orange"], material: "Synthetic, Mesh, Rubber", sku: "SZ-SPRX-0045"
   },
+
+  // ============ EXTRAS (5) — premium picks ============
   {
-    id: 46,
-    name: "Walking Shoe",
-    brand: "Red Tape",
-    price: 1599,
-    image: shGreySlipon,
-    category: 'shoes',
-    isFeatured: true,
-    description: "Step out in confidence with the Red Tape Walking Shoe. Built by Red Tape for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Red Tape comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-RED--0046"
+    id: 46, name: "Jordan 1 Mid", brand: "Nike", price: 12995, image: snRedHi, category: 'sneakers', isNew: true, isFeatured: true,
+    description: "Inspired by the original AJ1, the Jordan 1 Mid offers iconic basketball style with Air-Sole cushioning.",
+    details: ["Leather and synthetic upper", "Encapsulated Air-Sole unit", "Solid rubber outsole", "Padded mid-top collar", "Wings logo on collar"],
+    sizes: sneakerSizes, colors: ["Chicago Red/Black", "White/Black"], material: "Leather, Rubber", sku: "SZ-NIKE-0046"
   },
   {
-    id: 47,
-    name: "Comfit Slip On",
-    brand: "Bata",
-    price: 1499,
-    image: shGreySlipon,
-    category: 'shoes',
-    isFeatured: true,
-    description: "Step out in confidence with the Bata Comfit Slip On. Built by Bata for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Bata comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-BATA-0047"
+    id: 47, name: "Gazelle Indoor", brand: "Adidas", price: 11499, image: snNavyStripes, category: 'sneakers', isFeatured: true,
+    description: "A futsal-inspired terrace classic. Premium suede, gum sole, and bold colorways.",
+    details: ["Premium suede upper", "Leather T-toe overlay", "Gum rubber outsole", "Iconic 3-Stripes", "Padded tongue and collar"],
+    sizes: sneakerSizes, colors: ["Navy/White", "Maroon/White"], material: "Suede, Leather, Rubber", sku: "SZ-ADID-0047"
   },
   {
-    id: 48,
-    name: "Power Walk",
-    brand: "Bata",
-    price: 1799,
-    image: shGreySlipon,
-    category: 'shoes',
-    description: "Step out in confidence with the Bata Power Walk. Built by Bata for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Bata comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-BATA-0048"
+    id: 48, name: "Mayze Stack Luxe", brand: "Puma", price: 8499, image: snBlackLux, category: 'sneakers',
+    description: "A stacked-sole statement sneaker in luxe leather — high-fashion meets PUMA heritage.",
+    details: ["Premium leather upper", "Stacked rubber platform", "Foam comfort sockliner", "Iconic PUMA Formstrip", "Bold branding"],
+    sizes: sneakerSizes, colors: ["Black/Gold", "White/Black"], material: "Leather, Rubber", sku: "SZ-PUMA-0048"
   },
   {
-    id: 49,
-    name: "North Star Sneaker",
-    brand: "Bata",
-    price: 1999,
-    image: shBrownDerby,
-    category: 'shoes',
-    isNew: true,
-    description: "Step out in confidence with the Bata North Star Sneaker. Built by Bata for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Bata comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-BATA-0049"
+    id: 49, name: "Graphic Print Oversized Tee", brand: "Puma", price: 1899, image: apWhiteGraphic, category: 'apparel', isNew: true,
+    description: "An oversized cotton tee with bold front graphic — a streetwear statement.",
+    details: ["Heavyweight cotton jersey", "Oversized drop-shoulder fit", "Front graphic print", "Ribbed crew neck", "Curved hem"],
+    sizes: apparelSizes, colors: ["White", "Black"], material: "100% Cotton", sku: "SZ-PUMA-0049"
   },
   {
-    id: 50,
-    name: "Leather Boot",
-    brand: "Woodland",
-    price: 4995,
-    image: shBootBrown,
-    category: 'shoes',
-    description: "Step out in confidence with the Woodland Leather Boot. Built by Woodland for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Woodland comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-WOOD-0050"
+    id: 50, name: "Slim Tapered Indigo Jeans", brand: "Adidas", price: 2499, image: apBlueJeans, category: 'apparel',
+    description: "Slim-tapered indigo jeans with stretch — a versatile staple for everyday styling.",
+    details: ["Stretch cotton denim", "Slim tapered fit", "Mid rise", "5-pocket construction", "Branded leather patch"],
+    sizes: jeansSizes, colors: ["Indigo", "Black"], material: "Cotton/Elastane", sku: "SZ-ADID-0050"
   },
-  {
-    id: 51,
-    name: "Outdoor Trekker",
-    brand: "Woodland",
-    price: 5495,
-    image: shBootBrown,
-    category: 'shoes',
-    description: "Step out in confidence with the Woodland Outdoor Trekker. Built by Woodland for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Woodland comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-WOOD-0051"
-  },
-  {
-    id: 52,
-    name: "Classic Derby",
-    brand: "Woodland",
-    price: 3995,
-    image: shBrownDerby,
-    category: 'shoes',
-    description: "Step out in confidence with the Woodland Classic Derby. Built by Woodland for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Woodland comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-WOOD-0052"
-  },
-  {
-    id: 53,
-    name: "Briggs Loafer",
-    brand: "Hush Puppies",
-    price: 4499,
-    image: shTanLoafer,
-    category: 'shoes',
-    description: "Step out in confidence with the Hush Puppies Briggs Loafer. Built by Hush Puppies for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Hush Puppies comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-HUSH-0053"
-  },
-  {
-    id: 54,
-    name: "Drift Slip On",
-    brand: "Hush Puppies",
-    price: 3999,
-    image: shGreySlipon,
-    category: 'shoes',
-    isNew: true,
-    description: "Step out in confidence with the Hush Puppies Drift Slip On. Built by Hush Puppies for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Hush Puppies comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-HUSH-0054"
-  },
-  {
-    id: 55,
-    name: "Tilden Cap",
-    brand: "Clarks",
-    price: 6999,
-    image: shBlackOxford,
-    category: 'shoes',
-    description: "Step out in confidence with the Clarks Tilden Cap. Built by Clarks for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Clarks comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-CLAR-0055"
-  },
-  {
-    id: 56,
-    name: "Bushacre 3",
-    brand: "Clarks",
-    price: 8499,
-    image: shBootBrown,
-    category: 'shoes',
-    description: "Step out in confidence with the Clarks Bushacre 3. Built by Clarks for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Clarks comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-CLAR-0056"
-  },
-  {
-    id: 57,
-    name: "Coolers Sandal",
-    brand: "Liberty",
-    price: 899,
-    image: shGreySlipon,
-    category: 'shoes',
-    description: "Step out in confidence with the Liberty Coolers Sandal. Built by Liberty for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Liberty comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-LIBE-0057"
-  },
-  {
-    id: 58,
-    name: "Healers Formal",
-    brand: "Liberty",
-    price: 1599,
-    image: shBlackOxford,
-    category: 'shoes',
-    description: "Step out in confidence with the Liberty Healers Formal. Built by Liberty for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Liberty comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-LIBE-0058"
-  },
-  {
-    id: 59,
-    name: "LC4087 Sneaker",
-    brand: "Lee Cooper",
-    price: 2999,
-    image: shBrownDerby,
-    category: 'shoes',
-    isNew: true,
-    description: "Step out in confidence with the Lee Cooper LC4087 Sneaker. Built by Lee Cooper for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Lee Cooper comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-LEE--0059"
-  },
-  {
-    id: 60,
-    name: "Casual Derby",
-    brand: "Lee Cooper",
-    price: 2499,
-    image: shBrownDerby,
-    category: 'shoes',
-    description: "Step out in confidence with the Lee Cooper Casual Derby. Built by Lee Cooper for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Lee Cooper comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-LEE--0060"
-  },
-  {
-    id: 61,
-    name: "Formal Oxford",
-    brand: "Provogue",
-    price: 1799,
-    image: shBlackOxford,
-    category: 'shoes',
-    description: "Step out in confidence with the Provogue Formal Oxford. Built by Provogue for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Provogue comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-PROV-0061"
-  },
-  {
-    id: 62,
-    name: "Tan Loafer",
-    brand: "Mochi",
-    price: 2999,
-    image: shTanLoafer,
-    category: 'shoes',
-    description: "Step out in confidence with the Mochi Tan Loafer. Built by Mochi for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Mochi comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-MOCH-0062"
-  },
-  {
-    id: 63,
-    name: "Black Derby",
-    brand: "Metro",
-    price: 2199,
-    image: shBrownDerby,
-    category: 'shoes',
-    description: "Step out in confidence with the Metro Black Derby. Built by Metro for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Metro comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-METR-0063"
-  },
-  {
-    id: 64,
-    name: "Campus Walker",
-    brand: "Action",
-    price: 799,
-    image: shBrownDerby,
-    category: 'shoes',
-    isNew: true,
-    description: "Step out in confidence with the Action Campus Walker. Built by Action for everyday Indian streets with comfort and durability in mind.",
-    details: [
-      "Durable upper construction",
-      "Signature Action comfort sole",
-      "Cushioned insole for all-day wear",
-      "Anti-skid rubber outsole",
-      "Lightweight and flexible"
-    ],
-    sizes: ['6', '7', '8', '9', '10', '11', '12'],
-    colors: ["Black", "Brown", "Tan", "Grey"],
-    material: "Leather / Synthetic",
-    sku: "SZ-ACTI-0064"
-  },
-  {
-    id: 65,
-    name: "Active Training Tee",
-    brand: "HRX",
-    price: 799,
-    image: apBlackTee,
-    category: 'apparel',
-    isNew: true,
-    isFeatured: true,
-    description: "The HRX Active Training Tee blends iconic HRX style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic HRX branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-HRX-0065"
-  },
-  {
-    id: 66,
-    name: "Energy Joggers",
-    brand: "HRX",
-    price: 1499,
-    image: apBlackJoggers,
-    category: 'apparel',
-    isFeatured: true,
-    description: "The HRX Energy Joggers blends iconic HRX style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic HRX branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-HRX-0066"
-  },
-  {
-    id: 67,
-    name: "Lifestyle Hoodie",
-    brand: "HRX",
-    price: 1999,
-    image: apGreyHoodie,
-    category: 'apparel',
-    isFeatured: true,
-    description: "The HRX Lifestyle Hoodie blends iconic HRX style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic HRX branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-HRX-0067"
-  },
-  {
-    id: 68,
-    name: "Cotton T-Shirt",
-    brand: "Roadster",
-    price: 599,
-    image: apBlackTee,
-    category: 'apparel',
-    isFeatured: true,
-    description: "The Roadster Cotton T-Shirt blends iconic Roadster style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Roadster branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ROAD-0068"
-  },
-  {
-    id: 69,
-    name: "Slim Fit Jeans",
-    brand: "Roadster",
-    price: 1499,
-    image: apBlueJeans,
-    category: 'apparel',
-    description: "The Roadster Slim Fit Jeans blends iconic Roadster style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Roadster branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ROAD-0069"
-  },
-  {
-    id: 70,
-    name: "Checked Shirt",
-    brand: "Roadster",
-    price: 999,
-    image: apOliveShirt,
-    category: 'apparel',
-    isNew: true,
-    description: "The Roadster Checked Shirt blends iconic Roadster style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Roadster branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ROAD-0070"
-  },
-  {
-    id: 71,
-    name: "511 Slim Jeans",
-    brand: "Levi's",
-    price: 3499,
-    image: apBlueJeans,
-    category: 'apparel',
-    description: "The Levi's 511 Slim Jeans blends iconic Levi's style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Levi's branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-LEVI-0071"
-  },
-  {
-    id: 72,
-    name: "Logo Tee",
-    brand: "Levi's",
-    price: 1299,
-    image: apWhiteGraphic,
-    category: 'apparel',
-    description: "The Levi's Logo Tee blends iconic Levi's style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Levi's branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-LEVI-0072"
-  },
-  {
-    id: 73,
-    name: "Trucker Jacket",
-    brand: "Levi's",
-    price: 5999,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Levi's Trucker Jacket blends iconic Levi's style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Levi's branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-LEVI-0073"
-  },
-  {
-    id: 74,
-    name: "Polo T-Shirt",
-    brand: "U.S. Polo Assn.",
-    price: 1599,
-    image: apNavyPolo,
-    category: 'apparel',
-    description: "The U.S. Polo Assn. Polo T-Shirt blends iconic U.S. Polo Assn. style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic U.S. Polo Assn. branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-U-S--0074"
-  },
-  {
-    id: 75,
-    name: "Slim Fit Shirt",
-    brand: "U.S. Polo Assn.",
-    price: 2299,
-    image: apBlackTee,
-    category: 'apparel',
-    isNew: true,
-    description: "The U.S. Polo Assn. Slim Fit Shirt blends iconic U.S. Polo Assn. style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic U.S. Polo Assn. branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-U-S--0075"
-  },
-  {
-    id: 76,
-    name: "Graphic Tee",
-    brand: "Jack & Jones",
-    price: 1099,
-    image: apWhiteGraphic,
-    category: 'apparel',
-    description: "The Jack & Jones Graphic Tee blends iconic Jack & Jones style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Jack & Jones branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-JACK-0076"
-  },
-  {
-    id: 77,
-    name: "Slim Chinos",
-    brand: "Jack & Jones",
-    price: 2499,
-    image: apBlackJoggers,
-    category: 'apparel',
-    description: "The Jack & Jones Slim Chinos blends iconic Jack & Jones style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Jack & Jones branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-JACK-0077"
-  },
-  {
-    id: 78,
-    name: "Bomber Jacket",
-    brand: "Jack & Jones",
-    price: 4999,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Jack & Jones Bomber Jacket blends iconic Jack & Jones style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Jack & Jones branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-JACK-0078"
-  },
-  {
-    id: 79,
-    name: "Formal Shirt",
-    brand: "Allen Solly",
-    price: 1799,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Allen Solly Formal Shirt blends iconic Allen Solly style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Allen Solly branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ALLE-0079"
-  },
-  {
-    id: 80,
-    name: "Chino Trouser",
-    brand: "Allen Solly",
-    price: 1999,
-    image: apBlackJoggers,
-    category: 'apparel',
-    isNew: true,
-    description: "The Allen Solly Chino Trouser blends iconic Allen Solly style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Allen Solly branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ALLE-0080"
-  },
-  {
-    id: 81,
-    name: "Cotton Shirt",
-    brand: "Peter England",
-    price: 1599,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Peter England Cotton Shirt blends iconic Peter England style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Peter England branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-PETE-0081"
-  },
-  {
-    id: 82,
-    name: "Casual Blazer",
-    brand: "Peter England",
-    price: 4999,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Peter England Casual Blazer blends iconic Peter England style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Peter England branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-PETE-0082"
-  },
-  {
-    id: 83,
-    name: "Regular Fit Tee",
-    brand: "H&M",
-    price: 699,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The H&M Regular Fit Tee blends iconic H&M style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic H&M branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-H-M-0083"
-  },
-  {
-    id: 84,
-    name: "Slim Joggers",
-    brand: "H&M",
-    price: 1499,
-    image: apBlackJoggers,
-    category: 'apparel',
-    description: "The H&M Slim Joggers blends iconic H&M style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic H&M branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-H-M-0084"
-  },
-  {
-    id: 85,
-    name: "Oversized Hoodie",
-    brand: "H&M",
-    price: 2299,
-    image: apGreyHoodie,
-    category: 'apparel',
-    isNew: true,
-    description: "The H&M Oversized Hoodie blends iconic H&M style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic H&M branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-H-M-0085"
-  },
-  {
-    id: 86,
-    name: "Essentials Tee",
-    brand: "Puma",
-    price: 999,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The Puma Essentials Tee blends iconic Puma style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Puma branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-PUMA-0086"
-  },
-  {
-    id: 87,
-    name: "Track Pants",
-    brand: "Puma",
-    price: 1999,
-    image: apBlackJoggers,
-    category: 'apparel',
-    description: "The Puma Track Pants blends iconic Puma style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Puma branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-PUMA-0087"
-  },
-  {
-    id: 88,
-    name: "3-Stripes Tee",
-    brand: "Adidas",
-    price: 1499,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The Adidas 3-Stripes Tee blends iconic Adidas style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Adidas branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ADID-0088"
-  },
-  {
-    id: 89,
-    name: "Tiro Trackpant",
-    brand: "Adidas",
-    price: 2799,
-    image: apBlackJoggers,
-    category: 'apparel',
-    description: "The Adidas Tiro Trackpant blends iconic Adidas style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Adidas branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-ADID-0089"
-  },
-  {
-    id: 90,
-    name: "Sportswear Tee",
-    brand: "Nike",
-    price: 1495,
-    image: apWhiteGraphic,
-    category: 'apparel',
-    isNew: true,
-    description: "The Nike Sportswear Tee blends iconic Nike style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Nike branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-NIKE-0090"
-  },
-  {
-    id: 91,
-    name: "Tech Fleece Hoodie",
-    brand: "Nike",
-    price: 6995,
-    image: apGreyHoodie,
-    category: 'apparel',
-    description: "The Nike Tech Fleece Hoodie blends iconic Nike style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Nike branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-NIKE-0091"
-  },
-  {
-    id: 92,
-    name: "Texas Jeans",
-    brand: "Wrangler",
-    price: 2499,
-    image: apBlueJeans,
-    category: 'apparel',
-    description: "The Wrangler Texas Jeans blends iconic Wrangler style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Wrangler branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-WRAN-0092"
-  },
-  {
-    id: 93,
-    name: "Slim Tee",
-    brand: "Pepe Jeans",
-    price: 1199,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The Pepe Jeans Slim Tee blends iconic Pepe Jeans style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Pepe Jeans branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-PEPE-0093"
-  },
-  {
-    id: 94,
-    name: "Linen Shirt",
-    brand: "Mast & Harbour",
-    price: 1599,
-    image: apOliveShirt,
-    category: 'apparel',
-    description: "The Mast & Harbour Linen Shirt blends iconic Mast & Harbour style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Mast & Harbour branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-MAST-0094"
-  },
-  {
-    id: 95,
-    name: "Casual Shirt",
-    brand: "Highlander",
-    price: 899,
-    image: apOliveShirt,
-    category: 'apparel',
-    isNew: true,
-    description: "The Highlander Casual Shirt blends iconic Highlander style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Highlander branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-HIGH-0095"
-  },
-  {
-    id: 96,
-    name: "Logo Polo",
-    brand: "Tommy Hilfiger",
-    price: 2999,
-    image: apNavyPolo,
-    category: 'apparel',
-    description: "The Tommy Hilfiger Logo Polo blends iconic Tommy Hilfiger style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Tommy Hilfiger branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-TOMM-0096"
-  },
-  {
-    id: 97,
-    name: "Crew Tee",
-    brand: "Calvin Klein",
-    price: 2499,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The Calvin Klein Crew Tee blends iconic Calvin Klein style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Calvin Klein branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-CALV-0097"
-  },
-  {
-    id: 98,
-    name: "Graphic Tee",
-    brand: "Being Human",
-    price: 899,
-    image: apWhiteGraphic,
-    category: 'apparel',
-    description: "The Being Human Graphic Tee blends iconic Being Human style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Being Human branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-BEIN-0098"
-  },
-  {
-    id: 99,
-    name: "Cotton Tee",
-    brand: "UCB",
-    price: 1299,
-    image: apBlackTee,
-    category: 'apparel',
-    description: "The UCB Cotton Tee blends iconic UCB style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic UCB branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-UCB-0099"
-  },
-  {
-    id: 100,
-    name: "Slim Jeans",
-    brand: "Flying Machine",
-    price: 1799,
-    image: apBlueJeans,
-    category: 'apparel',
-    isNew: true,
-    description: "The Flying Machine Slim Jeans blends iconic Flying Machine style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Flying Machine branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-FLYI-0100"
-  },
-  {
-    id: 101,
-    name: "Tapered Jeans",
-    brand: "Spykar",
-    price: 1999,
-    image: apBlueJeans,
-    category: 'apparel',
-    description: "The Spykar Tapered Jeans blends iconic Spykar style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Spykar branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-SPYK-0101"
-  },
-  {
-    id: 102,
-    name: "Hooded Sweatshirt",
-    brand: "WROGN",
-    price: 1999,
-    image: apGreyHoodie,
-    category: 'apparel',
-    description: "The WROGN Hooded Sweatshirt blends iconic WROGN style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic WROGN branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-WROG-0102"
-  },
-  {
-    id: 103,
-    name: "Printed Tee",
-    brand: "Bewakoof",
-    price: 499,
-    image: apWhiteGraphic,
-    category: 'apparel',
-    description: "The Bewakoof Printed Tee blends iconic Bewakoof style with premium build quality — a versatile pick for the modern Indian wardrobe.",
-    details: [
-      "Premium fabric for everyday comfort",
-      "Authentic Bewakoof branding",
-      "Easy machine wash",
-      "Tailored modern fit",
-      "Designed for Indian climate"
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ["Black", "White", "Navy", "Grey"],
-    material: "Cotton blend",
-    sku: "SZ-BEWA-0103"
-  }
 ];
-
-export const featuredProducts = products.filter(p => p.isFeatured);
-
-export const getProductById = (id: number): Product | undefined => {
-  return products.find(p => p.id === id);
-};
-
-export const sizeCharts = {
-  sneakers: {
-    title: 'Sneakers Size Guide (India)',
-    headers: ['UK/IND', 'US', 'EU', 'CM'],
-    rows: [
-      ['6','7','40','25'],
-      ['7','8','41','26'],
-      ['8','9','42','27'],
-      ['9','10','43','28'],
-      ['10','11','44','29'],
-      ['11','12','45','30'],
-      ['12','13','46','31'],
-    ]
-  },
-  shoes: {
-    title: 'Shoes Size Guide (India)',
-    headers: ['UK/IND', 'US', 'EU', 'CM'],
-    rows: [
-      ['6','7','40','25'],
-      ['7','8','41','26'],
-      ['8','9','42','27'],
-      ['9','10','43','28'],
-      ['10','11','44','29'],
-      ['11','12','45','30'],
-    ]
-  },
-  apparel: {
-    title: 'Apparel Size Guide',
-    headers: ['Size','Chest (in)','Waist (in)','Length (in)'],
-    rows: [
-      ['XS','34-36','28-30','26'],
-      ['S','36-38','30-32','27'],
-      ['M','38-40','32-34','28'],
-      ['L','40-42','34-36','29'],
-      ['XL','42-44','36-38','30'],
-      ['XXL','44-46','38-40','31'],
-    ]
-  }
-};
