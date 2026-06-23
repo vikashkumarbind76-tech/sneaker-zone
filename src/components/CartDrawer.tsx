@@ -66,7 +66,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                       <p className="text-sm text-muted-foreground capitalize mb-2">
                         {item.category}
                       </p>
-                      <p className="font-medium">${item.price}</p>
+                      <p className="font-medium">₹{item.price}</p>
                     </div>
                     <div className="flex flex-col items-end justify-between">
                       <Button 
@@ -110,7 +110,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
             <div className="border-t border-border p-6 space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-display text-2xl">${totalPrice.toFixed(2)}</span>
+                <span className="font-display text-2xl">₹{totalPrice.toFixed(2)}</span>
               </div>
               <p className="text-xs text-muted-foreground">
                 Shipping and taxes calculated at checkout

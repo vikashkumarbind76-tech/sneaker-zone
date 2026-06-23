@@ -31,8 +31,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    content: 'info@royalsneakers.com',
-    action: () => window.location.href = 'mailto:info@royalsneakers.com',
+    content: 'info@sneakerzone.in',
+    action: () => window.location.href = 'mailto:info@sneakerzone.in',
     actionLabel: 'Send Email',
   },
 ];
@@ -64,10 +64,10 @@ const ContactPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Contact Us | Royal Sneakers & Apparels Brooklyn</title>
+        <title>Contact Us | Sneaker Zone Brooklyn</title>
         <meta 
           name="description" 
-          content="Get in touch with Royal Sneakers & Apparels. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
+          content="Get in touch with Sneaker Zone. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
         />
       </Helmet>
 
@@ -226,7 +226,7 @@ const ContactPage = () => {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Royal Sneakers & Apparels Location"
+                      title="Sneaker Zone Location"
                     />
                   </div>
                 </div>

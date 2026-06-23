@@ -40,7 +40,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: '2014', event: 'Royal Sneakers opens on Fulton Street' },
+  { year: '2014', event: 'Sneaker Zone opens on Fulton Street' },
   { year: '2016', event: 'Expanded to include premium apparel line' },
   { year: '2018', event: 'Reached 1,000+ satisfied customers' },
   { year: '2020', event: 'Launched online presence and delivery' },
@@ -54,10 +54,10 @@ const AboutPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>About Us | Royal Sneakers & Apparels Brooklyn</title>
+        <title>About Us | Sneaker Zone Brooklyn</title>
         <meta 
           name="description" 
-          content="Learn about Royal Sneakers & Apparels - Brooklyn's premier destination for authentic sneakers and streetwear since 2014." 
+          content="Learn about Sneaker Zone - Brooklyn's premier destination for authentic sneakers and streetwear since 2014." 
         />
       </Helmet>
 
@@ -72,7 +72,7 @@ const AboutPage = () => {
               <p className="text-bronze-light font-medium tracking-widest uppercase mb-2">
                 Our Story
               </p>
-              <h1 className="heading-xl mb-6">ABOUT ROYAL SNEAKERS</h1>
+              <h1 className="heading-xl mb-6">ABOUT SNEAKER ZONE</h1>
               <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
                 Brooklyn's premier destination for authentic sneakers and streetwear. 
                 We've been keeping the community fresh since 2014.
@@ -88,7 +88,7 @@ const AboutPage = () => {
                   <h2 className="heading-lg">FROM BROOKLYN, FOR BROOKLYN</h2>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      Royal Sneakers & Apparels was born from a simple idea: Brooklyn 
+                      Sneaker Zone was born from a simple idea: Brooklyn 
                       deserves a sneaker store that understands its unique culture, style, 
                       and energy. Founded in 2014 by a group of local sneaker enthusiasts, 
                       we set out to create more than just a store.
@@ -102,7 +102,7 @@ const AboutPage = () => {
                     <p>
                       What sets us apart isn't just our products—it's our commitment 
                       to authenticity, community, and customer service. When you walk 
-                      into Royal Sneakers, you're not just a customer; you're family.
+                      into Sneaker Zone, you're not just a customer; you're family.
                     </p>
                   </div>
                 </div>
@@ -193,7 +193,7 @@ const AboutPage = () => {
           {/* CTA Section */}
           <section className="bg-primary text-primary-foreground py-16">
             <div className="container-custom text-center">
-              <h2 className="heading-md mb-4">READY TO EXPERIENCE ROYAL?</h2>
+              <h2 className="heading-md mb-4">READY TO EXPERIENCE SNEAKER ZONE?</h2>
               <p className="text-primary-foreground/70 mb-8 max-w-lg mx-auto">
                 Visit us at 1347 Fulton St, Brooklyn, or call us at (347) 627-6595
               </p>

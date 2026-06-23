@@ -20,10 +20,10 @@ const InstagramFeed = () => {
           <p className="text-accent font-medium tracking-widest uppercase mb-2">
             Follow Our Journey
           </p>
-          <h2 className="heading-lg mb-4">@ROYALS_SNEAKERS_APPARELS</h2>
+          <h2 className="heading-lg mb-4">@SNEAKERZONE_INDIA</h2>
           <Button 
             variant="outline"
-            onClick={() => window.open('https://instagram.com/royals_sneakers_apparels', '_blank')}
+            onClick={() => window.open('https://instagram.com/sneakerzone_india', '_blank')}
           >
             <Instagram className="w-5 h-5 mr-2" />
             Follow Us on Instagram
@@ -35,7 +35,7 @@ const InstagramFeed = () => {
           {instagramPosts.map((post, index) => (
             <a
               key={post.id}
-              href="https://instagram.com/royals_sneakers_apparels"
+              href="https://instagram.com/sneakerzone_india"
               target="_blank"
               rel="noopener noreferrer"
               className="relative aspect-square bg-muted rounded-lg overflow-hidden group cursor-pointer"

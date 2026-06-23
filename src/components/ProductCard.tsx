@@ -76,7 +76,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.name}
         </h3>
         <p className="font-medium text-lg">
-          ${product.price}
+          ₹{product.price}
         </p>
       </div>
     </Link>

@@ -50,7 +50,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
           <Link to="/" className="flex items-center gap-2 group">
             <Crown className="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" />
             <span className="font-display text-2xl tracking-wider">
-              ROYAL SNEAKERS
+              SNEAKER ZONE
             </span>
           </Link>
 
