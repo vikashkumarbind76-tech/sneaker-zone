@@ -81,6 +81,7 @@ const ProductDetail = () => {
       <Helmet>
         <title>{product.name} | Sneaker Zone</title>
         <meta name="description" content={product.description} />
+        <link rel="canonical" href={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
       </Helmet>
 
       <Navbar onCartClick={() => setIsCartOpen(true)} />

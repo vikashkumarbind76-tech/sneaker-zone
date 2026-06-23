@@ -38,11 +38,12 @@ const ShopPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Shop | Sneaker Zone Brooklyn</title>
+        <title>Shop Sneakers & Streetwear | Sneaker Zone</title>
         <meta 
           name="description" 
           content="Browse our collection of premium sneakers, shoes, and streetwear. Find the latest drops and classic styles at Sneaker Zone." 
         />
+        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/shop" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
