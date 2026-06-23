@@ -22,9 +22,10 @@ import apWhiteGraphic from '@/assets/p/apparel-white-graphic.jpg';
 export interface Product {
   id: number;
   name: string;
+  slug: string;
   brand: string;
   price: number;
-  image: string;
+  images: ProductImage[];
   category: 'sneakers' | 'shoes' | 'apparel';
   isNew?: boolean;
   isFeatured?: boolean;
@@ -36,11 +37,71 @@ export interface Product {
   sku: string;
 }
 
+export interface ProductImage {
+  url: string;
+  alt: string;
+  productId: number;
+}
+
+type ProductSeed = Omit<Product, 'slug' | 'images'> & {
+  /** Legacy asset reference kept only so old repeated mock images are not rendered. */
+  image: string;
+};
+
 const sneakerSizes = ['6', '7', '8', '9', '10', '11', '12'];
 const apparelSizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const jeansSizes = ['28', '30', '32', '34', '36', '38'];
 
-export const products: Product[] = [
+const createProductSlug = (product: Pick<ProductSeed, 'brand' | 'name' | 'sku'>) =>
+  `${product.brand}-${product.name}-${product.sku}`
+    .toLowerCase()
+    .replace(/'/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+export const validateProductImages = (
+  product: Pick<Product, 'id' | 'name' | 'sku'>,
+  images: ProductImage[] = []
+): ProductImage[] => {
+  const seenUrls = new Set<string>();
+
+  return images.filter((image) => {
+    if (image.productId !== product.id) {
+      console.warn('[product-image-validation] Rejected cross-product image mapping', {
+        productId: product.id,
+        productName: product.name,
+        sku: product.sku,
+        imageProductId: image.productId,
+        url: image.url,
+      });
+      return false;
+    }
+
+    if (!image.url?.trim()) {
+      console.warn('[product-image-validation] Rejected image with missing URL', {
+        productId: product.id,
+        productName: product.name,
+        sku: product.sku,
+      });
+      return false;
+    }
+
+    if (seenUrls.has(image.url)) {
+      console.warn('[product-image-validation] Rejected duplicate product image URL', {
+        productId: product.id,
+        productName: product.name,
+        sku: product.sku,
+        url: image.url,
+      });
+      return false;
+    }
+
+    seenUrls.add(image.url);
+    return true;
+  });
+};
+
+const productSeeds: ProductSeed[] = [
   // ============ NIKE (8) ============
   {
     id: 1, name: "Air Force 1 '07", brand: "Nike", price: 8295, image: snWhiteLow, category: 'sneakers', isNew: true, isFeatured: true,
@@ -356,10 +417,32 @@ export const products: Product[] = [
   },
 ];
 
+export const products: Product[] = productSeeds.map(({ image: _legacyImage, ...product }) => ({
+  ...product,
+  slug: createProductSlug(product),
+  images: validateProductImages(
+    {
+      id: product.id,
+      name: product.name,
+      sku: product.sku,
+    },
+    []
+  ),
+}));
+
 export const featuredProducts = products.filter(p => p.isFeatured);
 
 export const getProductById = (id: number): Product | undefined =>
   products.find(p => p.id === id);
+
+export const getProductByIdOrSlug = (idOrSlug: string): Product | undefined => {
+  const numericId = Number(idOrSlug);
+  if (Number.isFinite(numericId)) {
+    return getProductById(numericId);
+  }
+
+  return products.find(p => p.slug === idOrSlug);
+};
 
 export const sizeCharts: Record<Product['category'], { title: string; headers: string[]; rows: string[][] }> = {
   sneakers: {
