@@ -41,7 +41,7 @@ const milestones = [
   { year: '2018', event: 'Reached 1,000+ satisfied customers' },
   { year: '2020', event: 'Launched online presence and delivery' },
   { year: '2022', event: 'Celebrated 5,000+ happy customers' },
-  { year: '2024', event: '10 years serving Brooklyn community' },
+  { year: '2024', event: '10 years of serving sneakerheads online' },
 ];
 
 const AboutPage = () => {
@@ -50,14 +50,14 @@ const AboutPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>About Sneaker Zone | Brooklyn Streetwear</title>
-        <meta 
-          name="description" 
-          content="Learn about Sneaker Zone - Brooklyn's premier destination for authentic sneakers and streetwear since 2014." 
+        <title>About Sneaker Zone | Online Sneakers & Streetwear</title>
+        <meta
+          name="description"
+          content="Learn about Sneaker Zone — your online destination for authentic sneakers and streetwear from the brands you love."
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/about" />
-        <meta property="og:title" content="About Sneaker Zone | Brooklyn Streetwear" />
-        <meta property="og:description" content="Brooklyn's premier destination for authentic sneakers and streetwear since 2014." />
+        <meta property="og:title" content="About Sneaker Zone | Online Sneakers & Streetwear" />
+        <meta property="og:description" content="Your online destination for authentic sneakers and streetwear." />
         <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/about" />
         <meta property="og:type" content="website" />
       </Helmet>
