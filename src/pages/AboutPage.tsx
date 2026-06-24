@@ -161,37 +161,6 @@ const AboutPage = () => {
             </div>
           </section>
 
-          {/* Timeline Section */}
-          <section className="section-padding">
-            <div className="container-custom">
-              <div className="text-center mb-12">
-                <p className="text-accent font-medium tracking-widest uppercase mb-2">
-                  Our Journey
-                </p>
-                <h2 className="heading-lg">MILESTONES</h2>
-              </div>
-
-              <div className="max-w-2xl mx-auto">
-                {milestones.map((milestone, index) => (
-                  <div 
-                    key={index}
-                    className="flex gap-6 pb-8 last:pb-0"
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-4 h-4 bg-accent rounded-full" />
-                      {index < milestones.length - 1 && (
-                        <div className="w-0.5 h-full bg-border mt-2" />
-                      )}
-                    </div>
-                    <div className="pb-8">
-                      <p className="font-display text-2xl text-accent mb-1">{milestone.year}</p>
-                      <p className="text-muted-foreground">{milestone.event}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* CTA Section */}
           <section className="bg-primary text-primary-foreground py-16">
