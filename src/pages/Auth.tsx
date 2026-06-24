@@ -89,7 +89,7 @@ const AuthPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Helmet>
-        <title>Sign In | Sneaker Zone</title>
+        <title>Sign In | Royal Sneakers & Apparels</title>
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/auth" />
       </Helmet>
       <div className="w-full max-w-md">

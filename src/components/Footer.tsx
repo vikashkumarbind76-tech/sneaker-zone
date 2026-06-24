@@ -44,7 +44,7 @@ const Footer = () => {
             <a href="#home" className="flex items-center gap-2">
               <Crown className="w-8 h-8 text-bronze-light" />
               <span className="font-display text-2xl tracking-wider">
-                SNEAKER ZONE
+                ROYAL SNEAKERS & APPARELS
               </span>
             </a>
             <p className="text-primary-foreground/90 max-w-sm">
@@ -132,7 +132,7 @@ const Footer = () => {
       <div className="border-t border-primary-foreground/10">
         <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/80">
-            © {new Date().getFullYear()} Sneaker Zone. All rights reserved.
+            © {new Date().getFullYear()} Royal Sneakers & Apparels. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-primary-foreground/80">
             <a href="#" className="hover:text-primary-foreground transition-colors">

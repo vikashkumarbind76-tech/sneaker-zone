@@ -38,7 +38,7 @@ const InstagramFeed = () => {
               href="https://instagram.com/sneakerzone_india"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`View Sneaker Zone post on Instagram (${post.likes} likes, ${post.comments} comments)`}
+              aria-label={`View Royal Sneakers & Apparels post on Instagram (${post.likes} likes, ${post.comments} comments)`}
               className="relative aspect-square bg-muted rounded-lg overflow-hidden group cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
             >
