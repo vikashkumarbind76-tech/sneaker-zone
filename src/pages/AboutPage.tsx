@@ -200,29 +200,27 @@ const AboutPage = () => {
           {/* CTA Section */}
           <section className="bg-primary text-primary-foreground py-16">
             <div className="container-custom text-center">
-              <h2 className="heading-md mb-4">READY TO EXPERIENCE SNEAKER ZONE?</h2>
+              <h2 className="heading-md mb-4">READY TO SHOP?</h2>
               <p className="text-primary-foreground/70 mb-8 max-w-lg mx-auto">
-                Visit us at 1347 Fulton St, Brooklyn, or call us at (347) 627-6595
+                Explore the latest sneakers and streetwear in our online store.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a 
-                  href="https://maps.google.com/?q=1347+Fulton+St,+Brooklyn,+NY+11216"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a
+                  href="/shop"
                   className="inline-flex items-center gap-2 bg-bronze text-primary-foreground px-6 py-3 rounded-lg font-medium hover:brightness-110 transition-all"
                 >
-                  <MapPin className="w-5 h-5" />
-                  Get Directions
+                  Shop Now
                 </a>
-                <a 
-                  href="tel:+13476276595"
+                <a
+                  href="/contact"
                   className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 px-6 py-3 rounded-lg font-medium hover:bg-primary-foreground/10 transition-all"
                 >
-                  Call Us
+                  Contact Us
                 </a>
               </div>
             </div>
           </section>
+
         </main>
 
         <Footer />
