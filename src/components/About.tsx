@@ -34,22 +34,22 @@ const About = () => {
 
             <div className="space-y-4 text-primary-foreground/80">
               <p>
-                Founded in the heart of Brooklyn, Sneaker Zone has been 
-                the go-to destination for authentic streetwear and premium sneakers 
-                since 2014. What started as a small passion project has grown into 
-                a community staple.
+                Sneaker Zone is an online store for sneakers and streetwear.
+                We bring together the brands and styles you love — from
+                everyday essentials to limited drops — in one easy place to
+                shop.
               </p>
               <p>
-                We believe everyone deserves to step out in style. Our carefully 
-                curated collection features the latest drops, classic silhouettes, 
-                and exclusive collaborations that you won't find anywhere else.
+                Every pair we list is 100% authentic, sourced from trusted
+                brands like Nike, Adidas, Jordan, New Balance and Puma. No
+                fakes, no guesswork — just real kicks.
               </p>
               <p>
-                Located on Fulton Street, we're more than just a store—we're a 
-                gathering place for sneaker culture, fashion enthusiasts, and 
-                everyone who appreciates quality footwear and apparel.
+                Add what you love to your cart or save it to your wishlist,
+                and we'll get it to your door. Simple as that.
               </p>
             </div>
+
 
             {/* Features */}
             <div className="grid gap-6 pt-4">

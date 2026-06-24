@@ -79,9 +79,11 @@ const AboutPage = () => {
               </p>
               <h1 className="heading-xl mb-6">ABOUT SNEAKER ZONE</h1>
               <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
-                Brooklyn's premier destination for authentic sneakers and streetwear. 
-                We've been keeping the community fresh since 2014.
+                Sneaker Zone is an online sneaker and streetwear store. We bring
+                you authentic kicks and apparel from the brands you love — all
+                in one place.
               </p>
+
             </div>
           </section>
 
@@ -90,26 +92,26 @@ const AboutPage = () => {
             <div className="container-custom">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                  <h2 className="heading-lg">FROM BROOKLYN, FOR BROOKLYN</h2>
+                  <h2 className="heading-lg">WHAT IS SNEAKER ZONE?</h2>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      Sneaker Zone was born from a simple idea: Brooklyn 
-                      deserves a sneaker store that understands its unique culture, style, 
-                      and energy. Founded in 2014 by a group of local sneaker enthusiasts, 
-                      we set out to create more than just a store.
+                      Sneaker Zone is your one-stop online shop for sneakers and
+                      streetwear. From everyday classics to the latest hyped
+                      drops, we stock a carefully picked range of footwear and
+                      apparel built for people who care about how they step out.
                     </p>
                     <p>
-                      Located on historic Fulton Street, we've become a landmark for 
-                      sneakerheads, fashion lovers, and anyone who appreciates quality 
-                      footwear. Our carefully curated collection features the latest 
-                      drops, timeless classics, and exclusive collaborations.
+                      We work only with authentic products from trusted brands —
+                      Nike, Adidas, Jordan, New Balance, Puma and more — so every
+                      order you place is the real deal, every time.
                     </p>
                     <p>
-                      What sets us apart isn't just our products—it's our commitment 
-                      to authenticity, community, and customer service. When you walk 
-                      into Sneaker Zone, you're not just a customer; you're family.
+                      Browse the catalog, save your favorites to your wishlist,
+                      and check out in minutes. Fast shipping, easy returns, and
+                      a team that actually cares about sneakers.
                     </p>
                   </div>
+
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -198,29 +200,27 @@ const AboutPage = () => {
           {/* CTA Section */}
           <section className="bg-primary text-primary-foreground py-16">
             <div className="container-custom text-center">
-              <h2 className="heading-md mb-4">READY TO EXPERIENCE SNEAKER ZONE?</h2>
+              <h2 className="heading-md mb-4">READY TO SHOP?</h2>
               <p className="text-primary-foreground/70 mb-8 max-w-lg mx-auto">
-                Visit us at 1347 Fulton St, Brooklyn, or call us at (347) 627-6595
+                Explore the latest sneakers and streetwear in our online store.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a 
-                  href="https://maps.google.com/?q=1347+Fulton+St,+Brooklyn,+NY+11216"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a
+                  href="/shop"
                   className="inline-flex items-center gap-2 bg-bronze text-primary-foreground px-6 py-3 rounded-lg font-medium hover:brightness-110 transition-all"
                 >
-                  <MapPin className="w-5 h-5" />
-                  Get Directions
+                  Shop Now
                 </a>
-                <a 
-                  href="tel:+13476276595"
+                <a
+                  href="/contact"
                   className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 px-6 py-3 rounded-lg font-medium hover:bg-primary-foreground/10 transition-all"
                 >
-                  Call Us
+                  Contact Us
                 </a>
               </div>
             </div>
           </section>
+
         </main>
 
         <Footer />
