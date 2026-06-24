@@ -21,6 +21,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const { totalItems: wishlistCount } = useWishlist();
   const { user, signOut } = useAuth();
   const location = useLocation();
 
