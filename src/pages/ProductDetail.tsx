@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ShoppingBag, Ruler, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useWishlist } from '@/hooks/useWishlist';
 import { sizeCharts } from '@/data/products';
 import { useProduct } from '@/hooks/useProducts';
 import { toast } from 'sonner';
