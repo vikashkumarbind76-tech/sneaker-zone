@@ -81,10 +81,10 @@ const ProductDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{product.name} | Royal Sneakers & Apparels</title>
+        <title>{product.name} | Sneaker Zone</title>
         <meta name="description" content={product.description} />
         <link rel="canonical" href={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
-        <meta property="og:title" content={`${product.name} | Royal Sneakers & Apparels`} />
+        <meta property="og:title" content={`${product.name} | Sneaker Zone`} />
         <meta property="og:description" content={product.description} />
         <meta property="og:url" content={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
         <meta property="og:type" content="product" />
@@ -97,7 +97,7 @@ const ProductDetail = () => {
           description: product.description,
           sku: product.sku,
           category: product.category,
-          brand: { "@type": "Brand", name: "Royal Sneakers & Apparels" },
+          brand: { "@type": "Brand", name: "Sneaker Zone" },
           offers: {
             "@type": "Offer",
             url: `https://royal-kicks-canvas.lovable.app/product/${product.id}`,

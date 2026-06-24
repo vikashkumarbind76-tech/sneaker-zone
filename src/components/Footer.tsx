@@ -1,4 +1,5 @@
-import { Crown, Instagram, Facebook, Twitter, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, Twitter, MapPin, Phone } from 'lucide-react';
+import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 const footerLinks = {
   shop: [
@@ -42,14 +43,14 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
             <a href="#home" className="flex items-center gap-2">
-              <Crown className="w-8 h-8 text-bronze-light" />
+              <img src={sneakerZoneLogo} alt="Sneaker Zone" width={32} height={32} loading="lazy" className="w-8 h-8 object-contain" />
               <span className="font-display text-2xl tracking-wider">
-                ROYAL SNEAKERS & APPARELS
+                SNEAKER ZONE
               </span>
             </a>
             <p className="text-primary-foreground/90 max-w-sm">
               Brooklyn's premier destination for authentic sneakers and streetwear. 
-              Step into royalty with every visit.
+              Stay fresh with every visit.
             </p>
             <div className="space-y-2 text-sm text-primary-foreground/90">
               <p className="flex items-center gap-2">
@@ -132,7 +133,7 @@ const Footer = () => {
       <div className="border-t border-primary-foreground/10">
         <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/80">
-            © {new Date().getFullYear()} Royal Sneakers & Apparels. All rights reserved.
+            © {new Date().getFullYear()} Sneaker Zone. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-primary-foreground/80">
             <a href="#" className="hover:text-primary-foreground transition-colors">
