@@ -161,9 +161,22 @@ const ProductDetail = () => {
                   variant="ghost" 
                   size="icon"
                   className="absolute top-4 right-4 bg-card/80 backdrop-blur-sm"
-                  aria-label="Add to wishlist"
+                  aria-label={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
+                  onClick={() => {
+                    const wasIn = isInWishlist(product.id);
+                    toggleWishlist({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: activeImage?.url ?? product.images[0]?.url ?? '',
+                      brand: product.brand,
+                      category: product.category,
+                      slug: product.slug,
+                    });
+                    toast.success(wasIn ? 'Removed from wishlist' : 'Added to wishlist');
+                  }}
                 >
-                  <Heart className="w-5 h-5" />
+                  <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-accent text-accent' : ''}`} />
                 </Button>
               </div>
               {product.images.length > 1 && (
