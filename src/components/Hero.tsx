@@ -37,7 +37,7 @@ const Hero = () => {
                 <span className="block text-2xl md:text-3xl font-display tracking-wide mt-3">Brooklyn's Premium Sneakers & Streetwear</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-md animate-fade-up delay-200">
-                Discover the latest sneakers and streetwear at Sneaker Zone. 
+                Discover the latest sneakers and streetwear at Royal Sneakers & Apparels. 
                 Where Brooklyn style meets premium fashion.
               </p>
             </div>
@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-xl">
               <img
                 src={heroImage}
-                alt="Premium sneakers at Sneaker Zone"
+                alt="Premium sneakers at Royal Sneakers & Apparels"
                 className="w-full h-full object-cover animate-float"
                 width={1200}
                 height={900}

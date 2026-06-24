@@ -62,7 +62,7 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
               className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110"
             />
             <span className="font-display text-2xl tracking-wider">
-              ROYAL SNEAKERS
+              ROYAL SNEAKERS & APPARELS
             </span>
           </Link>
 

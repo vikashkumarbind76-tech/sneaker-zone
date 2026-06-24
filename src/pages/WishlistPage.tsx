@@ -32,7 +32,7 @@ const WishlistPage = () => {
   return (
     <>
       <Helmet>
-        <title>Wishlist | Sneaker Zone</title>
+        <title>Wishlist | Royal Sneakers & Apparels</title>
         <meta name="description" content="Your saved favorite sneakers and streetwear." />
       </Helmet>
 
