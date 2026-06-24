@@ -79,9 +79,11 @@ const AboutPage = () => {
               </p>
               <h1 className="heading-xl mb-6">ABOUT SNEAKER ZONE</h1>
               <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
-                Brooklyn's premier destination for authentic sneakers and streetwear. 
-                We've been keeping the community fresh since 2014.
+                Sneaker Zone is an online sneaker and streetwear store. We bring
+                you authentic kicks and apparel from the brands you love — all
+                in one place.
               </p>
+
             </div>
           </section>
 
@@ -90,26 +92,26 @@ const AboutPage = () => {
             <div className="container-custom">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                  <h2 className="heading-lg">FROM BROOKLYN, FOR BROOKLYN</h2>
+                  <h2 className="heading-lg">WHAT IS SNEAKER ZONE?</h2>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      Sneaker Zone was born from a simple idea: Brooklyn 
-                      deserves a sneaker store that understands its unique culture, style, 
-                      and energy. Founded in 2014 by a group of local sneaker enthusiasts, 
-                      we set out to create more than just a store.
+                      Sneaker Zone is your one-stop online shop for sneakers and
+                      streetwear. From everyday classics to the latest hyped
+                      drops, we stock a carefully picked range of footwear and
+                      apparel built for people who care about how they step out.
                     </p>
                     <p>
-                      Located on historic Fulton Street, we've become a landmark for 
-                      sneakerheads, fashion lovers, and anyone who appreciates quality 
-                      footwear. Our carefully curated collection features the latest 
-                      drops, timeless classics, and exclusive collaborations.
+                      We work only with authentic products from trusted brands —
+                      Nike, Adidas, Jordan, New Balance, Puma and more — so every
+                      order you place is the real deal, every time.
                     </p>
                     <p>
-                      What sets us apart isn't just our products—it's our commitment 
-                      to authenticity, community, and customer service. When you walk 
-                      into Sneaker Zone, you're not just a customer; you're family.
+                      Browse the catalog, save your favorites to your wishlist,
+                      and check out in minutes. Fast shipping, easy returns, and
+                      a team that actually cares about sneakers.
                     </p>
                   </div>
+
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
