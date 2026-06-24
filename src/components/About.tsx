@@ -29,12 +29,12 @@ const About = () => {
               <p className="text-bronze-light font-medium tracking-widest uppercase mb-2">
                 Our Story
               </p>
-              <h2 className="heading-lg">ABOUT ROYAL SNEAKERS & APPARELS</h2>
+              <h2 className="heading-lg">ABOUT SNEAKER ZONE</h2>
             </div>
 
             <div className="space-y-4 text-primary-foreground/80">
               <p>
-                Founded in the heart of Brooklyn, Royal Sneakers & Apparels has been 
+                Founded in the heart of Brooklyn, Sneaker Zone has been 
                 the go-to destination for authentic streetwear and premium sneakers 
                 since 2014. What started as a small passion project has grown into 
                 a community staple.

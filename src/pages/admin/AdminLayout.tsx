@@ -12,7 +12,7 @@ const AdminLayout = () => {
   return (
     <AdminGuard>
       <Helmet>
-        <title>Admin | Royal Sneakers & Apparels</title>
+        <title>Admin | Sneaker Zone</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <SidebarProvider>
@@ -22,7 +22,7 @@ const AdminLayout = () => {
             <header className="h-14 flex items-center justify-between border-b px-4">
               <div className="flex items-center gap-3">
                 <SidebarTrigger />
-                <span className="font-display tracking-wider text-sm">ROYAL SNEAKERS & APPARELS · ADMIN</span>
+                <span className="font-display tracking-wider text-sm">SNEAKER ZONE · ADMIN</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-muted-foreground hidden sm:inline">{user?.email}</span>

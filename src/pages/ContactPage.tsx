@@ -64,14 +64,14 @@ const ContactPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Contact Royal Sneakers & Apparels | Brooklyn</title>
+        <title>Contact Sneaker Zone | Brooklyn</title>
         <meta 
           name="description" 
-          content="Get in touch with Royal Sneakers & Apparels. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
+          content="Get in touch with Sneaker Zone. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/contact" />
-        <meta property="og:title" content="Contact Royal Sneakers & Apparels | Brooklyn" />
-        <meta property="og:description" content="Visit Royal Sneakers & Apparels at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." />
+        <meta property="og:title" content="Contact Sneaker Zone | Brooklyn" />
+        <meta property="og:description" content="Visit Sneaker Zone at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." />
         <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/contact" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -231,7 +231,7 @@ const ContactPage = () => {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Royal Sneakers & Apparels Location"
+                      title="Sneaker Zone Location"
                     />
                   </div>
                 </div>

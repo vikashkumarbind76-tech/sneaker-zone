@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Crown } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { lovable } from '@/integrations/lovable';
+import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 const GoogleButton = ({ loading, onClick }: { loading: boolean; onClick: () => void }) => (
   <Button type="button" variant="outline" className="w-full" disabled={loading} onClick={onClick}>
@@ -89,13 +89,13 @@ const AuthPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Helmet>
-        <title>Sign In | Royal Sneakers & Apparels</title>
+        <title>Sign In | Sneaker Zone</title>
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/auth" />
       </Helmet>
       <div className="w-full max-w-md">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-          <Crown className="w-8 h-8 text-accent" />
-          <span className="font-display text-2xl tracking-wider">ROYAL SNEAKERS &amp; APPARELS</span>
+          <img src={sneakerZoneLogo} alt="Sneaker Zone" width={32} height={32} loading="lazy" className="w-8 h-8 object-contain" />
+          <span className="font-display text-2xl tracking-wider">SNEAKER ZONE</span>
         </Link>
 
         <Tabs defaultValue="signin" className="bg-card p-8 rounded-lg shadow-soft-md">

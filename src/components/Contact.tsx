@@ -84,13 +84,13 @@ const Contact = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Royal Sneakers & Apparels Location"
+                title="Sneaker Zone Location"
               />
             </div>
 
             {/* Address Card Overlay */}
             <div className="absolute bottom-4 left-4 right-4 bg-card/95 backdrop-blur-sm p-4 rounded-lg shadow-soft-md">
-              <p className="font-display text-lg">Royal Sneakers & Apparels</p>
+              <p className="font-display text-lg">Sneaker Zone</p>
               <p className="text-sm text-muted-foreground">1347 Fulton St, Brooklyn, NY 11216</p>
             </div>
           </div>
