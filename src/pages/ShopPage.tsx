@@ -46,7 +46,7 @@ const ShopPage = () => {
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/shop" />
         <meta property="og:title" content="Shop Sneakers & Streetwear | Sneaker Zone" />
-        <meta property="og:description" content="Browse premium sneakers and streetwear. The latest drops and classic styles, curated in Brooklyn." />
+        <meta property="og:description" content="Browse premium sneakers and streetwear — the latest drops and classic styles, all 100% authentic." />
         <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/shop" />
         <meta property="og:type" content="website" />
       </Helmet>
