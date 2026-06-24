@@ -16,14 +16,14 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Sneaker Zone — Brooklyn Sneakers & Streetwear</title>
-        <meta 
-          name="description" 
-          content="Discover authentic sneakers and streetwear at Sneaker Zone in Brooklyn, NY. Shop the latest drops from top brands. Visit us at 1347 Fulton St." 
+        <title>Sneaker Zone — Authentic Sneakers & Streetwear Online</title>
+        <meta
+          name="description"
+          content="Shop authentic sneakers and streetwear online at Sneaker Zone. The latest drops and classic styles from the brands you love, delivered to your door."
         />
-        <meta name="keywords" content="sneakers, streetwear, Brooklyn, shoes, apparel, fashion, Sneaker Zone" />
-        <meta property="og:title" content="Sneaker Zone — Brooklyn Sneakers & Streetwear" />
-        <meta property="og:description" content="Brooklyn's premier destination for authentic sneakers and streetwear." />
+        <meta name="keywords" content="sneakers, streetwear, shoes, apparel, fashion, Sneaker Zone, online sneaker store, authentic kicks" />
+        <meta property="og:title" content="Sneaker Zone — Authentic Sneakers & Streetwear Online" />
+        <meta property="og:description" content="Shop authentic sneakers and streetwear online — the latest drops, delivered." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/" />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/" />

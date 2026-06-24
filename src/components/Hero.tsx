@@ -1,4 +1,5 @@
-import { ArrowRight, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Truck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-sneakers.jpg';
 
@@ -7,19 +8,11 @@ const Hero = () => {
     document.querySelector('#shop')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleGetDirections = () => {
-    window.open('https://maps.google.com/?q=1347+Fulton+St,+Brooklyn,+NY+11216', '_blank');
-  };
-
-  const handleCallUs = () => {
-    window.location.href = 'tel:+13476276595';
-  };
-
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-cream to-cream-dark" />
-      
+
       {/* Decorative Elements */}
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-bronze/5 rounded-full blur-3xl" />
@@ -30,15 +23,17 @@ const Hero = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-accent font-medium tracking-widest uppercase animate-fade-up">
-                Brooklyn's Premium Streetwear
+                Authentic Sneakers & Streetwear
               </p>
               <h1 className="heading-xl animate-fade-up delay-100">
                 STEP INTO <span className="text-gradient">THE ZONE</span><br />
-                <span className="block text-2xl md:text-3xl font-display tracking-wide mt-3">Brooklyn's Premium Sneakers & Streetwear</span>
+                <span className="block text-2xl md:text-3xl font-display tracking-wide mt-3">
+                  Your Online Sneaker Destination
+                </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-md animate-fade-up delay-200">
-                Discover the latest sneakers and streetwear at Sneaker Zone. 
-                Where Brooklyn style meets premium fashion.
+                Shop the latest drops and classic kicks from the brands you love —
+                100% authentic, delivered to your door.
               </p>
             </div>
 
@@ -48,14 +43,12 @@ const Hero = () => {
                 Shop Now
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Button>
-              <Button variant="heroOutline" onClick={handleGetDirections}>
-                <MapPin className="w-5 h-5 mr-1" />
-                Get Directions
-              </Button>
-              <Button variant="heroAccent" onClick={handleCallUs}>
-                <Phone className="w-5 h-5 mr-1" />
-                Call Us
-              </Button>
+              <Link to="/shop">
+                <Button variant="heroOutline">
+                  <Truck className="w-5 h-5 mr-1" />
+                  Browse Catalog
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -69,11 +62,12 @@ const Hero = () => {
                 <p className="text-sm text-muted-foreground">Happy Customers</p>
               </div>
               <div>
-                <p className="font-display text-4xl text-foreground">10+</p>
-                <p className="text-sm text-muted-foreground">Years in Brooklyn</p>
+                <p className="font-display text-4xl text-foreground">100%</p>
+                <p className="text-sm text-muted-foreground">Authentic</p>
               </div>
             </div>
           </div>
+
 
           {/* Hero Image */}
           <div className="relative animate-fade-up delay-200">

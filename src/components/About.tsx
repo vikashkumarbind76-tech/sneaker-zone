@@ -8,8 +8,8 @@ const features = [
   },
   {
     icon: MapPin,
-    title: 'Brooklyn Roots',
-    description: 'Proudly serving the Brooklyn community for over a decade with authentic style.',
+    title: '100% Authentic',
+    description: 'Every pair is sourced from trusted brands — no fakes, ever.',
   },
   {
     icon: Users,
