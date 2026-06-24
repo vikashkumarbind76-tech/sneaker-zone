@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ShoppingBag, Ruler, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useWishlist } from '@/hooks/useWishlist';
 import { sizeCharts } from '@/data/products';
 import { useProduct } from '@/hooks/useProducts';
 import { toast } from 'sonner';
@@ -17,6 +18,7 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>('');
   
@@ -159,9 +161,22 @@ const ProductDetail = () => {
                   variant="ghost" 
                   size="icon"
                   className="absolute top-4 right-4 bg-card/80 backdrop-blur-sm"
-                  aria-label="Add to wishlist"
+                  aria-label={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
+                  onClick={() => {
+                    const wasIn = isInWishlist(product.id);
+                    toggleWishlist({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: activeImage?.url ?? product.images[0]?.url ?? '',
+                      brand: product.brand,
+                      category: product.category,
+                      slug: product.slug,
+                    });
+                    toast.success(wasIn ? 'Removed from wishlist' : 'Added to wishlist');
+                  }}
                 >
-                  <Heart className="w-5 h-5" />
+                  <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-accent text-accent' : ''}`} />
                 </Button>
               </div>
               {product.images.length > 1 && (
