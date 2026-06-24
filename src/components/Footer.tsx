@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Twitter, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
 import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 const footerLinks = {
@@ -49,18 +49,17 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-primary-foreground/90 max-w-sm">
-              Brooklyn's premier destination for authentic sneakers and streetwear. 
-              Stay fresh with every visit.
+              Your online destination for authentic sneakers and streetwear.
+              Stay fresh, wherever you are.
             </p>
             <div className="space-y-2 text-sm text-primary-foreground/90">
-              <p className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
-                1347 Fulton St, Brooklyn, NY 11216
-              </p>
-              <p className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                +1 (347) 627-6595
-              </p>
+              <a
+                href="mailto:vikashkumarbind76@gmail.com"
+                className="flex items-center gap-2 hover:text-bronze-light transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                vikashkumarbind76@gmail.com
+              </a>
             </div>
             <div className="flex gap-4">
               {socialLinks.map(social => (

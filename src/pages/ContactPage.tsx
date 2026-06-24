@@ -5,35 +5,23 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Clock, Mail, Send } from 'lucide-react';
+import { Clock, Mail, Send } from 'lucide-react';
 import { toast } from 'sonner';
+
+const EMAIL = 'vikashkumarbind76@gmail.com';
 
 const contactInfo = [
   {
-    icon: MapPin,
-    title: 'Visit Us',
-    content: '1347 Fulton St\nBrooklyn, NY 11216',
-    action: () => window.open('https://maps.google.com/?q=1347+Fulton+St,+Brooklyn,+NY+11216', '_blank'),
-    actionLabel: 'Get Directions',
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    content: '+1 (347) 627-6595',
-    action: () => window.location.href = 'tel:+13476276595',
-    actionLabel: 'Call Now',
+    icon: Mail,
+    title: 'Email Us',
+    content: EMAIL,
+    action: () => (window.location.href = `mailto:${EMAIL}`),
+    actionLabel: 'Send Email',
   },
   {
     icon: Clock,
-    title: 'Store Hours',
+    title: 'Support Hours',
     content: 'Monday - Saturday: 10AM - 8PM\nSunday: 11AM - 6PM',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    content: 'info@sneakerzone.in',
-    action: () => window.location.href = 'mailto:info@sneakerzone.in',
-    actionLabel: 'Send Email',
   },
 ];
 
@@ -64,14 +52,14 @@ const ContactPage = () => {
   return (
     <CartProvider>
       <Helmet>
-        <title>Contact Sneaker Zone | Brooklyn</title>
-        <meta 
-          name="description" 
-          content="Get in touch with Sneaker Zone. Visit us at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." 
+        <title>Contact Sneaker Zone | Online Sneakers & Streetwear</title>
+        <meta
+          name="description"
+          content="Get in touch with Sneaker Zone. Email us at vikashkumarbind76@gmail.com for any questions about our sneakers and streetwear."
         />
         <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/contact" />
-        <meta property="og:title" content="Contact Sneaker Zone | Brooklyn" />
-        <meta property="og:description" content="Visit Sneaker Zone at 1347 Fulton St, Brooklyn, NY or call (347) 627-6595." />
+        <meta property="og:title" content="Contact Sneaker Zone" />
+        <meta property="og:description" content="Email Sneaker Zone at vikashkumarbind76@gmail.com." />
         <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/contact" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -88,7 +76,8 @@ const ContactPage = () => {
               </p>
               <h1 className="heading-xl mb-4">CONTACT US</h1>
               <p className="text-primary-foreground/70 max-w-xl mx-auto">
-                Have questions? We'd love to hear from you. Visit our store or drop us a line.
+                Have questions? We'd love to hear from you. Drop us a line and
+                we'll get back to you as soon as we can.
               </p>
             </div>
           </section>
@@ -221,19 +210,6 @@ const ContactPage = () => {
                     ))}
                   </div>
 
-                  {/* Map */}
-                  <div className="aspect-video rounded-xl overflow-hidden shadow-soft-lg">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.0824677784284!2d-73.9447891!3d40.6809982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b9e2c0f1c6d%3A0x8b4f3b0c1e0f1c6d!2s1347%20Fulton%20St%2C%20Brooklyn%2C%20NY%2011216!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Sneaker Zone Location"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
