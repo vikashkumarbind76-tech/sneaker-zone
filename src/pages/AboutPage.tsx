@@ -13,11 +13,7 @@ const values = [
     description: 'We source only the finest sneakers and apparel from trusted brands and verified suppliers.',
   },
   {
-    icon: MapPin,
-    title: 'Brooklyn Proud',
-    description: 'Born and raised in Brooklyn, we understand the unique style and culture of our community.',
-  },
-  {
+
     icon: Users,
     title: 'Community First',
     description: 'More than a store, we are a gathering place for sneakerheads and fashion lovers.',
