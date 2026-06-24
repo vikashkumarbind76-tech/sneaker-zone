@@ -36,7 +36,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: '2014', event: 'Sneaker Zone opens on Fulton Street' },
+  { year: '2014', event: 'Sneaker Zone launches online' },
   { year: '2016', event: 'Expanded to include premium apparel line' },
   { year: '2018', event: 'Reached 1,000+ satisfied customers' },
   { year: '2020', event: 'Launched online presence and delivery' },
