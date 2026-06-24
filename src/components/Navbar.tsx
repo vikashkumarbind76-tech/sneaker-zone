@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, Crown, User as UserIcon, LogOut } from 'lucide-react';
+import { Menu, X, ShoppingBag, Crown, User as UserIcon, LogOut, Heart } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useWishlist } from '@/hooks/useWishlist';
 import { useAuth } from '@/hooks/useAuth';
 
 const navLinks = [
