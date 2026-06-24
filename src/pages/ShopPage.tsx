@@ -7,24 +7,25 @@ import CartDrawer from '@/components/CartDrawer';
 import ProductCard from '@/components/ProductCard';
 import { useProducts } from '@/hooks/useProducts';
 
-type Category = 'all' | 'sneakers' | 'shoes' | 'apparel';
+type BrandFilter = 'all' | 'Red Tape' | 'PUMA' | 'Adidas' | 'Reebok';
 
-const categories: { label: string; value: Category }[] = [
-  { label: 'All Products', value: 'all' },
-  { label: 'Sneakers', value: 'sneakers' },
-  { label: 'Shoes', value: 'shoes' },
-  { label: 'Apparel', value: 'apparel' },
+const categories: { label: string; value: BrandFilter }[] = [
+  { label: 'All Brands', value: 'all' },
+  { label: 'Red Tape', value: 'Red Tape' },
+  { label: 'PUMA', value: 'PUMA' },
+  { label: 'Adidas', value: 'Adidas' },
+  { label: 'Reebok', value: 'Reebok' },
 ];
 
 const ShopPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const [activeCategory, setActiveCategory] = useState<BrandFilter>('all');
   const [sortBy, setSortBy] = useState<'default' | 'price-low' | 'price-high' | 'newest'>('default');
   const { data: products = [] } = useProducts();
 
   let filteredProducts = activeCategory === 'all' 
     ? products 
-    : products.filter(p => p.category === activeCategory);
+    : products.filter(p => p.brand === activeCategory);
 
   // Sort products
   if (sortBy === 'price-low') {
