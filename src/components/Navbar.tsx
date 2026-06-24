@@ -80,8 +80,24 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
             ))}
           </div>
 
-          {/* Cart & Mobile Menu */}
+          {/* Wishlist, Cart & Mobile Menu */}
           <div className="flex items-center gap-4">
+            <Link to="/wishlist">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative"
+                aria-label={`Open wishlist${wishlistCount > 0 ? `, ${wishlistCount} item${wishlistCount === 1 ? '' : 's'}` : ''}`}
+              >
+                <Heart className={`w-5 h-5 ${wishlistCount > 0 ? 'fill-accent text-accent' : ''}`} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center font-medium animate-scale-in">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
+
             <Button 
               variant="ghost" 
               size="icon" 
