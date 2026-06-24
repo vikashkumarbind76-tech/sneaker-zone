@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, Crown, User as UserIcon, LogOut, Heart } from 'lucide-react';
+import { Menu, X, ShoppingBag, User as UserIcon, LogOut, Heart } from 'lucide-react';
+import royalLogo from '@/assets/royal-logo.png';
+
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
