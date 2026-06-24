@@ -95,7 +95,7 @@ const AuthPage = () => {
       <div className="w-full max-w-md">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
           <Crown className="w-8 h-8 text-accent" />
-          <span className="font-display text-2xl tracking-wider">ROYAL SNEAKERS</span>
+          <span className="font-display text-2xl tracking-wider">ROYAL SNEAKERS &amp; APPARELS</span>
         </Link>
 
         <Tabs defaultValue="signin" className="bg-card p-8 rounded-lg shadow-soft-md">
