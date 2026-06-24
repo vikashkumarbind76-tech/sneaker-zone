@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, Crown, User as UserIcon, LogOut, Heart } from 'lucide-react';
+import { Menu, X, ShoppingBag, User as UserIcon, LogOut, Heart } from 'lucide-react';
+import royalLogo from '@/assets/royal-logo.png';
+
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
@@ -52,11 +54,18 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <Crown className="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" />
+            <img
+              src={royalLogo}
+              alt="Royal Sneakers & Apparels"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110"
+            />
             <span className="font-display text-2xl tracking-wider">
-              SNEAKER ZONE
+              ROYAL SNEAKERS
             </span>
           </Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
