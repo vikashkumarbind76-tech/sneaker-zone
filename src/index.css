@@ -2,93 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Brand Colors - Warm, Premium Streetwear */
-    --background: 40 33% 96%;
-    --foreground: 0 0% 10%;
+    /* Sneaker Zone — Dark Premium */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
 
-    --card: 40 30% 98%;
-    --card-foreground: 0 0% 10%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 40 30% 98%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 40 33% 96%;
+    --primary: 14 100% 65%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 35 30% 90%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 35 20% 92%;
-    --muted-foreground: 0 0% 30%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 35 60% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 14 100% 65%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 35 20% 85%;
-    --input: 35 20% 85%;
-    --ring: 35 60% 50%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 14 100% 65%;
 
-    --radius: 0.75rem;
+    --radius: 1.5rem;
 
-    /* Custom Brand Colors */
-    --cream: 40 33% 96%;
-    --cream-dark: 35 30% 90%;
-    --bronze: 35 60% 50%;
-    --bronze-light: 35 60% 60%;
-    --bronze-dark: 35 60% 40%;
-    --charcoal: 0 0% 15%;
-    --charcoal-light: 0 0% 25%;
+    /* Brand surfaces */
+    --surface: 0 0% 7.5%;
+    --surface-elevated: 0 0% 10%;
+    --surface-lowest: 0 0% 5.5%;
+    --surface-high: 0 0% 16.5%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--cream-dark)) 100%);
-    --gradient-bronze: linear-gradient(135deg, hsl(var(--bronze)) 0%, hsl(var(--bronze-dark)) 100%);
-    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(var(--charcoal) / 0.8) 100%);
+    /* Accents */
+    --primary-soft: 13 100% 81%;
+    --accent-blue: 210 100% 68%;
+    --accent-green: 142 56% 60%;
+    --accent-pink: 330 86% 70%;
 
-    /* Shadows */
-    --shadow-sm: 0 2px 8px hsl(var(--charcoal) / 0.05);
-    --shadow-md: 0 4px 20px hsl(var(--charcoal) / 0.08);
-    --shadow-lg: 0 8px 40px hsl(var(--charcoal) / 0.12);
-    --shadow-xl: 0 16px 60px hsl(var(--charcoal) / 0.15);
-    --shadow-bronze: 0 8px 30px hsl(var(--bronze) / 0.3);
+    /* Custom brand legacy tokens (kept for components still referencing them) */
+    --cream: 0 0% 7.5%;
+    --cream-dark: 0 0% 5.5%;
+    --bronze: 14 100% 65%;
+    --bronze-light: 13 100% 81%;
+    --bronze-dark: 14 100% 45%;
+    --charcoal: 0 0% 0%;
+    --charcoal-light: 0 0% 10%;
 
-    /* Transitions */
-    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --gradient-hero: radial-gradient(ellipse at center, hsl(14 100% 65% / 0.10), transparent 70%);
+    --gradient-bronze: linear-gradient(135deg, hsl(14 100% 65%) 0%, hsl(13 100% 81%) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(0 0% 0% / 0.85) 100%);
+
+    --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.4);
+    --shadow-md: 0 4px 20px hsl(0 0% 0% / 0.5);
+    --shadow-lg: 0 12px 40px hsl(0 0% 0% / 0.6);
+    --shadow-xl: 0 24px 60px hsl(0 0% 0% / 0.7);
+    --shadow-bronze: 0 20px 60px hsl(14 100% 65% / 0.35);
+
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 40 33% 96%;
-
-    --card: 0 0% 12%;
-    --card-foreground: 40 33% 96%;
-
-    --popover: 0 0% 12%;
-    --popover-foreground: 40 33% 96%;
-
-    --primary: 40 33% 96%;
-    --primary-foreground: 0 0% 10%;
-
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 40 33% 96%;
-
-    --muted: 0 0% 18%;
-    --muted-foreground: 40 20% 70%;
-
-    --accent: 35 60% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 35 60% 50%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 14 100% 65%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 14 100% 65%;
+    --accent-foreground: 0 0% 5%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 14 100% 65%;
   }
 }
 
