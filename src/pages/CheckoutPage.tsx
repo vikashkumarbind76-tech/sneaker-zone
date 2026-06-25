@@ -123,26 +123,26 @@ const CheckoutPage = () => {
           name: user.user_metadata?.display_name ?? '',
         },
         theme: { color: '#FF784E' },
-        handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
-          const { error: verifyErr } = await supabase.functions.invoke('verify-razorpay-payment', {
-            body: response,
-          });
-          if (verifyErr) {
-            toast.error('Payment verification failed. Contact support.');
-            setProcessing(false);
-            return;
-          }
-          toast.success('Payment successful!');
-          clearCart();
+        handler: (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
           setProcessing(false);
-          navigate('/orders');
+          navigate(`/payment/status/${data.orderId}`, {
+            state: { razorpay: response, initialStatus: 'loading' },
+          });
         },
         modal: {
           ondismiss: () => {
-            toast.info('Payment cancelled');
             setProcessing(false);
+            navigate(`/payment/status/${data.orderId}`, {
+              state: { initialStatus: 'failure', reason: 'You closed the payment window before completing the transaction.' },
+            });
           },
         },
+      });
+      rzp.on('payment.failed', (resp: { error?: { description?: string } }) => {
+        setProcessing(false);
+        navigate(`/payment/status/${data.orderId}`, {
+          state: { initialStatus: 'failure', reason: resp?.error?.description ?? 'Payment was declined by the bank or wallet.' },
+        });
       });
       rzp.open();
     } catch (e) {
