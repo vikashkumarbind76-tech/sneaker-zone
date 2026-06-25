@@ -35,10 +35,10 @@ const WishlistPage = () => {
         <title>Your Wishlist | Sneaker Zone</title>
         <meta name="description" content="Your saved sneakers and streetwear at Sneaker Zone. Keep track of the kicks you love and grab them when you're ready." />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/wishlist" />
+        <link rel="canonical" href="https://sneaker-zone.lovable.app/wishlist" />
         <meta property="og:title" content="Your Wishlist | Sneaker Zone" />
         <meta property="og:description" content="Your saved sneakers and streetwear at Sneaker Zone." />
-        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/wishlist" />
+        <meta property="og:url" content="https://sneaker-zone.lovable.app/wishlist" />
         <meta property="og:type" content="website" />
       </Helmet>
 

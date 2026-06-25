@@ -117,10 +117,10 @@ const ProductDetail = () => {
       <Helmet>
         <title>{product.name} | Sneaker Zone</title>
         <meta name="description" content={product.description} />
-        <link rel="canonical" href={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
+        <link rel="canonical" href={`https://sneaker-zone.lovable.app/product/${product.id}`} />
         <meta property="og:title" content={`${product.name} | Sneaker Zone`} />
         <meta property="og:description" content={product.description} />
-        <meta property="og:url" content={`https://royal-kicks-canvas.lovable.app/product/${product.id}`} />
+        <meta property="og:url" content={`https://sneaker-zone.lovable.app/product/${product.id}`} />
         <meta property="og:type" content="product" />
         {product.images[0]?.url && <meta property="og:image" content={product.images[0].url} />}
         <script type="application/ld+json">{JSON.stringify({
@@ -134,7 +134,7 @@ const ProductDetail = () => {
           brand: { '@type': 'Brand', name: product.brand ?? 'Sneaker Zone' },
           offers: {
             '@type': 'Offer',
-            url: `https://royal-kicks-canvas.lovable.app/product/${product.id}`,
+            url: `https://sneaker-zone.lovable.app/product/${product.id}`,
             priceCurrency: 'INR',
             price: product.price,
             availability: 'https://schema.org/InStock',
