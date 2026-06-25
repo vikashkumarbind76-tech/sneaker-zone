@@ -72,11 +72,15 @@ const AdminLogin = () => {
     return () => window.clearInterval(id);
   }, [lockoutUntil]);
 
-  // Clear lockout when it expires.
+  // Clear lockout when it expires and surface a "ready to retry" notice.
+  const [justUnlocked, setJustUnlocked] = useState(false);
   useEffect(() => {
     if (lockoutUntil && now >= lockoutUntil) {
       setLockoutUntil(null);
       localStorage.removeItem(LOCKOUT_STORAGE_KEY);
+      setJustUnlocked(true);
+      setFormError(null);
+      setAttemptsRemaining(null);
     }
   }, [now, lockoutUntil]);
 
@@ -90,7 +94,17 @@ const AdminLogin = () => {
     if (Number.isFinite(ts)) {
       setLockoutUntil(ts);
       localStorage.setItem(LOCKOUT_STORAGE_KEY, String(ts));
+      setJustUnlocked(false);
     }
+  };
+
+  const handleTryAgain = () => {
+    setJustUnlocked(false);
+    setFormError(null);
+    setPassword('');
+    setTouched({ email: false, password: false });
+    const el = document.getElementById('admin-password');
+    if (el) (el as HTMLInputElement).focus();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -125,8 +139,14 @@ const AdminLogin = () => {
           }
         | null;
 
-      if (payload?.error === 'locked' && payload.retryAt) {
+      // Always sync the countdown to the server's retryAt when present —
+      // this corrects clock drift and re-aligns after every failed request.
+      if (payload?.retryAt) {
         applyLockout(payload.retryAt);
+      }
+
+      if (payload?.error === 'locked') {
+        setAttemptsRemaining(0);
         setFormError(payload.message ?? 'Too many failed attempts. Try again later.');
         setSubmitting(false);
         return;
@@ -144,6 +164,7 @@ const AdminLogin = () => {
       }
 
       if (payload?.error === 'not_admin') {
+        setAttemptsRemaining(payload.attemptsRemaining ?? null);
         setFormError(payload.message ?? 'This account does not have admin access.');
         setSubmitting(false);
         return;
@@ -248,7 +269,24 @@ const AdminLogin = () => {
                 </Alert>
               )}
 
-              {!isLockedOut && formError && (
+              {!isLockedOut && justUnlocked && (
+                <Alert className="border-accent/40 bg-accent/5">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <AlertTitle>Lockout cleared</AlertTitle>
+                  <AlertDescription className="flex items-center justify-between gap-3">
+                    <span>You can sign in again now.</span>
+                    <button
+                      type="button"
+                      onClick={handleTryAgain}
+                      className="text-accent font-medium underline underline-offset-2 hover:no-underline"
+                    >
+                      Try again →
+                    </button>
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {!isLockedOut && !justUnlocked && formError && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{formError}</AlertDescription>
