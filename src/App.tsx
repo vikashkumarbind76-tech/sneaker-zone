@@ -52,6 +52,8 @@ const App = () => (
                     <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
                     <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                     <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+                    <Route path="/payment/status/:orderId" element={<ProtectedRoute><PaymentStatusPage /></ProtectedRoute>} />
+                    <Route path="/payment/status" element={<ProtectedRoute><PaymentStatusPage /></ProtectedRoute>} />
                     <Route path="/admin/login" element={<AdminLogin />} />
                     <Route path="/admin/reset-password" element={<AdminResetPassword />} />
                     <Route path="/admin" element={<AdminLayout />}>
