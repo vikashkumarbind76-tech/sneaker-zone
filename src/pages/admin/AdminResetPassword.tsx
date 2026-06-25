@@ -21,6 +21,7 @@ const AdminResetPassword = () => {
   const navigate = useNavigate();
   const [checking, setChecking] = useState(true);
   const [ready, setReady] = useState(false);
+  const [recoveryEmail, setRecoveryEmail] = useState<string | null>(null);
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [show, setShow] = useState(false);
@@ -29,14 +30,18 @@ const AdminResetPassword = () => {
 
   // Supabase parses the recovery hash automatically and emits PASSWORD_RECOVERY.
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY' || event === 'SIGNED_IN') {
+        setRecoveryEmail(session?.user?.email ?? null);
         setReady(true);
         setChecking(false);
       }
     });
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) setReady(true);
+      if (data.session) {
+        setRecoveryEmail(data.session.user?.email ?? null);
+        setReady(true);
+      }
       setChecking(false);
     });
     return () => sub.subscription.unsubscribe();
@@ -51,6 +56,17 @@ const AdminResetPassword = () => {
       return;
     }
     setSubmitting(true);
+    // Re-check the active session belongs to the email shown on screen,
+    // so we never silently update a different account's password.
+    const { data: sessionData } = await supabase.auth.getSession();
+    const activeEmail = sessionData.session?.user?.email ?? null;
+    if (!activeEmail || (recoveryEmail && activeEmail !== recoveryEmail)) {
+      setSubmitting(false);
+      setError(
+        'This reset link is no longer valid for the active session. Please request a new link from the admin login page.'
+      );
+      return;
+    }
     const { error: updErr } = await supabase.auth.updateUser({ password: parsed.data.password });
     setSubmitting(false);
     if (updErr) {
@@ -61,6 +77,7 @@ const AdminResetPassword = () => {
     await supabase.auth.signOut();
     navigate('/admin/login', { replace: true });
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12">
@@ -95,6 +112,15 @@ const AdminResetPassword = () => {
             </Alert>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {recoveryEmail && (
+                <Alert className="border-accent/40 bg-accent/5">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <AlertTitle>Updating password for</AlertTitle>
+                  <AlertDescription className="font-medium break-all">
+                    {recoveryEmail}
+                  </AlertDescription>
+                </Alert>
+              )}
               {error && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
