@@ -108,8 +108,8 @@ const AboutPage = () => {
                     <div className="aspect-[3/4] bg-secondary rounded-xl" />
                     <div className="aspect-square bg-accent/20 rounded-xl flex items-center justify-center">
                       <div className="text-center">
-                        <p className="font-display text-5xl text-accent">10+</p>
-                        <p className="text-sm text-muted-foreground">Years</p>
+                        <p className="font-display text-5xl text-accent">2026</p>
+                        <p className="text-sm text-muted-foreground">Established</p>
                       </div>
                     </div>
                   </div>
