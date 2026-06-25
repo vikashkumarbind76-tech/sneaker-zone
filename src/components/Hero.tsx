@@ -1,4 +1,4 @@
-import { ArrowRight, Truck } from 'lucide-react';
+import { ArrowRight, Truck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-sneakers.jpg';
@@ -83,8 +83,20 @@ const Hero = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
             </div>
-            
+
+            {/* Floating Weekly Drop Badge */}
+            <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground rounded-full px-4 py-3 shadow-soft-lg animate-float flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              <span className="font-semibold text-sm">Weekly Drops</span>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-2 bg-foreground/50 rounded-full" />
         </div>
       </div>
     </section>
