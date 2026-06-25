@@ -1,4 +1,13 @@
 import { useState } from 'react';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100, 'Name too long'),
+  email: z.string().trim().email('Invalid email').max(255),
+  phone: z.string().trim().max(20).optional().or(z.literal('')),
+  subject: z.string().trim().max(150).optional().or(z.literal('')),
+  message: z.string().trim().min(1, 'Message is required').max(1000, 'Message too long'),
+});
 import { Helmet } from 'react-helmet-async';
 import { CartProvider } from '@/hooks/useCart';
 import Navbar from '@/components/Navbar';
