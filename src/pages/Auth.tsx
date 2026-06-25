@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { z } from 'zod';
 import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '@/hooks/useAuth';
@@ -9,6 +10,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { lovable } from '@/integrations/lovable';
 import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
+
+const signInSchema = z.object({
+  email: z.string().trim().email('Invalid email').max(255),
+  password: z.string().min(1, 'Password required').max(128),
+});
+const signUpSchema = z.object({
+  email: z.string().trim().email('Invalid email').max(255),
+  password: z.string().min(8, 'Password must be at least 8 characters').max(128),
+  displayName: z.string().trim().min(1, 'Name required').max(80),
+});
 
 const GoogleButton = ({ loading, onClick }: { loading: boolean; onClick: () => void }) => (
   <Button type="button" variant="outline" className="w-full" disabled={loading} onClick={onClick}>
@@ -33,11 +44,13 @@ const AuthPage = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = signInSchema.safeParse({ email, password });
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? 'Invalid input'); return; }
     setLoading(true);
-    const { error } = await signIn(email, password);
+    const { error } = await signIn(parsed.data.email, parsed.data.password);
     setLoading(false);
     if (error) {
-      toast.error(error.message);
+      toast.error('Sign in failed. Check your credentials.');
     } else {
       toast.success('Welcome back!');
       navigate('/');
@@ -46,8 +59,10 @@ const AuthPage = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = signUpSchema.safeParse({ email, password, displayName });
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? 'Invalid input'); return; }
     setLoading(true);
-    const { error } = await signUp(email, password, displayName);
+    const { error } = await signUp(parsed.data.email, parsed.data.password, parsed.data.displayName);
     setLoading(false);
     if (error) {
       toast.error(error.message);

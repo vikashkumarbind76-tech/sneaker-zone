@@ -1,4 +1,13 @@
 import { useState } from 'react';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100, 'Name too long'),
+  email: z.string().trim().email('Invalid email').max(255),
+  phone: z.string().trim().max(20).optional().or(z.literal('')),
+  subject: z.string().trim().max(150).optional().or(z.literal('')),
+  message: z.string().trim().min(1, 'Message is required').max(1000, 'Message too long'),
+});
 import { Helmet } from 'react-helmet-async';
 import { CartProvider } from '@/hooks/useCart';
 import Navbar from '@/components/Navbar';
@@ -37,8 +46,13 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    toast.success('Message sent! We\'ll get back to you soon.');
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      toast.error(result.error.issues[0]?.message ?? 'Invalid input');
+      return;
+    }
+    // Validated payload would be sent to backend here.
+    toast.success("Message sent! We'll get back to you soon.");
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
@@ -101,6 +115,8 @@ const ContactPage = () => {
                           value={formData.name}
                           onChange={handleChange}
                           required
+                          maxLength={100}
+                          autoComplete="name"
                           className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent"
                           placeholder="John Doe"
                         />
@@ -116,6 +132,8 @@ const ContactPage = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          maxLength={255}
+                          autoComplete="email"
                           className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent"
                           placeholder="john@example.com"
                         />
@@ -170,6 +188,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         required
                         rows={5}
+                        maxLength={1000}
                         className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent resize-none"
                         placeholder="How can we help you?"
                       />
