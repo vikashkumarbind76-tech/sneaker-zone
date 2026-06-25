@@ -6,7 +6,7 @@ import FeaturedProducts from '@/components/FeaturedProducts';
 
 
 import About from '@/components/About';
-import InstagramFeed from '@/components/InstagramFeed';
+
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
