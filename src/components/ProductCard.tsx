@@ -61,6 +61,7 @@ const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
       image: primaryImage?.url ?? '',
       brand: product.brand,
       slug: product.slug,
+      category: product.category,
     });
     toast.success(wished ? 'Removed from wishlist' : 'Added to wishlist');
   };
