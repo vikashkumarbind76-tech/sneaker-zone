@@ -111,12 +111,40 @@ const About = () => {
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="aspect-[3/4] bg-bronze/20 rounded-xl" />
-                <div className="aspect-square bg-bronze/10 rounded-xl" />
+                <div className="aspect-[3/4] bg-bronze/20 rounded-xl overflow-hidden">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0642/7787/2830/files/RSL0536A_2.jpg"
+                    alt="Red Tape Casual Sneakers"
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="aspect-square bg-bronze/10 rounded-xl overflow-hidden">
+                  <img
+                    src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/395111/01/sv01/fnd/IND/fmt/png/Smashic-Womens-Comfort-Casual-Sneakers"
+                    alt="Puma Smashic Sneakers"
+                    loading="lazy"
+                    className="w-full h-full object-contain p-4 hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
               </div>
               <div className="space-y-4 pt-8">
-                <div className="aspect-square bg-bronze/10 rounded-xl" />
-                <div className="aspect-[3/4] bg-bronze/20 rounded-xl" />
+                <div className="aspect-square bg-bronze/10 rounded-xl overflow-hidden">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0659/0722/8923/files/100209513_1_39aff483-f753-4a09-9a11-4bd4589c9d48.jpg?v=1779544593"
+                    alt="Reebok Classic Leather"
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="aspect-[3/4] bg-bronze/20 rounded-xl overflow-hidden">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0659/0722/8923/files/100239576_1_a4690a9c-7f09-4ce5-a06b-6e5bfb97d23e.jpg?v=1779547218"
+                    alt="Reebok Aztec II"
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
               </div>
             </div>
 
