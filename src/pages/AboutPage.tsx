@@ -150,7 +150,7 @@ const AboutPage = () => {
                   <div className="space-y-4 pt-8">
                     <div className="aspect-square bg-accent/20 rounded-xl flex items-center justify-center">
                       <div className="text-center">
-                        <p className="font-display text-5xl text-accent">5K+</p>
+                        <p className="font-display text-5xl text-accent tabular-nums transition-all">{formatCount(customerCount)}</p>
                         <p className="text-sm text-muted-foreground">Customers</p>
                       </div>
                     </div>
