@@ -51,31 +51,78 @@ Deno.serve(async (req) => {
 
     const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
+    // Fetch existing order for idempotency check
+    const { data: existing, error: fetchErr } = await admin.from("orders")
+      .select("id, status, razorpay_payment_id")
+      .eq("razorpay_order_id", razorpay_order_id)
+      .eq("user_id", userData.user.id)
+      .maybeSingle();
+
+    if (fetchErr || !existing) {
+      console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "order_not_found", code: fetchErr?.code ?? null }));
+      return new Response(JSON.stringify({ error: "Order not found" }), {
+        status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (expected !== razorpay_signature) {
-      // Mark order as failed so direct revisits to the status page reflect it
-      await admin.from("orders").update({ status: "failed" })
-        .eq("razorpay_order_id", razorpay_order_id)
-        .eq("user_id", userData.user.id);
+      if (existing.status !== "confirmed" && existing.status !== "failed") {
+        await admin.from("orders").update({ status: "failed" })
+          .eq("id", existing.id)
+          .eq("status", existing.status);
+      }
       console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "signature_mismatch" }));
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    // Idempotent: already confirmed with same payment_id → return success without re-updating
+    if (existing.status === "confirmed" && existing.razorpay_payment_id === razorpay_payment_id) {
+      return new Response(JSON.stringify({ success: true, orderId: existing.id, idempotent: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (existing.status === "confirmed") {
+      console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "payment_id_conflict" }));
+      return new Response(JSON.stringify({ error: "Order already confirmed with a different payment" }), {
+        status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (existing.status === "failed") {
+      return new Response(JSON.stringify({ error: "Order is marked failed" }), {
+        status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Conditional update: only transition if still in current status and no payment id yet
     const { data, error } = await admin.from("orders").update({
       status: "confirmed",
       razorpay_payment_id,
       razorpay_signature,
     })
-      .eq("razorpay_order_id", razorpay_order_id)
-      .eq("user_id", userData.user.id)
+      .eq("id", existing.id)
+      .eq("status", existing.status)
+      .is("razorpay_payment_id", null)
       .select("id")
-      .single();
+      .maybeSingle();
 
     if (error || !data) {
+      // Lost a race — re-read and return idempotent success if another request already confirmed it
+      const { data: after } = await admin.from("orders")
+        .select("id, status, razorpay_payment_id")
+        .eq("id", existing.id)
+        .maybeSingle();
+      if (after?.status === "confirmed" && after.razorpay_payment_id === razorpay_payment_id) {
+        return new Response(JSON.stringify({ success: true, orderId: after.id, idempotent: true }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
       console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "order_update_failed", code: error?.code ?? null }));
-      return new Response(JSON.stringify({ error: "Order not found" }), {
-        status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      return new Response(JSON.stringify({ error: "Order could not be updated" }), {
+        status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
