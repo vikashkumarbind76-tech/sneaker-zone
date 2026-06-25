@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { CreditCard, Smartphone, QrCode, Wallet, Building2, ShieldCheck, ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react';
+import { CreditCard, Smartphone, QrCode, Wallet, Building2, ShieldCheck, ArrowLeft, Loader2, CheckCircle2, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
@@ -31,6 +33,19 @@ const CheckoutPage = () => {
   const { user } = useAuth();
   const [processing, setProcessing] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [addr, setAddr] = useState({
+    full_name: '',
+    phone: '',
+    address_line1: '',
+    address_line2: '',
+    city: '',
+    state: '',
+    postal_code: '',
+    country: 'India',
+  });
+
+  const setField = (k: keyof typeof addr) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setAddr(a => ({ ...a, [k]: e.target.value }));
 
   if (!user) {
     navigate('/auth');
@@ -61,6 +76,22 @@ const CheckoutPage = () => {
       toast.error('Payment library failed to load. Please refresh.');
       return;
     }
+    // Client-side address validation
+    const required: (keyof typeof addr)[] = ['full_name', 'phone', 'address_line1', 'city', 'state', 'postal_code'];
+    for (const k of required) {
+      if (!addr[k] || addr[k].trim().length < 2) {
+        toast.error(`Please fill in ${k.replace('_', ' ')}`);
+        return;
+      }
+    }
+    if (!/^\d{6}$/.test(addr.postal_code)) {
+      toast.error('PIN code must be 6 digits');
+      return;
+    }
+    if (!/^[6-9]\d{9}$/.test(addr.phone.replace(/\D/g, ''))) {
+      toast.error('Enter a valid 10-digit Indian mobile number');
+      return;
+    }
     setProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-razorpay-order', {
@@ -70,6 +101,7 @@ const CheckoutPage = () => {
             size: i.size ?? null, image: i.image ?? null,
           })),
           paymentMethod: 'razorpay',
+          shipping_address: { ...addr, phone: addr.phone.replace(/\D/g, '') },
         },
       });
       if (error || !data?.razorpayOrderId) {
@@ -139,6 +171,44 @@ const CheckoutPage = () => {
 
         <div className="grid lg:grid-cols-[1fr_400px] gap-8">
           <div className="space-y-6">
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <h2 className="font-display text-2xl mb-1 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-accent" /> SHIPPING ADDRESS
+              </h2>
+              <p className="text-sm text-muted-foreground mb-5">Where should we deliver your order?</p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="sm:col-span-2">
+                  <Label htmlFor="full_name">Full Name *</Label>
+                  <Input id="full_name" value={addr.full_name} onChange={setField('full_name')} placeholder="John Doe" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Mobile Number *</Label>
+                  <Input id="phone" type="tel" maxLength={10} value={addr.phone} onChange={setField('phone')} placeholder="9876543210" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="postal_code">PIN Code *</Label>
+                  <Input id="postal_code" maxLength={6} value={addr.postal_code} onChange={setField('postal_code')} placeholder="110001" className="mt-1.5" />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="address_line1">Address Line 1 *</Label>
+                  <Input id="address_line1" value={addr.address_line1} onChange={setField('address_line1')} placeholder="House no, Building, Street" className="mt-1.5" />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="address_line2">Address Line 2 (Landmark)</Label>
+                  <Input id="address_line2" value={addr.address_line2} onChange={setField('address_line2')} placeholder="Near metro station" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="city">City *</Label>
+                  <Input id="city" value={addr.city} onChange={setField('city')} placeholder="New Delhi" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="state">State *</Label>
+                  <Input id="state" value={addr.state} onChange={setField('state')} placeholder="Delhi" className="mt-1.5" />
+                </div>
+              </div>
+            </div>
+
             <div className="rounded-2xl border border-border bg-card p-6">
               <h2 className="font-display text-2xl mb-1">SECURE PAYMENT</h2>
               <p className="text-sm text-muted-foreground mb-5">

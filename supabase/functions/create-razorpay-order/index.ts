@@ -57,6 +57,25 @@ Deno.serve(async (req) => {
       });
     }
     const paymentMethod: string = body.paymentMethod ?? "razorpay";
+    const shipping_address = body.shipping_address ?? {};
+    const required = ["full_name", "phone", "address_line1", "city", "state", "postal_code"];
+    for (const k of required) {
+      if (!shipping_address[k] || String(shipping_address[k]).trim().length < 2) {
+        return new Response(JSON.stringify({ error: `Missing shipping field: ${k}` }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+    if (!/^\d{6}$/.test(String(shipping_address.postal_code))) {
+      return new Response(JSON.stringify({ error: "Invalid postal code (must be 6 digits)" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!/^[6-9]\d{9}$/.test(String(shipping_address.phone).replace(/\D/g, ""))) {
+      return new Response(JSON.stringify({ error: "Invalid Indian phone number" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Recompute totals server-side (never trust client)
     const subtotal = items.reduce((s, i) => s + Number(i.price) * Number(i.quantity), 0);
@@ -95,6 +114,14 @@ Deno.serve(async (req) => {
       payment_method: paymentMethod,
       status: "pending",
       razorpay_order_id: rzpOrder.id,
+      shipping_full_name: shipping_address.full_name,
+      shipping_phone: shipping_address.phone,
+      shipping_address_line1: shipping_address.address_line1,
+      shipping_address_line2: shipping_address.address_line2 ?? null,
+      shipping_city: shipping_address.city,
+      shipping_state: shipping_address.state,
+      shipping_postal_code: shipping_address.postal_code,
+      shipping_country: shipping_address.country ?? "India",
     }).select("id").single();
 
     if (orderErr || !orderRow) {
