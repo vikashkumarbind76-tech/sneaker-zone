@@ -16,7 +16,7 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 14 100% 65%;
+    --primary: 0 84% 55%;
     --primary-foreground: 0 0% 5%;
 
     --secondary: 0 0% 12%;
@@ -25,7 +25,7 @@
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 14 100% 65%;
+    --accent: 0 84% 55%;
     --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,7 +33,7 @@
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 14 100% 65%;
+    --ring: 0 84% 55%;
 
     --radius: 1.5rem;
 
@@ -44,7 +44,7 @@
     --surface-high: 0 0% 16.5%;
 
     /* Accents */
-    --primary-soft: 13 100% 81%;
+    --primary-soft: 0 90% 75%;
     --accent-blue: 210 100% 68%;
     --accent-green: 142 56% 60%;
     --accent-pink: 330 86% 70%;
@@ -52,21 +52,21 @@
     /* Custom brand legacy tokens (kept for components still referencing them) */
     --cream: 0 0% 7.5%;
     --cream-dark: 0 0% 5.5%;
-    --bronze: 14 100% 65%;
-    --bronze-light: 13 100% 81%;
+    --bronze: 0 84% 55%;
+    --bronze-light: 0 90% 75%;
     --bronze-dark: 14 100% 45%;
     --charcoal: 0 0% 0%;
     --charcoal-light: 0 0% 10%;
 
-    --gradient-hero: radial-gradient(ellipse at center, hsl(14 100% 65% / 0.10), transparent 70%);
-    --gradient-bronze: linear-gradient(135deg, hsl(14 100% 65%) 0%, hsl(13 100% 81%) 100%);
+    --gradient-hero: radial-gradient(ellipse at center, hsl(0 84% 55% / 0.10), transparent 70%);
+    --gradient-bronze: linear-gradient(135deg, hsl(0 84% 55%) 0%, hsl(0 90% 75%) 100%);
     --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(0 0% 0% / 0.85) 100%);
 
     --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.4);
     --shadow-md: 0 4px 20px hsl(0 0% 0% / 0.5);
     --shadow-lg: 0 12px 40px hsl(0 0% 0% / 0.6);
     --shadow-xl: 0 24px 60px hsl(0 0% 0% / 0.7);
-    --shadow-bronze: 0 20px 60px hsl(14 100% 65% / 0.35);
+    --shadow-bronze: 0 20px 60px hsl(0 84% 55% / 0.35);
 
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,17 +80,17 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 100%;
-    --primary: 14 100% 65%;
+    --primary: 0 84% 55%;
     --primary-foreground: 0 0% 5%;
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
-    --accent: 14 100% 65%;
+    --accent: 0 84% 55%;
     --accent-foreground: 0 0% 5%;
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 14 100% 65%;
+    --ring: 0 84% 55%;
   }
 }
 
