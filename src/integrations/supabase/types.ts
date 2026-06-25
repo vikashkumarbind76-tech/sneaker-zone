@@ -97,6 +97,14 @@ export type Database = {
           razorpay_payment_id: string | null
           razorpay_signature: string | null
           shipping: number
+          shipping_address_line1: string | null
+          shipping_address_line2: string | null
+          shipping_city: string | null
+          shipping_country: string | null
+          shipping_full_name: string | null
+          shipping_phone: string | null
+          shipping_postal_code: string | null
+          shipping_state: string | null
           status: string
           subtotal: number
           tax: number
@@ -111,6 +119,14 @@ export type Database = {
           razorpay_payment_id?: string | null
           razorpay_signature?: string | null
           shipping?: number
+          shipping_address_line1?: string | null
+          shipping_address_line2?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
+          shipping_full_name?: string | null
+          shipping_phone?: string | null
+          shipping_postal_code?: string | null
+          shipping_state?: string | null
           status?: string
           subtotal: number
           tax?: number
@@ -125,6 +141,14 @@ export type Database = {
           razorpay_payment_id?: string | null
           razorpay_signature?: string | null
           shipping?: number
+          shipping_address_line1?: string | null
+          shipping_address_line2?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
+          shipping_full_name?: string | null
+          shipping_phone?: string | null
+          shipping_postal_code?: string | null
+          shipping_state?: string | null
           status?: string
           subtotal?: number
           tax?: number
