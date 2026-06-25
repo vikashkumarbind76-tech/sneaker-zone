@@ -72,11 +72,15 @@ const AdminLogin = () => {
     return () => window.clearInterval(id);
   }, [lockoutUntil]);
 
-  // Clear lockout when it expires.
+  // Clear lockout when it expires and surface a "ready to retry" notice.
+  const [justUnlocked, setJustUnlocked] = useState(false);
   useEffect(() => {
     if (lockoutUntil && now >= lockoutUntil) {
       setLockoutUntil(null);
       localStorage.removeItem(LOCKOUT_STORAGE_KEY);
+      setJustUnlocked(true);
+      setFormError(null);
+      setAttemptsRemaining(null);
     }
   }, [now, lockoutUntil]);
 
@@ -90,7 +94,17 @@ const AdminLogin = () => {
     if (Number.isFinite(ts)) {
       setLockoutUntil(ts);
       localStorage.setItem(LOCKOUT_STORAGE_KEY, String(ts));
+      setJustUnlocked(false);
     }
+  };
+
+  const handleTryAgain = () => {
+    setJustUnlocked(false);
+    setFormError(null);
+    setPassword('');
+    setTouched({ email: false, password: false });
+    const el = document.getElementById('admin-password');
+    if (el) (el as HTMLInputElement).focus();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
