@@ -16,6 +16,7 @@ import WishlistPage from "./pages/WishlistPage";
 import Auth from "./pages/Auth";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrdersPage from "./pages/OrdersPage";
+import PaymentStatusPage from "./pages/PaymentStatusPage";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -51,6 +52,8 @@ const App = () => (
                     <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
                     <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                     <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+                    <Route path="/payment/status/:orderId" element={<ProtectedRoute><PaymentStatusPage /></ProtectedRoute>} />
+                    <Route path="/payment/status" element={<ProtectedRoute><PaymentStatusPage /></ProtectedRoute>} />
                     <Route path="/admin/login" element={<AdminLogin />} />
                     <Route path="/admin/reset-password" element={<AdminResetPassword />} />
                     <Route path="/admin" element={<AdminLayout />}>
