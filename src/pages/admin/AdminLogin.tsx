@@ -269,7 +269,7 @@ const AdminLogin = () => {
                   aria-invalid={!!showEmailError}
                   aria-describedby={showEmailError ? 'admin-email-error' : undefined}
                   className={cn(showEmailError && 'border-destructive focus-visible:ring-destructive')}
-                  disabled={submitting}
+                  disabled={submitting || isLockedOut}
                 />
                 {showEmailError && (
                   <p id="admin-email-error" className="text-xs text-destructive flex items-center gap-1">
