@@ -186,9 +186,21 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
               <p className="text-xs text-muted-foreground">
                 Shipping and taxes calculated at checkout
               </p>
-              <Button variant="accent" className="w-full" size="lg" onClick={handleCheckout}>
+              {missingSizes && (
+                <p className="flex items-center gap-2 text-xs text-destructive">
+                  <AlertCircle className="w-3 h-3" /> Select a size for every item to continue
+                </p>
+              )}
+              <Button
+                variant="accent"
+                className="w-full"
+                size="lg"
+                onClick={handleCheckout}
+                disabled={missingSizes}
+              >
                 {user ? 'Checkout' : 'Sign in to Checkout'}
               </Button>
+
               <Button 
                 variant="ghost" 
                 className="w-full"
