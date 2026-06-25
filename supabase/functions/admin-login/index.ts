@@ -129,6 +129,28 @@ Deno.serve(async (req) => {
     if (error) console.error("attempt log failed", error);
   };
 
+  // After recording a failure, compute the new total and the lockout deadline
+  // (if this attempt just triggered the lock). The client uses retryAt to sync
+  // its countdown to server time on every failed request.
+  const buildLockoutFields = () => {
+    const newFailureCount = failuresSinceSuccess + 1;
+    if (newFailureCount >= MAX_FAILURES) {
+      const retryAt = new Date(
+        Date.now() + LOCKOUT_MINUTES * 60 * 1000,
+      ).toISOString();
+      return {
+        locked: true,
+        retryAt,
+        retryAfterSeconds: LOCKOUT_MINUTES * 60,
+        attemptsRemaining: 0,
+      };
+    }
+    return {
+      locked: false,
+      attemptsRemaining: Math.max(0, MAX_FAILURES - newFailureCount),
+    };
+  };
+
   // 2. Attempt password sign-in.
   const anon = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: { persistSession: false },
@@ -139,14 +161,24 @@ Deno.serve(async (req) => {
 
   if (signInError || !signInData.session || !signInData.user) {
     await logAttempt(false, "bad_credentials");
-    const remaining = Math.max(0, MAX_FAILURES - (failuresSinceSuccess + 1));
-    return json(
-      {
-        error: "invalid_credentials",
-        message: "Incorrect email or password.",
-        attemptsRemaining: remaining,
-      },
-      401,
+    const lock = buildLockoutFields();
+    const headers: Record<string, string> = {
+      ...corsHeaders,
+      "Content-Type": "application/json",
+    };
+    if (lock.locked && lock.retryAfterSeconds) {
+      headers["Retry-After"] = String(lock.retryAfterSeconds);
+    }
+    return new Response(
+      JSON.stringify({
+        error: lock.locked ? "locked" : "invalid_credentials",
+        message: lock.locked
+          ? "Too many failed attempts. This account is temporarily locked."
+          : "Incorrect email or password.",
+        attemptsRemaining: lock.attemptsRemaining,
+        retryAt: lock.locked ? lock.retryAt : undefined,
+      }),
+      { status: lock.locked ? 429 : 401, headers },
     );
   }
 
@@ -166,12 +198,17 @@ Deno.serve(async (req) => {
 
   if (!roleRow) {
     await logAttempt(false, "not_admin");
+    const lock = buildLockoutFields();
     return json(
       {
-        error: "not_admin",
-        message: "This account does not have admin access.",
+        error: lock.locked ? "locked" : "not_admin",
+        message: lock.locked
+          ? "Too many failed attempts. This account is temporarily locked."
+          : "This account does not have admin access.",
+        attemptsRemaining: lock.attemptsRemaining,
+        retryAt: lock.locked ? lock.retryAt : undefined,
       },
-      403,
+      lock.locked ? 429 : 403,
     );
   }
 
