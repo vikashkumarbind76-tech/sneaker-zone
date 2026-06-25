@@ -172,6 +172,44 @@ const CheckoutPage = () => {
         <div className="grid lg:grid-cols-[1fr_400px] gap-8">
           <div className="space-y-6">
             <div className="rounded-2xl border border-border bg-card p-6">
+              <h2 className="font-display text-2xl mb-1 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-accent" /> SHIPPING ADDRESS
+              </h2>
+              <p className="text-sm text-muted-foreground mb-5">Where should we deliver your order?</p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="sm:col-span-2">
+                  <Label htmlFor="full_name">Full Name *</Label>
+                  <Input id="full_name" value={addr.full_name} onChange={setField('full_name')} placeholder="John Doe" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Mobile Number *</Label>
+                  <Input id="phone" type="tel" maxLength={10} value={addr.phone} onChange={setField('phone')} placeholder="9876543210" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="postal_code">PIN Code *</Label>
+                  <Input id="postal_code" maxLength={6} value={addr.postal_code} onChange={setField('postal_code')} placeholder="110001" className="mt-1.5" />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="address_line1">Address Line 1 *</Label>
+                  <Input id="address_line1" value={addr.address_line1} onChange={setField('address_line1')} placeholder="House no, Building, Street" className="mt-1.5" />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="address_line2">Address Line 2 (Landmark)</Label>
+                  <Input id="address_line2" value={addr.address_line2} onChange={setField('address_line2')} placeholder="Near metro station" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="city">City *</Label>
+                  <Input id="city" value={addr.city} onChange={setField('city')} placeholder="New Delhi" className="mt-1.5" />
+                </div>
+                <div>
+                  <Label htmlFor="state">State *</Label>
+                  <Input id="state" value={addr.state} onChange={setField('state')} placeholder="Delhi" className="mt-1.5" />
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6">
               <h2 className="font-display text-2xl mb-1">SECURE PAYMENT</h2>
               <p className="text-sm text-muted-foreground mb-5">
                 Powered by Razorpay — choose your preferred method on the next screen.
