@@ -11,6 +11,7 @@ import CartDrawer from '@/components/CartDrawer';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
+import { logClientError } from '@/lib/logError';
 import { toast } from 'sonner';
 
 declare global {
@@ -145,7 +146,7 @@ const CheckoutPage = () => {
       });
       rzp.open();
     } catch (e) {
-      console.error(e);
+      void logClientError(e, { route: '/checkout' });
       toast.error('Something went wrong');
       setProcessing(false);
     }

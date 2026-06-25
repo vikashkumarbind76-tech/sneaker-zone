@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
       .single();
 
     if (error || !data) {
-      console.error(error);
+      console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "order_update_failed", code: error?.code ?? null }));
       return new Response(JSON.stringify({ error: "Order not found" }), {
         status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -77,7 +77,8 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    console.error("verify-razorpay-payment error:", e);
+    const err = e instanceof Error ? e : new Error(String(e));
+    console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "unhandled_exception", name: err.name, message: err.message }));
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

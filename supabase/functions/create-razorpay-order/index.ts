@@ -123,8 +123,8 @@ Deno.serve(async (req) => {
     });
     const rzpOrder = await rzpRes.json();
     if (!rzpRes.ok) {
-      console.error("Razorpay error", rzpOrder);
-      return new Response(JSON.stringify({ error: rzpOrder.error?.description ?? "Razorpay order failed" }), {
+      console.error(JSON.stringify({ fn: "create-razorpay-order", event: "razorpay_upstream_error", status: rzpRes.status, code: rzpOrder?.error?.code ?? null }));
+      return new Response(JSON.stringify({ error: "Payment provider error" }), {
         status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -147,7 +147,7 @@ Deno.serve(async (req) => {
     }).select("id").single();
 
     if (orderErr || !orderRow) {
-      console.error(orderErr);
+      console.error(JSON.stringify({ fn: "create-razorpay-order", event: "order_insert_failed", code: orderErr?.code ?? null, hint: orderErr?.hint ?? null }));
       return new Response(JSON.stringify({ error: "Failed to save order" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -172,7 +172,8 @@ Deno.serve(async (req) => {
       totals: { subtotal, shipping, tax, total },
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
-    console.error("create-razorpay-order error:", e);
+    const err = e instanceof Error ? e : new Error(String(e));
+    console.error(JSON.stringify({ fn: "create-razorpay-order", event: "unhandled_exception", name: err.name, message: err.message }));
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
