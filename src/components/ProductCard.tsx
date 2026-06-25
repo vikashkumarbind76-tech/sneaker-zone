@@ -103,8 +103,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Badges (top-left) */}
         <div
-          className="absolute top-4 left-4 z-20 flex flex-col gap-2"
-          style={{ transform: 'translateZ(30px)' }}
+          className="absolute top-4 left-4 z-30 flex flex-col gap-2 pointer-events-none"
+          style={{ transform: 'translateZ(60px)' }}
         >
           {product.isNew && (
             <span className="bg-primary text-primary-foreground text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-md">
