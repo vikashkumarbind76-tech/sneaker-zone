@@ -318,19 +318,31 @@ const AdminLogin = () => {
               <Button
                 type="submit"
                 className="w-full"
-                disabled={submitting || (touched.email && touched.password && !formValid)}
+                disabled={
+                  submitting ||
+                  isLockedOut ||
+                  (touched.email && touched.password && !formValid)
+                }
               >
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Verifying admin access…
                   </>
+                ) : isLockedOut ? (
+                  `Locked — retry in ${Math.floor(secondsRemaining / 60)}:${String(secondsRemaining % 60).padStart(2, '0')}`
                 ) : (
                   'Sign in to Admin'
                 )}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center pt-2">
-                Access attempts are verified server-side. Unauthorized accounts are signed out automatically.
+                {attemptsRemaining !== null && attemptsRemaining > 0 && !isLockedOut ? (
+                  <span className="text-destructive">
+                    {attemptsRemaining} attempt{attemptsRemaining === 1 ? '' : 's'} remaining before temporary lockout.
+                  </span>
+                ) : (
+                  'Sign-in attempts are rate-limited. After 5 failures the account is locked for 15 minutes.'
+                )}
               </p>
             </form>
           )}
