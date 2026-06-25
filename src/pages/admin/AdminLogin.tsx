@@ -233,7 +233,22 @@ const AdminLogin = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              {formError && (
+              {isLockedOut && (
+                <Alert variant="destructive">
+                  <ShieldAlert className="h-4 w-4" />
+                  <AlertTitle>Account temporarily locked</AlertTitle>
+                  <AlertDescription>
+                    Too many failed sign-in attempts. Try again in{' '}
+                    <span className="font-mono font-semibold">
+                      {Math.floor(secondsRemaining / 60)}:
+                      {String(secondsRemaining % 60).padStart(2, '0')}
+                    </span>
+                    .
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {!isLockedOut && formError && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{formError}</AlertDescription>
