@@ -65,10 +65,40 @@ const AdminLogin = () => {
     if (user && isAdmin) navigate('/admin', { replace: true });
   }, [user, isAdmin, authLoading, roleLoading, navigate]);
 
+  // Live countdown tick while locked out.
+  useEffect(() => {
+    if (!lockoutUntil) return;
+    const id = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(id);
+  }, [lockoutUntil]);
+
+  // Clear lockout when it expires.
+  useEffect(() => {
+    if (lockoutUntil && now >= lockoutUntil) {
+      setLockoutUntil(null);
+      localStorage.removeItem(LOCKOUT_STORAGE_KEY);
+    }
+  }, [now, lockoutUntil]);
+
+  const secondsRemaining = lockoutUntil
+    ? Math.max(0, Math.ceil((lockoutUntil - now) / 1000))
+    : 0;
+  const isLockedOut = lockoutUntil !== null && secondsRemaining > 0;
+
+  const applyLockout = (untilIso: string) => {
+    const ts = new Date(untilIso).getTime();
+    if (Number.isFinite(ts)) {
+      setLockoutUntil(ts);
+      localStorage.setItem(LOCKOUT_STORAGE_KEY, String(ts));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTouched({ email: true, password: true });
     setFormError(null);
+
+    if (isLockedOut) return;
 
     const parsed = schema.safeParse({ email, password });
     if (!parsed.success) {
@@ -77,40 +107,74 @@ const AdminLogin = () => {
     }
 
     setSubmitting(true);
-    const { error } = await signIn(parsed.data.email, parsed.data.password);
-    if (error) {
-      setSubmitting(false);
-      setFormError('Incorrect email or password. Please try again.');
-      return;
-    }
+    try {
+      const { data, error: invokeError } = await supabase.functions.invoke('admin-login', {
+        body: { email: parsed.data.email, password: parsed.data.password },
+      });
 
-    // Verify admin role server-side before redirecting.
-    const { data: sessionData } = await supabase.auth.getUser();
-    const uid = sessionData.user?.id;
-    if (!uid) {
-      setSubmitting(false);
-      setFormError('Session error. Please try signing in again.');
-      return;
-    }
-    const { data: roleRow } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', uid)
-      .eq('role', 'admin')
-      .maybeSingle();
+      // supabase.functions.invoke returns the parsed body in `data` for
+      // non-2xx responses too when the function returns JSON.
+      const payload = (data ?? (invokeError as { context?: { json?: unknown } } | null)?.context?.json) as
+        | {
+            ok?: boolean;
+            error?: string;
+            message?: string;
+            attemptsRemaining?: number;
+            retryAt?: string;
+            session?: { access_token: string; refresh_token: string };
+          }
+        | null;
 
-    if (!roleRow) {
-      await supabase.auth.signOut();
-      setSubmitting(false);
-      setFormError(
-        'This account does not have admin access. You have been signed out — please use an authorized admin account.'
-      );
-      return;
-    }
+      if (payload?.error === 'locked' && payload.retryAt) {
+        applyLockout(payload.retryAt);
+        setFormError(payload.message ?? 'Too many failed attempts. Try again later.');
+        setSubmitting(false);
+        return;
+      }
 
-    setSubmitting(false);
-    toast.success('Welcome back, admin.');
-    navigate('/admin', { replace: true });
+      if (payload?.error === 'invalid_credentials') {
+        setAttemptsRemaining(payload.attemptsRemaining ?? null);
+        setFormError(
+          payload.attemptsRemaining !== undefined && payload.attemptsRemaining <= 2
+            ? `Incorrect email or password. ${payload.attemptsRemaining} attempt${payload.attemptsRemaining === 1 ? '' : 's'} remaining before lockout.`
+            : 'Incorrect email or password. Please try again.'
+        );
+        setSubmitting(false);
+        return;
+      }
+
+      if (payload?.error === 'not_admin') {
+        setFormError(payload.message ?? 'This account does not have admin access.');
+        setSubmitting(false);
+        return;
+      }
+
+      if (!payload?.ok || !payload.session) {
+        setFormError(payload?.message ?? 'Sign in failed. Please try again.');
+        setSubmitting(false);
+        return;
+      }
+
+      // Install the session locally so the rest of the app sees the admin user.
+      const { error: setErr } = await supabase.auth.setSession({
+        access_token: payload.session.access_token,
+        refresh_token: payload.session.refresh_token,
+      });
+      if (setErr) {
+        setFormError('Session error. Please try signing in again.');
+        setSubmitting(false);
+        return;
+      }
+
+      setAttemptsRemaining(null);
+      setSubmitting(false);
+      toast.success('Welcome back, admin.');
+      navigate('/admin', { replace: true });
+    } catch (err) {
+      console.error('admin-login invoke failed', err);
+      setFormError('Network error. Please check your connection and try again.');
+      setSubmitting(false);
+    }
   };
 
   const isLoading = authLoading || roleLoading;
