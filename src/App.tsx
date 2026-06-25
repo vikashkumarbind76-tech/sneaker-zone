@@ -15,6 +15,7 @@ import ContactPage from "./pages/ContactPage";
 import WishlistPage from "./pages/WishlistPage";
 import Auth from "./pages/Auth";
 import CheckoutPage from "./pages/CheckoutPage";
+import OrdersPage from "./pages/OrdersPage";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ErrorBoundary from "./components/ErrorBoundary";
