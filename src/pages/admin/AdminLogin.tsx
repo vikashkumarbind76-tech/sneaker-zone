@@ -296,7 +296,7 @@ const AdminLogin = () => {
                       'pr-10',
                       showPasswordError && 'border-destructive focus-visible:ring-destructive'
                     )}
-                    disabled={submitting}
+                    disabled={submitting || isLockedOut}
                   />
                   <button
                     type="button"
