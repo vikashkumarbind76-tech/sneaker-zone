@@ -123,8 +123,8 @@ const About = () => {
             {/* Stats Overlay */}
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-card text-card-foreground p-6 rounded-xl shadow-soft-xl flex gap-8">
               <div className="text-center">
-                <p className="font-display text-3xl">10+</p>
-                <p className="text-sm text-muted-foreground">Years</p>
+                <p className="font-display text-3xl">2026</p>
+                <p className="text-sm text-muted-foreground">Established</p>
               </div>
               <div className="w-px bg-border" />
               <div className="text-center">
