@@ -65,23 +65,21 @@ const AboutPage = () => {
       <div className="min-h-screen bg-background">
         <Navbar onCartClick={() => setIsCartOpen(true)} />
         
-        <main className="pt-24">
+        <main className="pt-20">
           {/* Hero Section */}
-          <section className="bg-primary text-primary-foreground py-20">
+          <section className="bg-primary text-primary-foreground py-10">
             <div className="container-custom text-center">
-              <Crown className="w-16 h-16 text-bronze-light mx-auto mb-6" />
-              <p className="text-bronze-light font-medium tracking-widest uppercase mb-2">
+              <Crown className="w-8 h-8 text-bronze-light mx-auto mb-2" />
+              <p className="text-bronze-light text-xs font-medium tracking-widest uppercase mb-1">
                 Our Story
               </p>
-              <h1 className="heading-xl mb-6">ABOUT SNEAKER ZONE</h1>
-              <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
-                Sneaker Zone is an online sneaker and streetwear store. We bring
-                you authentic kicks and apparel from the brands you love — all
-                in one place.
+              <h1 className="font-display text-3xl md:text-5xl mb-3">ABOUT SNEAKER ZONE</h1>
+              <p className="text-primary-foreground/70 max-w-2xl mx-auto text-sm md:text-base">
+                Your online destination for authentic sneakers and streetwear from the brands you love.
               </p>
-
             </div>
           </section>
+
 
           {/* Story Section */}
           <section className="section-padding">
