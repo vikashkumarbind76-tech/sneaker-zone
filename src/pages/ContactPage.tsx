@@ -115,6 +115,8 @@ const ContactPage = () => {
                           value={formData.name}
                           onChange={handleChange}
                           required
+                          maxLength={100}
+                          autoComplete="name"
                           className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent"
                           placeholder="John Doe"
                         />
