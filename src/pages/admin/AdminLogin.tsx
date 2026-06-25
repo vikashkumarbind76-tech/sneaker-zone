@@ -111,10 +111,31 @@ const AdminLogin = () => {
     if (el) (el as HTMLInputElement).focus();
   };
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setResetError(null);
+    const emailCheck = z.string().trim().email().safeParse(email);
+    if (!emailCheck.success) {
+      setResetError('Enter the admin email address to receive a reset link.');
+      return;
+    }
+    setResetSending(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(emailCheck.data, {
+      redirectTo: `${window.location.origin}/admin/reset-password`,
+    });
+    setResetSending(false);
+    if (error) {
+      setResetError(error.message);
+      return;
+    }
+    setResetSent(true);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTouched({ email: true, password: true });
     setFormError(null);
+
 
     if (isLockedOut) return;
 
