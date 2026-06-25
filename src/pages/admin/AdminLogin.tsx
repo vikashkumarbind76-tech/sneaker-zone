@@ -125,8 +125,14 @@ const AdminLogin = () => {
           }
         | null;
 
-      if (payload?.error === 'locked' && payload.retryAt) {
+      // Always sync the countdown to the server's retryAt when present —
+      // this corrects clock drift and re-aligns after every failed request.
+      if (payload?.retryAt) {
         applyLockout(payload.retryAt);
+      }
+
+      if (payload?.error === 'locked') {
+        setAttemptsRemaining(0);
         setFormError(payload.message ?? 'Too many failed attempts. Try again later.');
         setSubmitting(false);
         return;
@@ -144,6 +150,7 @@ const AdminLogin = () => {
       }
 
       if (payload?.error === 'not_admin') {
+        setAttemptsRemaining(payload.attemptsRemaining ?? null);
         setFormError(payload.message ?? 'This account does not have admin access.');
         setSubmitting(false);
         return;
