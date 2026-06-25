@@ -20,8 +20,10 @@ const schema = z.object({
 
 type FieldErrors = Partial<Record<'email' | 'password', string>>;
 
+const LOCKOUT_STORAGE_KEY = 'sz_admin_lockout_until';
+
 const AdminLogin = () => {
-  const { user, signIn, signOut, loading: authLoading } = useAuth();
+  const { user, signOut, loading: authLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useIsAdmin();
   const navigate = useNavigate();
 
@@ -34,6 +36,13 @@ const AdminLogin = () => {
   });
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+  const [attemptsRemaining, setAttemptsRemaining] = useState<number | null>(null);
+  const [lockoutUntil, setLockoutUntil] = useState<number | null>(() => {
+    const raw = typeof window !== 'undefined' ? localStorage.getItem(LOCKOUT_STORAGE_KEY) : null;
+    const ts = raw ? parseInt(raw, 10) : NaN;
+    return Number.isFinite(ts) && ts > Date.now() ? ts : null;
+  });
+  const [now, setNow] = useState(Date.now());
 
   // Live validation — runs once a field has been blurred/submitted.
   const fieldErrors: FieldErrors = useMemo(() => {
