@@ -101,20 +101,20 @@ const PaymentStatusPage = () => {
       const { data: ord } = await supabase
         .from("orders")
         .select(
-          "id,status,total_amount,currency,razorpay_payment_id,created_at,shipping_full_name,shipping_address_line1,shipping_city,shipping_state,shipping_postal_code"
+          "id,status,total,razorpay_payment_id,created_at,shipping_full_name,shipping_address_line1,shipping_city,shipping_state,shipping_postal_code"
         )
         .eq("id", orderIdParam)
         .maybeSingle();
       if (ord) {
-        setOrder(ord as OrderRow);
+        setOrder(ord as unknown as OrderRow);
         if (status === "loading" && !state.razorpay) {
           setStatus(ord.status === "confirmed" || ord.status === "paid" ? "success" : "failure");
         }
         const { data: its } = await supabase
           .from("order_items")
-          .select("id,product_name,size,quantity,unit_price,image_url")
+          .select("id,name,size,quantity,price,image_url")
           .eq("order_id", orderIdParam);
-        setItems((its as OrderItem[]) ?? []);
+        setItems((its as unknown as OrderItem[]) ?? []);
       }
     };
     void load();
