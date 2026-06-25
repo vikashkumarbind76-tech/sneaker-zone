@@ -72,8 +72,9 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Bebas Neue"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        display: ['Anton', '"Bebas Neue"', 'sans-serif'],
+        body: ['Inter', '"DM Sans"', 'sans-serif'],
+        ghost: ['Anton', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
