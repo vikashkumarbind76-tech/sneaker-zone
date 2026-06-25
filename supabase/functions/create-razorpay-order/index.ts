@@ -129,8 +129,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    // 2. Save pending order with service role
-    const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    // 2. Save pending order with service role (admin client created above)
     const { data: orderRow, error: orderErr } = await admin.from("orders").insert({
       user_id: user.id,
       subtotal, shipping, tax, total,
