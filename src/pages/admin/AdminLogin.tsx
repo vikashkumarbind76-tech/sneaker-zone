@@ -277,6 +277,64 @@ const AdminLogin = () => {
                 Sign out and use a different account
               </Button>
             </div>
+          ) : mode === 'forgot' ? (
+            <form onSubmit={handleForgotPassword} className="space-y-4" noValidate>
+              <p className="text-sm text-muted-foreground">
+                Enter your admin email and we'll send a password reset link.
+              </p>
+              {resetSent ? (
+                <Alert className="border-accent/40 bg-accent/5">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <AlertTitle>Check your inbox</AlertTitle>
+                  <AlertDescription>
+                    If an admin account exists for <span className="font-medium">{email}</span>,
+                    a reset link has been sent. The link expires in 1 hour.
+                  </AlertDescription>
+                </Alert>
+              ) : (
+                <>
+                  {resetError && (
+                    <Alert variant="destructive">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription>{resetError}</AlertDescription>
+                    </Alert>
+                  )}
+                  <div className="space-y-1.5">
+                    <Label htmlFor="reset-email">Email</Label>
+                    <Input
+                      id="reset-email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="admin@example.com"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={resetSending}
+                    />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={resetSending}>
+                    {resetSending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending reset link…
+                      </>
+                    ) : (
+                      'Send reset link'
+                    )}
+                  </Button>
+                </>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  setMode('signin');
+                  setResetSent(false);
+                  setResetError(null);
+                }}
+                className="block w-full text-center text-sm text-accent underline underline-offset-2 hover:no-underline"
+              >
+                ← Back to sign in
+              </button>
+            </form>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {isLockedOut && (
