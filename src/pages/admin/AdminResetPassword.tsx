@@ -112,6 +112,15 @@ const AdminResetPassword = () => {
             </Alert>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {recoveryEmail && (
+                <Alert className="border-accent/40 bg-accent/5">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <AlertTitle>Updating password for</AlertTitle>
+                  <AlertDescription className="font-medium break-all">
+                    {recoveryEmail}
+                  </AlertDescription>
+                </Alert>
+              )}
               {error && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
