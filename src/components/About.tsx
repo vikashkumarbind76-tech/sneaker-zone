@@ -128,7 +128,7 @@ const About = () => {
               </div>
               <div className="w-px bg-border" />
               <div className="text-center">
-                <p className="font-display text-3xl">5K+</p>
+                <p className="font-display text-3xl tabular-nums transition-all">{formatCount(customerCount)}</p>
                 <p className="text-sm text-muted-foreground">Customers</p>
               </div>
               <div className="w-px bg-border" />
