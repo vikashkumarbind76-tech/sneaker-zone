@@ -61,7 +61,7 @@ const ShopPage = () => {
               <p className="text-bronze-light font-medium tracking-widest uppercase mb-2">
                 Explore Our Collection
               </p>
-              <h1 className="heading-xl mb-4">THE SHOP</h1>
+              <h1 className="heading-xl mb-4">Shop Sneakers &amp; Streetwear</h1>
               <p className="text-primary-foreground/70 max-w-xl mx-auto">
                 Discover premium sneakers, shoes, and streetwear. Authentic styles for the modern urbanite.
               </p>

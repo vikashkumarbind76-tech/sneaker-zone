@@ -48,11 +48,11 @@ const Hero = () => {
             </span>
           </div>
 
-          <h1 className="font-display text-7xl md:text-8xl lg:text-9xl uppercase leading-[0.85] tracking-tight">
-            OWN THE
+          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl uppercase leading-[0.85] tracking-tight">
+            Authentic Sneakers
             <br />
             <span className="text-primary drop-shadow-[0_0_30px_hsl(var(--primary)/0.35)]">
-              STREETS
+              &amp; Streetwear
             </span>
           </h1>
 
@@ -130,7 +130,7 @@ const Hero = () => {
         </div>
 
         {/* Brand strip */}
-        <div className="lg:col-span-12 mt-8 w-full pt-8 border-t border-white/5 flex flex-wrap justify-between items-center gap-10 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+        <div className="lg:col-span-12 mt-8 w-full pt-8 border-t border-white/5 flex flex-wrap justify-between items-center gap-10 opacity-80 hover:opacity-100 transition-all duration-500">
           {brands.map((b) => (
             <span
               key={b}
