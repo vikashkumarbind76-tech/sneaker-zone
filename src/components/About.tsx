@@ -1,4 +1,11 @@
 import { Crown, MapPin, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+
+const formatCount = (n: number) => {
+  if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}K+`;
+  return `${n}+`;
+};
 
 const features = [
   {
