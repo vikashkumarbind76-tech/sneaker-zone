@@ -47,6 +47,7 @@ const App = () => (
                     <Route path="/wishlist" element={<WishlistPage />} />
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route path="/orders" element={<OrdersPage />} />
                     <Route path="/admin" element={<AdminLayout />}>
                       <Route index element={<Navigate to="errors" replace />} />
                       <Route path="errors" element={<AdminErrors />} />

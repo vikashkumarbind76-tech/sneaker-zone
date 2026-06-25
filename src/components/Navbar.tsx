@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, User as UserIcon, LogOut, Heart } from 'lucide-react';
+import { Menu, X, ShoppingBag, User as UserIcon, LogOut, Heart, Package } from 'lucide-react';
 import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 import { Link, useLocation } from 'react-router-dom';
@@ -124,9 +124,16 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
             </Button>
 
             {user ? (
-              <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign out" aria-label="Sign out">
-                <LogOut className="w-5 h-5" />
-              </Button>
+              <>
+                <Link to="/orders">
+                  <Button variant="ghost" size="icon" title="My orders" aria-label="My orders">
+                    <Package className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign out" aria-label="Sign out">
+                  <LogOut className="w-5 h-5" />
+                </Button>
+              </>
             ) : (
               <Link to="/auth">
                 <Button variant="ghost" size="icon" title="Sign in" aria-label="Sign in">
