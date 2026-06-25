@@ -105,7 +105,14 @@ const AboutPage = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
-                    <div className="aspect-[3/4] bg-secondary rounded-xl" />
+                    <div className="aspect-[3/4] bg-secondary rounded-xl overflow-hidden">
+                      <img
+                        src="https://cdn.shopify.com/s/files/1/0642/7787/2830/files/RSL0536A_2.jpg"
+                        alt="Red Tape Casual Sneakers"
+                        loading="lazy"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                     <div className="aspect-square bg-accent/20 rounded-xl flex items-center justify-center">
                       <div className="text-center">
                         <p className="font-display text-5xl text-accent">2026</p>
@@ -120,7 +127,14 @@ const AboutPage = () => {
                         <p className="text-sm text-muted-foreground">Customers</p>
                       </div>
                     </div>
-                    <div className="aspect-[3/4] bg-secondary rounded-xl" />
+                    <div className="aspect-[3/4] bg-secondary rounded-xl overflow-hidden">
+                      <img
+                        src="https://cdn.shopify.com/s/files/1/0659/0722/8923/files/100239576_1_a4690a9c-7f09-4ce5-a06b-6e5bfb97d23e.jpg?v=1779547218"
+                        alt="Reebok Aztec II"
+                        loading="lazy"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
