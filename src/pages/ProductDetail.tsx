@@ -26,7 +26,9 @@ import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import ImageUnavailable from '@/components/ImageUnavailable';
 import ProductImage from '@/components/ProductImage';
+import SizeGuideDialog from '@/components/SizeGuideDialog';
 import { cn } from '@/lib/utils';
+
 
 const REVIEWS = [
   { user: 'MARCUS_SNEAKS', ago: '2D AGO', body: '"The quality is unmatched. Perfect fit out of the box."' },
