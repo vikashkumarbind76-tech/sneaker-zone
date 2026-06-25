@@ -66,14 +66,9 @@ const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
     toast.success(wished ? 'Removed from wishlist' : 'Added to wishlist');
   };
 
-  const sizeClass = cn(
-    size === 'tall' && 'sm:row-span-2',
-    size === 'wide' && 'sm:col-span-2',
-    size === 'large' && 'sm:col-span-2 sm:row-span-2',
-  );
-
   return (
-    <div className={cn('group/card [perspective:1200px]', sizeClass)}>
+    <div className="group/card h-full [perspective:1200px]">
+
       <Link
         ref={cardRef}
         to={`/product/${product.slug}`}
