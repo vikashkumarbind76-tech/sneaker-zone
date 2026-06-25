@@ -46,13 +46,14 @@ const CheckoutPage = () => {
   if (items.length === 0 && !processing) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
+        <Navbar onCartClick={() => setCartOpen(true)} />
         <div className="container mx-auto px-4 py-24 text-center">
           <h1 className="font-display text-4xl mb-3">YOUR CART IS EMPTY</h1>
           <p className="text-muted-foreground mb-6">Add some sneakers before checking out.</p>
           <Button onClick={() => navigate('/shop')}>Browse Shop</Button>
         </div>
         <Footer />
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       </div>
     );
   }
@@ -96,7 +97,7 @@ const CheckoutPage = () => {
         <title>Checkout — Sneaker Zone</title>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <Navbar />
+      <Navbar onCartClick={() => setCartOpen(true)} />
 
       <div className="container mx-auto px-4 py-10 max-w-6xl">
         <button
@@ -276,6 +277,7 @@ const CheckoutPage = () => {
       </div>
 
       <Footer />
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </div>
   );
 };
