@@ -33,6 +33,19 @@ const CheckoutPage = () => {
   const { user } = useAuth();
   const [processing, setProcessing] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [addr, setAddr] = useState({
+    full_name: '',
+    phone: '',
+    address_line1: '',
+    address_line2: '',
+    city: '',
+    state: '',
+    postal_code: '',
+    country: 'India',
+  });
+
+  const setField = (k: keyof typeof addr) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setAddr(a => ({ ...a, [k]: e.target.value }));
 
   if (!user) {
     navigate('/auth');
