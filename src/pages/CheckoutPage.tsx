@@ -76,6 +76,22 @@ const CheckoutPage = () => {
       toast.error('Payment library failed to load. Please refresh.');
       return;
     }
+    // Client-side address validation
+    const required: (keyof typeof addr)[] = ['full_name', 'phone', 'address_line1', 'city', 'state', 'postal_code'];
+    for (const k of required) {
+      if (!addr[k] || addr[k].trim().length < 2) {
+        toast.error(`Please fill in ${k.replace('_', ' ')}`);
+        return;
+      }
+    }
+    if (!/^\d{6}$/.test(addr.postal_code)) {
+      toast.error('PIN code must be 6 digits');
+      return;
+    }
+    if (!/^[6-9]\d{9}$/.test(addr.phone.replace(/\D/g, ''))) {
+      toast.error('Enter a valid 10-digit Indian mobile number');
+      return;
+    }
     setProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-razorpay-order', {
@@ -85,6 +101,7 @@ const CheckoutPage = () => {
             size: i.size ?? null, image: i.image ?? null,
           })),
           paymentMethod: 'razorpay',
+          shipping_address: { ...addr, phone: addr.phone.replace(/\D/g, '') },
         },
       });
       if (error || !data?.razorpayOrderId) {
