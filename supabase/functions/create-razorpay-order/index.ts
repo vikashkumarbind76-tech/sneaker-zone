@@ -123,8 +123,8 @@ Deno.serve(async (req) => {
     });
     const rzpOrder = await rzpRes.json();
     if (!rzpRes.ok) {
-      console.error("Razorpay error", rzpOrder);
-      return new Response(JSON.stringify({ error: rzpOrder.error?.description ?? "Razorpay order failed" }), {
+      console.error(JSON.stringify({ fn: "create-razorpay-order", event: "razorpay_upstream_error", status: rzpRes.status, code: rzpOrder?.error?.code ?? null }));
+      return new Response(JSON.stringify({ error: "Payment provider error" }), {
         status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
