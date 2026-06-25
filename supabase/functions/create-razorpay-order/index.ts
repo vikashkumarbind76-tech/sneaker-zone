@@ -147,7 +147,7 @@ Deno.serve(async (req) => {
     }).select("id").single();
 
     if (orderErr || !orderRow) {
-      console.error(orderErr);
+      console.error(JSON.stringify({ fn: "create-razorpay-order", event: "order_insert_failed", code: orderErr?.code ?? null, hint: orderErr?.hint ?? null }));
       return new Response(JSON.stringify({ error: "Failed to save order" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
