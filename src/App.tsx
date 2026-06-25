@@ -50,7 +50,9 @@ const App = () => (
                     <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
                     <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                     <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
                     <Route path="/admin" element={<AdminLayout />}>
+
                       <Route index element={<Navigate to="errors" replace />} />
                       <Route path="errors" element={<AdminErrors />} />
                       <Route path="images" element={<AdminImages />} />
