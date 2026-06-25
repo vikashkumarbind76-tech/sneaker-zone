@@ -434,6 +434,20 @@ const AdminLogin = () => {
                     <AlertCircle className="w-3 h-3" /> {fieldErrors.password}
                   </p>
                 )}
+                <div className="flex justify-end pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode('forgot');
+                      setFormError(null);
+                      setResetError(null);
+                      setResetSent(false);
+                    }}
+                    className="text-xs text-accent hover:underline underline-offset-2"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
               </div>
 
               <Button
