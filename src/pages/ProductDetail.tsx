@@ -89,10 +89,11 @@ const ProductDetail = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id,
-        name: `${product.name} - Size ${selectedSize}`,
+        name: product.name,
         price: product.price,
         image: product.images[0]?.url ?? '',
         category: product.category,
+        size: selectedSize,
       });
     }
     toast.success(`${product.name} added to cart!`);

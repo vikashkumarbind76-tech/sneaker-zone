@@ -7,20 +7,25 @@ export interface CartItem {
   image: string;
   quantity: number;
   category: string;
+  size?: string;
 }
 
 interface CartContextType {
   items: CartItem[];
   addToCart: (item: Omit<CartItem, 'quantity'>) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
+  removeFromCart: (id: number, size?: string) => void;
+  updateQuantity: (id: number, size: string | undefined, quantity: number) => void;
+  updateSize: (id: number, oldSize: string | undefined, newSize: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
-const CART_IMAGE_MAPPING_VERSION = 'product-image-map-v2';
+const CART_IMAGE_MAPPING_VERSION = 'product-image-map-v3';
+
+const sameLine = (a: CartItem, id: number, size?: string) =>
+  a.id === id && (a.size ?? '') === (size ?? '');
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
@@ -29,12 +34,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       localStorage.removeItem('cart');
       return [];
     }
-
     const saved = localStorage.getItem('cart');
     try {
       return saved ? JSON.parse(saved) : [];
     } catch (error) {
-      console.warn('[product-image-validation] Cleared unreadable cart cache', error);
+      console.warn('[cart] Cleared unreadable cart cache', error);
       localStorage.removeItem('cart');
       return [];
     }
@@ -46,28 +50,48 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (item: Omit<CartItem, 'quantity'>) => {
     setItems(prev => {
-      const existing = prev.find(i => i.id === item.id);
+      const existing = prev.find(i => sameLine(i, item.id, item.size));
       if (existing) {
-        return prev.map(i => 
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        return prev.map(i =>
+          sameLine(i, item.id, item.size) ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
-  const removeFromCart = (id: number) => {
-    setItems(prev => prev.filter(i => i.id !== id));
+  const removeFromCart = (id: number, size?: string) => {
+    setItems(prev => prev.filter(i => !sameLine(i, id, size)));
   };
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: number, size: string | undefined, quantity: number) => {
     if (quantity <= 0) {
-      removeFromCart(id);
+      removeFromCart(id, size);
       return;
     }
-    setItems(prev => prev.map(i => 
-      i.id === id ? { ...i, quantity } : i
+    setItems(prev => prev.map(i =>
+      sameLine(i, id, size) ? { ...i, quantity } : i
     ));
+  };
+
+  const updateSize = (id: number, oldSize: string | undefined, newSize: string) => {
+    setItems(prev => {
+      const current = prev.find(i => sameLine(i, id, oldSize));
+      if (!current) return prev;
+      const duplicate = prev.find(i => sameLine(i, id, newSize) && i !== current);
+      if (duplicate) {
+        return prev
+          .filter(i => !sameLine(i, id, oldSize))
+          .map(i =>
+            sameLine(i, id, newSize)
+              ? { ...i, quantity: i.quantity + current.quantity }
+              : i
+          );
+      }
+      return prev.map(i =>
+        sameLine(i, id, oldSize) ? { ...i, size: newSize } : i
+      );
+    });
   };
 
   const clearCart = () => setItems([]);
@@ -76,14 +100,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ 
-      items, 
-      addToCart, 
-      removeFromCart, 
-      updateQuantity, 
-      clearCart, 
-      totalItems, 
-      totalPrice 
+    <CartContext.Provider value={{
+      items,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      updateSize,
+      clearCart,
+      totalItems,
+      totalPrice,
     }}>
       {children}
     </CartContext.Provider>
