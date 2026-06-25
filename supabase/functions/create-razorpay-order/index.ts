@@ -114,6 +114,14 @@ Deno.serve(async (req) => {
       payment_method: paymentMethod,
       status: "pending",
       razorpay_order_id: rzpOrder.id,
+      shipping_full_name: shipping_address.full_name,
+      shipping_phone: shipping_address.phone,
+      shipping_address_line1: shipping_address.address_line1,
+      shipping_address_line2: shipping_address.address_line2 ?? null,
+      shipping_city: shipping_address.city,
+      shipping_state: shipping_address.state,
+      shipping_postal_code: shipping_address.postal_code,
+      shipping_country: shipping_address.country ?? "India",
     }).select("id").single();
 
     if (orderErr || !orderRow) {
