@@ -37,6 +37,10 @@ const AdminLogin = () => {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [attemptsRemaining, setAttemptsRemaining] = useState<number | null>(null);
+  const [mode, setMode] = useState<'signin' | 'forgot'>('signin');
+  const [resetSending, setResetSending] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [resetError, setResetError] = useState<string | null>(null);
   const [lockoutUntil, setLockoutUntil] = useState<number | null>(() => {
     const raw = typeof window !== 'undefined' ? localStorage.getItem(LOCKOUT_STORAGE_KEY) : null;
     const ts = raw ? parseInt(raw, 10) : NaN;
