@@ -391,6 +391,98 @@ const productSeeds: ProductSeed[] = [
     details: ["Stretch cotton denim", "Slim tapered fit", "Mid rise", "5-pocket construction", "Branded leather patch"],
     sizes: jeansSizes, colors: ["Indigo", "Black"], material: "Cotton/Elastane", sku: "SZ-ADID-0050"
   },
+
+  // ============ RED TAPE SNEAKERS (15) — from redtape.com ============
+  {
+    id: 51, name: "RSO0078 Lifestyle Sneakers", brand: "Red Tape", price: 2199, category: 'sneakers', isNew: true, isFeatured: true,
+    description: "Red Tape lifestyle sneakers with a sporty silhouette, soft-feel cushioning and an anti-skid sole for everyday Indian streets.",
+    details: ["Soft synthetic upper", "Memory-tech cushioned insole", "Shock-absorbing EVA midsole", "Anti-skid TPR outsole", "Padded collar and tongue"],
+    sizes: sneakerSizes, colors: ["White/Black", "All White", "Grey"], material: "Synthetic, Mesh, TPR", sku: "SZ-REDT-0051"
+  },
+  {
+    id: 52, name: "RTE2241 Casual Sneakers", brand: "Red Tape", price: 1899, category: 'sneakers', isNew: true,
+    description: "Court-inspired casual sneakers with clean color blocking — versatile pickup for jeans or joggers.",
+    details: ["Synthetic leather upper", "Cushioned footbed", "Flexible TPR outsole", "Lace-up closure", "Reinforced toe"],
+    sizes: sneakerSizes, colors: ["White/Green", "White/Navy"], material: "Synthetic Leather, TPR", sku: "SZ-REDT-0052"
+  },
+  {
+    id: 53, name: "RSO0092 Chunky Sneakers", brand: "Red Tape", price: 2499, category: 'sneakers', isFeatured: true,
+    description: "Statement chunky sneakers with a stacked sole and bold panelling for a streetwear-ready look.",
+    details: ["Mixed-material upper", "Stacked chunky midsole", "Memory-tech insole", "High-grip rubber outsole", "Reflective overlays"],
+    sizes: sneakerSizes, colors: ["White/Black", "Grey/Black"], material: "Synthetic, Mesh, Rubber", sku: "SZ-REDT-0053"
+  },
+  {
+    id: 54, name: "RTE3187 Walking Sneakers", brand: "Red Tape", price: 1699, category: 'sneakers',
+    description: "Lightweight walking sneakers engineered for long daily walks with cushioned step-in comfort.",
+    details: ["Engineered mesh upper", "EVA cushioned midsole", "Memory foam insole", "Anti-skid sole", "Pull-tab heel"],
+    sizes: sneakerSizes, colors: ["Black", "Navy", "Grey"], material: "Mesh, EVA, TPR", sku: "SZ-REDT-0054"
+  },
+  {
+    id: 55, name: "RSO0114 Running Sneakers", brand: "Red Tape", price: 2299, category: 'sneakers', isNew: true,
+    description: "Performance-style running sneakers with breathable mesh and a high-rebound sole for daily runs.",
+    details: ["Breathable engineered mesh", "High-rebound EVA midsole", "Memory foam footbed", "Flex-groove outsole", "Lightweight build"],
+    sizes: sneakerSizes, colors: ["Black/Red", "Grey/Blue"], material: "Mesh, EVA, Rubber", sku: "SZ-REDT-0055"
+  },
+  {
+    id: 56, name: "RTE0421 Slip-on Sneakers", brand: "Red Tape", price: 1599, category: 'sneakers',
+    description: "Easy slip-on sneakers with stretch gussets — comfort-first styling for busy mornings.",
+    details: ["Stretch knit upper", "Slip-on construction", "Cushioned footbed", "Anti-skid TPR sole", "Pull-tab heel"],
+    sizes: sneakerSizes, colors: ["Black", "Grey", "Navy"], material: "Knit, TPR", sku: "SZ-REDT-0056"
+  },
+  {
+    id: 57, name: "RSO0125 High-top Sneakers", brand: "Red Tape", price: 2699, category: 'sneakers', isFeatured: true,
+    description: "Mid/high-top sneakers with a padded collar and street-ready silhouette for cooler days.",
+    details: ["Synthetic upper", "Padded high-top collar", "Memory-tech insole", "Durable rubber outsole", "Tonal lace-up closure"],
+    sizes: sneakerSizes, colors: ["Black", "White", "Olive"], material: "Synthetic, Rubber", sku: "SZ-REDT-0057"
+  },
+  {
+    id: 58, name: "RTE3340 Knit Sneakers", brand: "Red Tape", price: 1799, category: 'sneakers',
+    description: "Sock-fit knit sneakers that hug the foot with a sporty, modern look and feather-light feel.",
+    details: ["Stretch knit sock-fit upper", "EVA cushioned midsole", "Memory foam insole", "Flexible TPR outsole", "Heel pull tab"],
+    sizes: sneakerSizes, colors: ["Black", "Grey/Volt", "Navy"], material: "Knit, EVA, TPR", sku: "SZ-REDT-0058"
+  },
+  {
+    id: 59, name: "RSO0143 Retro Court Sneakers", brand: "Red Tape", price: 2099, category: 'sneakers', isNew: true,
+    description: "Retro court-style sneakers with leather-look panels and a clean cupsole — easy with denim.",
+    details: ["Synthetic leather upper", "Stitched overlays", "Foam cushioned insole", "Vulcanised-look cupsole", "Classic court silhouette"],
+    sizes: sneakerSizes, colors: ["White/Green", "White/Red"], material: "Synthetic Leather, Rubber", sku: "SZ-REDT-0059"
+  },
+  {
+    id: 60, name: "RTE4002 Trail Sneakers", brand: "Red Tape", price: 2599, category: 'sneakers',
+    description: "Trail-ready sneakers with rugged grip and reinforced overlays for weekend adventures.",
+    details: ["Synthetic and mesh upper", "Reinforced toe and heel", "Lugged rubber outsole", "Cushioned insole", "Padded ankle collar"],
+    sizes: sneakerSizes, colors: ["Olive/Black", "Grey/Orange"], material: "Synthetic, Mesh, Rubber", sku: "SZ-REDT-0060"
+  },
+  {
+    id: 61, name: "RSO0167 Premium White Sneakers", brand: "Red Tape", price: 2399, category: 'sneakers', isFeatured: true,
+    description: "All-white minimalist sneakers — the everyday clean kicks that work with every outfit.",
+    details: ["Premium synthetic leather", "Tonal stitching", "Memory-tech insole", "Soft EVA midsole", "Anti-skid white sole"],
+    sizes: sneakerSizes, colors: ["All White", "White/Black"], material: "Synthetic Leather, EVA, Rubber", sku: "SZ-REDT-0061"
+  },
+  {
+    id: 62, name: "RTE2890 Sporty Sneakers", brand: "Red Tape", price: 1999, category: 'sneakers',
+    description: "Sporty everyday sneakers with breathable mesh panels and energetic accent colors.",
+    details: ["Mesh and synthetic upper", "EVA cushioned midsole", "Memory foam insole", "Flex-groove TPR outsole", "Padded tongue"],
+    sizes: sneakerSizes, colors: ["Black/Lime", "Navy/Orange"], material: "Mesh, Synthetic, TPR", sku: "SZ-REDT-0062"
+  },
+  {
+    id: 63, name: "RSO0182 Chunky Dad Sneakers", brand: "Red Tape", price: 2799, category: 'sneakers', isNew: true,
+    description: "Volume-heavy 'dad' sneakers with layered panels and a chunky platform for max attitude.",
+    details: ["Multi-panel synthetic upper", "Chunky stacked platform", "Memory-tech insole", "High-traction outsole", "Reflective details"],
+    sizes: sneakerSizes, colors: ["White/Multi", "Black/Multi"], material: "Synthetic, Mesh, Rubber", sku: "SZ-REDT-0063"
+  },
+  {
+    id: 64, name: "RTE1560 Gym Trainers", brand: "Red Tape", price: 1899, category: 'sneakers',
+    description: "Lightweight gym trainers built for cross-training, treadmill runs and HIIT sessions.",
+    details: ["Breathable mesh upper", "Lightweight EVA midsole", "Cushioned footbed", "Multi-directional grip outsole", "Secure lace-up fit"],
+    sizes: sneakerSizes, colors: ["Black/White", "Grey/Red"], material: "Mesh, EVA, Rubber", sku: "SZ-REDT-0064"
+  },
+  {
+    id: 65, name: "RSO0205 Court Lifestyle Sneakers", brand: "Red Tape", price: 2299, category: 'sneakers', isFeatured: true,
+    description: "Premium court lifestyle sneakers with clean lines, subtle branding and step-in cushioning.",
+    details: ["Premium synthetic upper", "Stitched side overlay", "Memory-tech cushioned insole", "Durable cupsole", "Heritage court silhouette"],
+    sizes: sneakerSizes, colors: ["White/Black", "White/Navy", "White/Green"], material: "Synthetic, Rubber", sku: "SZ-REDT-0065"
+  },
 ];
 
 export const products: Product[] = productSeeds.map((product) => ({
