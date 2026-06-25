@@ -387,7 +387,7 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 text-muted-foreground font-body text-[10px] uppercase tracking-[0.3em]">
-                  <RotateCw className="w-3.5 h-3.5 animate-spin-slow" />
+                  <RotateCw className="w-3.5 h-3.5 animate-spin" />
                   Interactive View
                 </div>
               </div>
