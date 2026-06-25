@@ -1,4 +1,11 @@
 import { Crown, MapPin, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+
+const formatCount = (n: number) => {
+  if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}K+`;
+  return `${n}+`;
+};
 
 const features = [
   {
@@ -19,6 +26,36 @@ const features = [
 ];
 
 const About = () => {
+  const [customerCount, setCustomerCount] = useState<number>(0);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchCount = async () => {
+      const { data, error } = await supabase.rpc('get_customer_count');
+      if (!error && mounted && typeof data === 'number') setCustomerCount(data);
+    };
+    fetchCount();
+
+    const channel = supabase
+      .channel('profiles-count')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'profiles' },
+        () => fetchCount()
+      )
+      .on(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'profiles' },
+        () => fetchCount()
+      )
+      .subscribe();
+
+    return () => {
+      mounted = false;
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
   return (
     <section id="about" className="section-padding bg-primary text-primary-foreground">
       <div className="container-custom">
@@ -91,7 +128,7 @@ const About = () => {
               </div>
               <div className="w-px bg-border" />
               <div className="text-center">
-                <p className="font-display text-3xl">5K+</p>
+                <p className="font-display text-3xl tabular-nums transition-all">{formatCount(customerCount)}</p>
                 <p className="text-sm text-muted-foreground">Customers</p>
               </div>
               <div className="w-px bg-border" />
