@@ -188,6 +188,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         required
                         rows={5}
+                        maxLength={1000}
                         className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent resize-none"
                         placeholder="How can we help you?"
                       />
