@@ -58,7 +58,8 @@ Deno.serve(async (req) => {
       });
     }
     for (const i of rawItems) {
-      if (!i.id || typeof i.id !== "string" || !Number.isInteger(i.quantity) || i.quantity < 1 || i.quantity > 20) {
+      const idOk = (typeof i.id === "string" && i.id.length > 0) || (typeof i.id === "number" && Number.isFinite(i.id));
+      if (!idOk || !Number.isInteger(i.quantity) || i.quantity < 1 || i.quantity > 20) {
         return new Response(JSON.stringify({ error: "Invalid item" }), {
           status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
@@ -87,7 +88,7 @@ Deno.serve(async (req) => {
 
     // Fetch authoritative prices from DB — NEVER trust client-supplied price
     const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-    const ids = rawItems.map((i) => i.id);
+    const ids = rawItems.map((i) => (typeof i.id === "string" ? Number(i.id) : i.id));
     const { data: products, error: prodErr } = await admin
       .from("products").select("id, name, price").in("id", ids);
     if (prodErr || !products || products.length !== new Set(ids).size) {
@@ -97,9 +98,11 @@ Deno.serve(async (req) => {
     }
     const priceMap = new Map(products.map((p) => [p.id, { name: p.name, price: Number(p.price) }]));
     const items = rawItems.map((i) => {
-      const p = priceMap.get(i.id)!;
-      return { id: i.id, name: p.name, price: p.price, quantity: i.quantity, size: i.size ?? null, image: i.image ?? null };
+      const numericId = typeof i.id === "string" ? Number(i.id) : i.id;
+      const p = priceMap.get(numericId)!;
+      return { id: numericId, name: p.name, price: p.price, quantity: i.quantity, size: i.size ?? null, image: i.image ?? null };
     });
+
 
     // Recompute totals server-side (never trust client)
     const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
