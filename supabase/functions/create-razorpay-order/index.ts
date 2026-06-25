@@ -8,13 +8,14 @@ const corsHeaders = {
 };
 
 interface CartItem {
-  id: string;
+  id: string | number;
   name: string;
   price: number;
   quantity: number;
   size?: string | null;
   image?: string | null;
 }
+
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
