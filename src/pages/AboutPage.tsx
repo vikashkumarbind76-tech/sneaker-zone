@@ -52,8 +52,8 @@ const AboutPage = () => {
   useEffect(() => {
     let mounted = true;
     const fetchCount = async () => {
-      const { data, error } = await supabase.rpc('get_customer_count');
-      if (!error && mounted && typeof data === 'number') setCustomerCount(data);
+      const { data, error } = await supabase.functions.invoke('get-customer-count');
+      if (!error && mounted && data && typeof data.count === 'number') setCustomerCount(data.count);
     };
     fetchCount();
 
