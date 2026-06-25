@@ -48,11 +48,11 @@ const Hero = () => {
             </span>
           </div>
 
-          <h1 className="font-display text-7xl md:text-8xl lg:text-9xl uppercase leading-[0.85] tracking-tight">
-            OWN THE
+          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl uppercase leading-[0.85] tracking-tight">
+            Authentic Sneakers
             <br />
             <span className="text-primary drop-shadow-[0_0_30px_hsl(var(--primary)/0.35)]">
-              STREETS
+              &amp; Streetwear
             </span>
           </h1>
 
