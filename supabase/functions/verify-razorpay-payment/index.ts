@@ -62,7 +62,6 @@ Deno.serve(async (req) => {
       });
     }
 
-    const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
     const { data, error } = await admin.from("orders").update({
       status: "confirmed",
       razorpay_payment_id,
