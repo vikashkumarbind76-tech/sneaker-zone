@@ -1,180 +1,149 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useProducts } from '@/hooks/useProducts';
 import ImageUnavailable from '@/components/ImageUnavailable';
 
 const Hero = () => {
   const { data: products = [] } = useProducts();
 
-  // Use featured products if any, else fall back to first few
-  const showcase = useMemo(() => {
-    const featured = products.filter(p => p.isFeatured && p.images.length > 0);
-    const pool = featured.length >= 3 ? featured : products.filter(p => p.images.length > 0);
-    return pool.slice(0, 6);
+  const { hero, badgeA, badgeB } = useMemo(() => {
+    const withImage = products.filter((p) => p.images.length > 0);
+    return {
+      hero: withImage[0],
+      badgeA: withImage.find((p) => p.brand?.toLowerCase().includes('red tape')) ?? withImage[1],
+      badgeB: withImage.find((p) => p.brand?.toLowerCase().includes('puma')) ?? withImage[2],
+    };
   }, [products]);
 
-  const [index, setIndex] = useState(0);
-  const current = showcase[index];
-
-  const next = () => setIndex(i => (showcase.length ? (i + 1) % showcase.length : 0));
-  const prev = () =>
-    setIndex(i => (showcase.length ? (i - 1 + showcase.length) % showcase.length : 0));
-
-  const ghostWord = current?.brand?.toUpperCase() ?? 'AUTHENTIC';
+  const brands = ['Red Tape', 'Puma', 'Adidas', 'Reebok', 'Asics'];
 
   return (
     <section
       id="home"
-      className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden bg-background"
+      className="relative min-h-screen w-full pt-20 flex items-center justify-center overflow-hidden bg-background text-foreground"
     >
-      {/* Radial accent glow */}
+      {/* Background giant kinetic type */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'var(--gradient-hero)' }}
-      />
-
-      {/* Ghost Display Type */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <h1
-          aria-hidden="true"
-          className="ghost-text text-[clamp(96px,22vw,260px)] whitespace-nowrap opacity-90"
-        >
-          {ghostWord}
-        </h1>
+        aria-hidden="true"
+        className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none overflow-hidden opacity-[0.04]"
+      >
+        <h2 className="font-display text-[30vw] leading-none uppercase tracking-tighter italic">
+          SNEAKER
+        </h2>
+        <h2 className="font-display text-[30vw] leading-none uppercase tracking-tighter italic">
+          ZONE
+        </h2>
       </div>
 
-      {/* Accessible H1 for SEO/screen readers */}
-      <h1 className="sr-only">
-        Sneaker Zone — Authentic Sneakers & Streetwear, Premium Drops Online
-      </h1>
+      {/* Ambient red glow */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* Left: product meta */}
-        <div className="hidden lg:flex lg:col-span-3 flex-col gap-5 animate-fade-up">
-          <span className="text-primary font-body text-xs tracking-[0.3em] uppercase font-semibold">
-            Legacy Edition
-          </span>
-          <h2 className="font-display text-5xl xl:text-6xl leading-[0.95] text-foreground">
-            {current?.name ?? 'Authentic Drops'}
-          </h2>
-          <p className="text-muted-foreground max-w-xs leading-relaxed">
-            {current?.description?.slice(0, 130) ??
-              'Curated authentic sneakers from the brands you love — every step guaranteed genuine.'}
-          </p>
-        </div>
-
-        {/* Center: floating product */}
-        <div className="col-span-1 lg:col-span-6 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-lg">
-            <div className="relative aspect-square flex items-center justify-center animate-float">
-              {current?.images[0] ? (
-                <img
-                  key={current.id}
-                  src={current.images[0].url}
-                  alt={current.images[0].alt}
-                  width={800}
-                  height={800}
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full h-full object-contain drop-shadow-[0_35px_60px_rgba(255,120,78,0.25)] transition-transform duration-700"
-                />
-              ) : (
-                <div className="w-full h-full">
-                  <ImageUnavailable />
-                </div>
-              )}
-            </div>
-            {/* Perspective shadow */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/5 h-10 bg-black/60 blur-3xl rounded-full" />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Left: copy */}
+        <div className="lg:col-span-5 flex flex-col gap-8 text-center lg:text-left animate-fade-up">
+          <div className="inline-flex items-center gap-2 self-center lg:self-start px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+              New Drop · Red Tape Street
+            </span>
           </div>
 
-          {/* CTAs */}
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <h1 className="font-display text-7xl md:text-8xl lg:text-9xl uppercase leading-[0.85] tracking-tight">
+            OWN THE
+            <br />
+            <span className="text-primary drop-shadow-[0_0_30px_hsl(var(--primary)/0.35)]">
+              STREETS
+            </span>
+          </h1>
+
+          <p className="max-w-md mx-auto lg:mx-0 text-muted-foreground text-lg font-light leading-relaxed">
+            Premium urban footwear curated for the Indian subculture. Authentic drops from{' '}
+            <span className="text-foreground font-bold">Red Tape</span>,{' '}
+            <span className="text-foreground font-bold">Puma</span> and{' '}
+            <span className="text-foreground font-bold">Adidas</span>.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
             <Link
               to="/shop"
-              className="bg-primary text-primary-foreground font-semibold tracking-widest uppercase text-sm px-10 py-4 rounded-full hover:scale-105 hover:shadow-bronze active:scale-95 transition-all duration-300 min-h-11"
+              className="px-10 py-5 bg-primary text-primary-foreground font-black uppercase tracking-widest text-sm hover:scale-105 hover:shadow-bronze transition-all duration-300 rounded-full text-center min-h-11"
             >
               Shop Now
             </Link>
             <Link
               to="/shop"
-              className="border border-white/15 bg-white/[0.03] text-foreground font-semibold tracking-widest uppercase text-sm px-10 py-4 rounded-full hover:bg-white/[0.08] transition-all duration-300 min-h-11"
+              className="px-10 py-5 bg-transparent border border-white/15 text-foreground font-black uppercase tracking-widest text-sm hover:border-primary hover:text-primary transition-all rounded-full text-center min-h-11"
             >
-              Explore Collection
+              View All Brands
             </Link>
           </div>
         </div>
 
-        {/* Right: price + nav */}
-        <div className="hidden lg:flex lg:col-span-3 flex-col items-end gap-10 animate-fade-up">
-          <div className="text-right">
-            <div className="font-display text-5xl text-primary-foreground/90 leading-none">
-              <span className="text-[hsl(var(--primary-soft))]">
-                ₹{current ? current.price.toLocaleString('en-IN') : '—'}
-              </span>
-            </div>
-            <div className="text-muted-foreground text-xs tracking-[0.3em] uppercase mt-2 font-semibold">
-              Retail Price
-            </div>
+        {/* Right: hero product visual */}
+        <div className="lg:col-span-7 relative flex justify-center items-center h-[500px] lg:h-[700px]">
+          <div className="relative w-full max-w-[600px] aspect-[4/3] rotate-[-12deg] hover:rotate-[-5deg] transition-transform duration-700 ease-out z-20 animate-float">
+            {hero?.images[0] ? (
+              <img
+                src={hero.images[0].url}
+                alt={hero.images[0].alt || hero.name}
+                width={800}
+                height={600}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full object-contain drop-shadow-[0_45px_60px_rgba(0,0,0,0.7)]"
+              />
+            ) : (
+              <ImageUnavailable />
+            )}
           </div>
 
-          <div className="flex gap-3" aria-label="Browse collection">
-            <button
-              type="button"
-              onClick={prev}
-              aria-label="Previous product"
-              className="w-14 h-14 rounded-full border border-white/15 bg-white/[0.03] flex items-center justify-center hover:bg-primary/15 hover:border-primary/40 transition-colors group"
+          {/* Floating glass badges */}
+          {badgeA && (
+            <Link
+              to={`/product/${badgeA.slug}`}
+              className="absolute top-[12%] right-2 md:right-6 bg-card/60 backdrop-blur-xl border border-white/10 p-5 rounded-2xl shadow-2xl z-30 hidden md:block hover:border-primary/40 transition-colors"
             >
-              <ArrowLeft className="w-5 h-5 text-primary group-hover:-translate-x-0.5 transition-transform" />
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next product"
-              className="w-14 h-14 rounded-full border border-white/15 bg-white/[0.03] flex items-center justify-center hover:bg-primary/15 hover:border-primary/40 transition-colors group"
-            >
-              <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
+              <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest mb-1">
+                Signature Series
+              </p>
+              <p className="text-base font-bold max-w-[180px] truncate">{badgeA.name}</p>
+              <p className="text-primary font-black mt-1">
+                ₹{badgeA.price.toLocaleString('en-IN')}
+              </p>
+            </Link>
+          )}
 
-          {showcase.length > 0 && (
-            <div className="flex gap-1.5" aria-hidden>
-              {showcase.map((_, i) => (
-                <span
-                  key={i}
-                  className={`h-1 rounded-full transition-all ${
-                    i === index ? 'w-8 bg-primary' : 'w-4 bg-white/20'
-                  }`}
-                />
-              ))}
-            </div>
+          {badgeB && (
+            <Link
+              to={`/product/${badgeB.slug}`}
+              className="absolute bottom-[14%] left-2 md:left-6 bg-card/60 backdrop-blur-xl border border-white/10 p-5 rounded-2xl shadow-2xl z-30 hidden md:block hover:border-primary/40 transition-colors"
+            >
+              <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest mb-1">
+                Trending
+              </p>
+              <p className="text-base font-bold max-w-[180px] truncate">{badgeB.name}</p>
+              <p className="text-primary font-black mt-1">
+                ₹{badgeB.price.toLocaleString('en-IN')}
+              </p>
+            </Link>
           )}
         </div>
 
-        {/* Mobile nav controls */}
-        <div className="flex lg:hidden col-span-1 justify-center gap-3 pb-4">
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Previous product"
-            className="w-12 h-12 rounded-full border border-white/15 bg-white/[0.03] flex items-center justify-center min-h-11 min-w-11"
-          >
-            <ArrowLeft className="w-5 h-5 text-primary" />
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next product"
-            className="w-12 h-12 rounded-full border border-white/15 bg-white/[0.03] flex items-center justify-center min-h-11 min-w-11"
-          >
-            <ArrowRight className="w-5 h-5 text-primary" />
-          </button>
+        {/* Brand strip */}
+        <div className="lg:col-span-12 mt-8 w-full pt-8 border-t border-white/5 flex flex-wrap justify-between items-center gap-10 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+          {brands.map((b) => (
+            <span
+              key={b}
+              className="font-display text-2xl md:text-3xl tracking-widest uppercase"
+            >
+              {b}
+            </span>
+          ))}
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 pointer-events-none">
         <span className="font-body text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
           Scroll
         </span>
