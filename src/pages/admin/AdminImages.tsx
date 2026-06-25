@@ -49,19 +49,34 @@ const AdminImages = () => {
 
   useEffect(() => { void load(); }, []);
 
+  const ALLOWED_MIME = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
+  const ALLOWED_EXT = ["jpg", "jpeg", "png", "webp", "avif", "gif"];
+  const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
     if (!fileList || fileList.length === 0) return;
     setUploading(true);
     for (const file of Array.from(fileList)) {
-      const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+      const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+      if (!ALLOWED_MIME.includes(file.type) || !ALLOWED_EXT.includes(ext)) {
+        toast.error(`${file.name}: only JPG, PNG, WebP, AVIF, GIF allowed`);
+        continue;
+      }
+      if (file.size > MAX_BYTES) {
+        toast.error(`${file.name}: exceeds 5 MB limit`);
+        continue;
+      }
+      // Random opaque filename — strip user-controlled path/name entirely
+      const rand = crypto.randomUUID();
+      const safeName = `${Date.now()}-${rand}.${ext}`;
       const { error } = await supabase.storage.from(BUCKET).upload(safeName, file, {
         cacheControl: "3600",
         upsert: false,
         contentType: file.type,
       });
       if (error) {
-        toast.error(`${file.name}: ${error.message}`);
+        toast.error(`${file.name}: upload failed`);
       } else {
         toast.success(`Uploaded ${file.name}`);
       }
