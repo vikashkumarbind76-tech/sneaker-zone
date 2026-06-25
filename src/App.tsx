@@ -14,6 +14,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import WishlistPage from "./pages/WishlistPage";
 import Auth from "./pages/Auth";
+import CheckoutPage from "./pages/CheckoutPage";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -44,6 +45,7 @@ const App = () => (
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/wishlist" element={<WishlistPage />} />
                     <Route path="/auth" element={<Auth />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/admin" element={<AdminLayout />}>
                       <Route index element={<Navigate to="errors" replace />} />
                       <Route path="errors" element={<AdminErrors />} />

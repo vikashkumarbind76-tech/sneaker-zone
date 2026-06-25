@@ -34,7 +34,8 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
       navigate('/auth');
       return;
     }
-    toast.success('Proceeding to checkout...');
+    onClose();
+    navigate('/checkout');
   };
 
 
