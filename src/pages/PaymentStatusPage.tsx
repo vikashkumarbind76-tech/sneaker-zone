@@ -5,7 +5,7 @@ import { Loader2, CheckCircle2, XCircle, Package, ArrowRight, RotateCw } from "l
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
-import { logClientError } from "@/lib/logClientError";
+import { logClientError } from "@/lib/logError";
 
 type Status = "loading" | "success" | "failure";
 
