@@ -124,7 +124,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <ProductImage
               src={primaryImage.url}
               alt={primaryImage.alt}
-              className="w-auto h-full max-h-full object-contain transition-transform duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-2 group-hover/card:-rotate-3"
+              className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-2 group-hover/card:-rotate-3"
             />
           ) : (
             <ImageUnavailable />
