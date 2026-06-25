@@ -146,7 +146,7 @@ const CheckoutPage = () => {
       });
       rzp.open();
     } catch (e) {
-      console.error(e);
+      void logClientError(e, { route: '/checkout' });
       toast.error('Something went wrong');
       setProcessing(false);
     }
