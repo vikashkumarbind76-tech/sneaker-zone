@@ -24,6 +24,7 @@ import AdminErrors from "./pages/admin/AdminErrors";
 import AdminImages from "./pages/admin/AdminImages";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminResetPassword from "./pages/admin/AdminResetPassword";
 
 
 const queryClient = new QueryClient();
