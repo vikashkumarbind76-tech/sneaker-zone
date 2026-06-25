@@ -2,7 +2,7 @@
 import { writeFileSync, readFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://royal-kicks-canvas.lovable.app";
+const BASE_URL = "https://sneaker-zone.lovable.app";
 
 interface SitemapEntry {
   path: string;

@@ -31,4 +31,4 @@ Disallow: /wishlist
 Disallow: /payment/
 Disallow: /admin
 
-Sitemap: https://royal-kicks-canvas.lovable.app/sitemap.xml
+Sitemap: https://sneaker-zone.lovable.app/sitemap.xml

@@ -71,10 +71,10 @@ const ContactPage = () => {
           name="description"
           content="Get in touch with Sneaker Zone. Email us at vikashkumarbind76@gmail.com for any questions about our sneakers and streetwear."
         />
-        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/contact" />
+        <link rel="canonical" href="https://sneaker-zone.lovable.app/contact" />
         <meta property="og:title" content="Contact Sneaker Zone" />
         <meta property="og:description" content="Email Sneaker Zone at vikashkumarbind76@gmail.com." />
-        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/contact" />
+        <meta property="og:url" content="https://sneaker-zone.lovable.app/contact" />
         <meta property="og:type" content="website" />
       </Helmet>
 

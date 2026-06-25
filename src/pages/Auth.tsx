@@ -107,10 +107,10 @@ const AuthPage = () => {
         <title>Sign In | Sneaker Zone</title>
         <meta name="description" content="Sign in or create your Sneaker Zone account to shop authentic sneakers and streetwear, save favorites, and track orders." />
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/auth" />
+        <link rel="canonical" href="https://sneaker-zone.lovable.app/auth" />
         <meta property="og:title" content="Sign In | Sneaker Zone" />
         <meta property="og:description" content="Sign in to Sneaker Zone — your online destination for authentic sneakers and streetwear." />
-        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/auth" />
+        <meta property="og:url" content="https://sneaker-zone.lovable.app/auth" />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="w-full max-w-md">

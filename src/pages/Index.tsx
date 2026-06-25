@@ -26,8 +26,8 @@ const Index = () => {
         <meta property="og:title" content="Sneaker Zone — Authentic Sneakers & Streetwear Online" />
         <meta property="og:description" content="Shop authentic sneakers and streetwear online — the latest drops, delivered." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/" />
-        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/" />
+        <meta property="og:url" content="https://sneaker-zone.lovable.app/" />
+        <link rel="canonical" href="https://sneaker-zone.lovable.app/" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

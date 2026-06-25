@@ -77,10 +77,10 @@ const AboutPage = () => {
           name="description"
           content="Learn about Sneaker Zone — your online destination for authentic sneakers and streetwear from the brands you love."
         />
-        <link rel="canonical" href="https://royal-kicks-canvas.lovable.app/about" />
+        <link rel="canonical" href="https://sneaker-zone.lovable.app/about" />
         <meta property="og:title" content="About Sneaker Zone | Online Sneakers & Streetwear" />
         <meta property="og:description" content="Your online destination for authentic sneakers and streetwear." />
-        <meta property="og:url" content="https://royal-kicks-canvas.lovable.app/about" />
+        <meta property="og:url" content="https://sneaker-zone.lovable.app/about" />
         <meta property="og:type" content="website" />
       </Helmet>
 
