@@ -93,6 +93,9 @@ export type Database = {
           created_at: string
           id: string
           payment_method: string
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          razorpay_signature: string | null
           shipping: number
           status: string
           subtotal: number
@@ -104,6 +107,9 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
           shipping?: number
           status?: string
           subtotal: number
@@ -115,6 +121,9 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method?: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
           shipping?: number
           status?: string
           subtotal?: number
