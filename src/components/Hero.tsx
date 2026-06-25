@@ -15,7 +15,7 @@ const Hero = () => {
     };
   }, [products]);
 
-  const brands = ['Red Tape', 'Puma', 'Adidas', 'Reebok', 'Asics'];
+  const brands = ['Red Tape', 'Puma', 'Adidas', 'Reebok'];
 
   return (
     <section
