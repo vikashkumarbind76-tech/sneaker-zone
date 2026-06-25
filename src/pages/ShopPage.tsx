@@ -109,18 +109,33 @@ const ShopPage = () => {
               Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
             </p>
 
-            {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product, index) => (
-                <div 
-                  key={product.id}
-                  className="animate-fade-up"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <ProductCard product={product} />
-                </div>
-              ))}
+            {/* Bento Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[280px] gap-5">
+              {filteredProducts.map((product, index) => {
+                // Bento pattern: every 7th item is large, every 5th is tall, every 11th is wide
+                const mod = index % 12;
+                const size =
+                  mod === 0 ? 'large' : mod === 5 ? 'tall' : mod === 8 ? 'wide' : 'default';
+                return (
+                  <div
+                    key={product.id}
+                    className={
+                      size === 'large'
+                        ? 'sm:col-span-2 sm:row-span-2 animate-fade-in'
+                        : size === 'tall'
+                          ? 'sm:row-span-2 animate-fade-in'
+                          : size === 'wide'
+                            ? 'sm:col-span-2 animate-fade-in'
+                            : 'animate-fade-in'
+                    }
+                    style={{ animationDelay: `${Math.min(index * 40, 600)}ms` }}
+                  >
+                    <ProductCard product={product} size={size} />
+                  </div>
+                );
+              })}
             </div>
+
 
             {filteredProducts.length === 0 && (
               <div className="text-center py-16">
