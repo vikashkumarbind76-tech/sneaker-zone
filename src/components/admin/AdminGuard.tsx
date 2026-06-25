@@ -14,8 +14,8 @@ const AdminGuard = ({ children }: { children: ReactNode }) => {
       </div>
     );
   }
-  if (!user) return <Navigate to="/auth" replace />;
-  if (!isAdmin) return <Navigate to="/" replace />;
+  if (!user) return <Navigate to="/admin/login" replace />;
+  if (!isAdmin) return <Navigate to="/admin/login" replace />;
   return <>{children}</>;
 };
 
