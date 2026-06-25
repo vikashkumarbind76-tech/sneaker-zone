@@ -49,7 +49,14 @@ Deno.serve(async (req) => {
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest("hex");
 
+    const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
     if (expected !== razorpay_signature) {
+      // Mark order as failed so direct revisits to the status page reflect it
+      await admin.from("orders").update({ status: "failed" })
+        .eq("razorpay_order_id", razorpay_order_id)
+        .eq("user_id", userData.user.id);
+      console.error(JSON.stringify({ fn: "verify-razorpay-payment", event: "signature_mismatch" }));
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
