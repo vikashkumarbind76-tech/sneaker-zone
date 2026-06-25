@@ -1,6 +1,7 @@
-import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Trash2, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
 import { useProducts } from '@/hooks/useProducts';
@@ -8,18 +9,25 @@ import { toast } from 'sonner';
 import ImageUnavailable from '@/components/ImageUnavailable';
 import ProductImage from '@/components/ProductImage';
 
+
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
-  const { items, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
+  const { items, removeFromCart, updateQuantity, updateSize, totalPrice, clearCart } = useCart();
   const { user } = useAuth();
   const { data: products = [] } = useProducts();
   const navigate = useNavigate();
 
+  const missingSizes = items.some(i => !i.size);
+
   const handleCheckout = () => {
+    if (missingSizes) {
+      toast.error('Please select a size for every item');
+      return;
+    }
     if (!user) {
       toast.error('Please sign in to checkout');
       onClose();
@@ -28,6 +36,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
     }
     toast.success('Proceeding to checkout...');
   };
+
 
   return (
     <>
@@ -71,17 +80,19 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
             ) : (
               <div className="space-y-4">
                 {items.map(item => {
-                  const product = products.find(currentProduct => currentProduct.id === item.id);
+                  const product = products.find(p => p.id === item.id);
                   const productImage = product?.images[0];
+                  const sizes = product?.sizes ?? [];
+                  const lineKey = `${item.id}|${item.size ?? ''}`;
 
                   return (
-                    <div 
-                      key={item.id}
+                    <div
+                      key={lineKey}
                       className="flex gap-4 p-4 bg-secondary/50 rounded-lg"
                     >
                       {productImage ? (
                         <ProductImage
-                          src={productImage.url} 
+                          src={productImage.url}
                           alt={productImage.alt}
                           className="w-20 h-20 object-cover rounded-lg"
                           fallbackClassName="h-20 w-20 rounded-lg text-xs"
@@ -89,39 +100,69 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                       ) : (
                         <ImageUnavailable className="h-20 w-20 rounded-lg text-xs" />
                       )}
-                    <div className="flex-1">
-                      <h3 className="font-medium mb-1">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground capitalize mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium mb-1 truncate">{item.name}</h3>
+                      <p className="text-xs text-muted-foreground capitalize mb-2">
                         {item.category}
                       </p>
+                      <div className="mb-2">
+                        <Select
+                          value={item.size ?? ''}
+                          onValueChange={(value) => updateSize(item.id, item.size, value)}
+                        >
+                          <SelectTrigger
+                            aria-label="Select size"
+                            className={`h-8 text-xs w-32 ${!item.size ? 'border-destructive text-destructive' : ''}`}
+                          >
+                            <SelectValue placeholder="Select size" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {sizes.length === 0 ? (
+                              <SelectItem value="One Size">One Size</SelectItem>
+                            ) : (
+                              sizes.map(s => (
+                                <SelectItem key={s} value={s}>UK {s}</SelectItem>
+                              ))
+                            )}
+                          </SelectContent>
+                        </Select>
+                        {!item.size && (
+                          <p className="mt-1 flex items-center gap-1 text-[10px] text-destructive">
+                            <AlertCircle className="w-3 h-3" /> Pick a size to checkout
+                          </p>
+                        )}
+                      </div>
                       <p className="font-medium">₹{item.price}</p>
                     </div>
                     <div className="flex flex-col items-end justify-between">
-                      <Button 
-                        variant="ghost" 
+                      <Button
+                        variant="ghost"
                         size="icon"
                         className="h-8 w-8"
-                        onClick={() => removeFromCart(item.id)}
+                        aria-label="Remove item"
+                        onClick={() => removeFromCart(item.id, item.size)}
                       >
                         <Trash2 className="w-4 h-4 text-muted-foreground" />
                       </Button>
                       <div className="flex items-center gap-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          aria-label="Decrease quantity"
+                          onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
                         >
                           <Minus className="w-3 h-3" />
                         </Button>
                         <span className="w-8 text-center font-medium">
                           {item.quantity}
                         </span>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          aria-label="Increase quantity"
+                          onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
                         >
                           <Plus className="w-3 h-3" />
                         </Button>
@@ -130,6 +171,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                   </div>
                   );
                 })}
+
               </div>
             )}
           </div>
