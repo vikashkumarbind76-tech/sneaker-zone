@@ -117,7 +117,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
-          className="relative w-full aspect-square flex items-center justify-center mb-6 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent overflow-hidden focus:outline-none"
+          className="relative w-full flex-1 min-h-0 flex items-center justify-center mb-4 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent overflow-hidden focus:outline-none"
           style={{ transform: 'translateZ(40px)' }}
         >
           {primaryImage ? (
