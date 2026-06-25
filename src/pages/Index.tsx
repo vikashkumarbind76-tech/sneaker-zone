@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import FeaturedProducts from '@/components/FeaturedProducts';
 
+import Shop from '@/components/Shop';
 import About from '@/components/About';
 import InstagramFeed from '@/components/InstagramFeed';
 import Contact from '@/components/Contact';
@@ -35,7 +36,7 @@ const Index = () => {
         <main>
           <Hero />
           <FeaturedProducts />
-          
+          <Shop />
           <About />
           <InstagramFeed />
           <Contact />
