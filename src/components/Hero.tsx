@@ -84,11 +84,6 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
             </div>
             
-            {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-soft-lg animate-fade-up delay-500">
-              <p className="text-sm text-muted-foreground">New Arrivals</p>
-              <p className="font-display text-2xl">WEEKLY DROPS</p>
-            </div>
           </div>
         </div>
       </div>
