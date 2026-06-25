@@ -43,11 +43,11 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-card/95 backdrop-blur-md shadow-soft-md' 
-          : 'bg-transparent'
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isScrolled
+          ? 'bg-background/85 backdrop-blur-xl border-white/10 shadow-soft-lg'
+          : 'bg-background/40 backdrop-blur-md border-transparent'
       }`}
     >
       <div className="container-custom">
@@ -57,14 +57,15 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
             <img
               src={sneakerZoneLogo}
               alt="Sneaker Zone"
-              width={40}
-              height={40}
-              className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110"
+              width={36}
+              height={36}
+              className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
             />
-            <span className="font-display text-2xl tracking-wider">
+            <span className="font-display text-2xl tracking-wider text-primary">
               SNEAKER ZONE
             </span>
           </Link>
+
 
 
           {/* Desktop Navigation */}

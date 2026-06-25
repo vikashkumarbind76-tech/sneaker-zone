@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Heart, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
 import { Product } from '@/data/products';
@@ -12,15 +11,14 @@ import { cn } from '@/lib/utils';
 
 interface ProductCardProps {
   product: Product;
-  /** Bento sizing: 'tall' doubles row span, 'wide' doubles col span */
   size?: 'default' | 'tall' | 'wide' | 'large';
 }
 
-const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const primaryImage = product.images[0];
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, mx: 50, my: 50 });
   const wished = isInWishlist(product.id);
 
@@ -30,9 +28,8 @@ const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
     const y = (e.clientY - r.top) / r.height;
-    // tilt up to ~8deg either way
-    const ry = (x - 0.5) * 12;
-    const rx = (0.5 - y) * 12;
+    const ry = (x - 0.5) * 8;
+    const rx = (0.5 - y) * 8;
     setTilt({ rx, ry, mx: x * 100, my: y * 100 });
   };
 
@@ -48,7 +45,7 @@ const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
       image: primaryImage?.url ?? '',
       category: product.category,
     });
-    toast.success(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart`);
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -68,112 +65,106 @@ const ProductCard = ({ product, size = 'default' }: ProductCardProps) => {
 
   return (
     <div className="group/card h-full [perspective:1200px]">
-
-      <Link
+      <div
         ref={cardRef}
-        to={`/product/${product.slug}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={reset}
         style={{
           transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-          transition: 'transform 200ms cubic-bezier(0.22, 1, 0.36, 1)',
+          transition: 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)',
           transformStyle: 'preserve-3d',
         }}
-        className="relative block h-full rounded-2xl overflow-hidden bg-card shadow-soft-md hover:shadow-soft-lg will-change-transform"
+        className="relative h-full rounded-3xl bg-card border border-white/10 hover:border-primary/40 transition-colors duration-500 p-5 sm:p-6 flex flex-col will-change-transform"
       >
-        {/* Glow follow cursor */}
+        {/* Cursor glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20"
+          className="pointer-events-none absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 rounded-3xl"
           style={{
-            background: `radial-gradient(420px circle at ${tilt.mx}% ${tilt.my}%, hsl(var(--accent) / 0.18), transparent 55%)`,
+            background: `radial-gradient(420px circle at ${tilt.mx}% ${tilt.my}%, hsl(var(--primary) / 0.12), transparent 55%)`,
           }}
         />
 
-        {/* Specular gold sheen */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-10"
-          style={{
-            background:
-              'linear-gradient(135deg, transparent 35%, hsl(var(--accent) / 0.25) 50%, transparent 65%)',
-            mixBlendMode: 'overlay',
-          }}
-        />
+        {/* Wishlist (top-right) */}
+        <button
+          type="button"
+          onClick={handleWishlist}
+          aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
+          className="absolute top-4 right-4 z-20 h-10 w-10 min-h-11 min-w-11 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+          style={{ transform: 'translateZ(30px)' }}
+        >
+          <Heart
+            className={cn(
+              'w-4 h-4 transition-colors',
+              wished ? 'fill-primary-foreground text-primary-foreground' : 'text-foreground',
+            )}
+          />
+        </button>
 
-        {/* Image */}
-        <div className="relative w-full h-full min-h-[280px] overflow-hidden bg-secondary [transform:translateZ(0)]">
+        {/* Badges (top-left) */}
+        <div
+          className="absolute top-4 left-4 z-20 flex flex-col gap-2"
+          style={{ transform: 'translateZ(30px)' }}
+        >
+          {product.isNew && (
+            <span className="bg-primary text-primary-foreground text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-md">
+              NEW
+            </span>
+          )}
+        </div>
+
+        {/* Image — clickable */}
+        <Link
+          to={`/product/${product.slug}`}
+          aria-label={`View ${product.name}`}
+          className="relative h-56 sm:h-64 flex items-center justify-center mb-6 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent overflow-hidden focus:outline-none"
+          style={{ transform: 'translateZ(40px)' }}
+        >
           {primaryImage ? (
             <ProductImage
               src={primaryImage.url}
               alt={primaryImage.alt}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+              className="w-auto h-full max-h-full object-contain transition-transform duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-2 group-hover/card:-rotate-3"
             />
           ) : (
             <ImageUnavailable />
           )}
+        </Link>
 
-          {/* Gradient bottom for legibility */}
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-charcoal/85 via-charcoal/40 to-transparent" />
-
-          {/* Badges */}
-          <div
-            className="absolute top-3 left-3 flex gap-2 z-30"
-            style={{ transform: 'translateZ(40px)' }}
+        {/* Meta */}
+        <div className="space-y-1 flex-1" style={{ transform: 'translateZ(20px)' }}>
+          <div className="text-primary font-body text-[10px] uppercase tracking-[0.25em] font-semibold">
+            {product.brand}
+          </div>
+          <Link
+            to={`/product/${product.slug}`}
+            className="block font-display text-xl leading-tight text-foreground truncate hover:text-primary transition-colors"
           >
-            {product.isNew && (
-              <span className="bg-accent text-accent-foreground text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-md shadow-soft-md">
-                NEW
+            {product.name}
+          </Link>
+          <div className="flex justify-between items-center pt-2">
+            <span className="font-display text-2xl text-[hsl(var(--primary-soft))]">
+              ₹{product.price.toLocaleString('en-IN')}
+            </span>
+            {product.sizes?.length > 0 && (
+              <span className="px-2 py-1 bg-white/[0.05] border border-white/10 rounded-md font-body text-[10px] text-muted-foreground tracking-wider">
+                UK {product.sizes[0]}-{product.sizes[product.sizes.length - 1]}
               </span>
             )}
-            <span className="bg-card/90 backdrop-blur-sm text-foreground text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-md">
-              {product.brand}
-            </span>
-          </div>
-
-          {/* Wishlist */}
-          <button
-            aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
-            onClick={handleWishlist}
-            style={{ transform: 'translateZ(40px)' }}
-            className="absolute top-3 right-3 z-30 h-9 w-9 rounded-full bg-card/90 backdrop-blur-sm flex items-center justify-center shadow-soft-md hover:scale-110 transition-transform"
-          >
-            <Heart
-              className={cn(
-                'w-4 h-4 transition-colors',
-                wished ? 'fill-accent text-accent' : 'text-foreground',
-              )}
-            />
-          </button>
-
-          {/* Info pinned to bottom, lifts in 3D */}
-          <div
-            className="absolute inset-x-0 bottom-0 p-4 sm:p-5 z-30"
-            style={{ transform: 'translateZ(60px)' }}
-          >
-            <p className="text-[10px] text-primary-foreground/70 uppercase tracking-[0.2em] mb-1">
-              {product.category}
-            </p>
-            <h3 className="font-display text-xl sm:text-2xl leading-tight text-primary-foreground mb-1 line-clamp-2">
-              {product.name}
-            </h3>
-            <div className="flex items-end justify-between gap-3">
-              <p className="font-semibold text-lg text-primary-foreground">
-                ₹{product.price.toLocaleString('en-IN')}
-              </p>
-              <Button
-                variant="default"
-                size="sm"
-                onClick={handleAddToCart}
-                className="translate-y-2 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300 bg-accent text-accent-foreground hover:bg-accent/90"
-              >
-                <ShoppingBag className="w-4 h-4 mr-1.5" />
-                Add
-              </Button>
-            </div>
           </div>
         </div>
-      </Link>
+
+        {/* Add to cart */}
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className="w-full mt-5 bg-white/[0.04] border border-white/10 py-3.5 rounded-full font-body text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 min-h-11 flex items-center justify-center gap-2"
+          style={{ transform: 'translateZ(20px)' }}
+        >
+          <ShoppingBag className="w-4 h-4" />
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 };
