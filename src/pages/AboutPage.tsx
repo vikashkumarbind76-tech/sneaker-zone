@@ -36,12 +36,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: '2014', event: 'Sneaker Zone launches online' },
-  { year: '2016', event: 'Expanded to include premium apparel line' },
-  { year: '2018', event: 'Reached 1,000+ satisfied customers' },
-  { year: '2020', event: 'Launched online presence and delivery' },
-  { year: '2022', event: 'Celebrated 5,000+ happy customers' },
-  { year: '2024', event: '10 years of serving sneakerheads online' },
+  { year: '2026', event: 'Sneaker Zone launches online' },
 ];
 
 const AboutPage = () => {
