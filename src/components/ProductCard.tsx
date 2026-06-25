@@ -117,19 +117,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
-          className="relative w-full flex-1 min-h-0 flex items-center justify-center mb-4 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent overflow-hidden focus:outline-none"
+          className="relative w-full aspect-square mb-4 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent overflow-hidden focus:outline-none flex items-center justify-center"
           style={{ transform: 'translateZ(40px)' }}
         >
           {primaryImage ? (
             <ProductImage
               src={primaryImage.url}
               alt={primaryImage.alt}
-              className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-2 group-hover/card:-rotate-3"
+              className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-2 group-hover/card:-rotate-3"
             />
           ) : (
             <ImageUnavailable />
           )}
         </Link>
+
 
         {/* Meta */}
         <div className="space-y-1 flex-1" style={{ transform: 'translateZ(20px)' }}>
