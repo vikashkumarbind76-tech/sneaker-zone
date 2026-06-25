@@ -309,41 +309,18 @@ const ProductDetail = () => {
                   </button>
                 </div>
 
-                {/* Size chart */}
-                {showSizeChart && sizeChart && (
-                  <div className="glass-panel p-5 rounded-2xl animate-fade-up">
-                    <h2 className="font-display text-xl uppercase mb-3 text-primary">
-                      {sizeChart.title}
-                    </h2>
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-xs font-body">
-                        <thead>
-                          <tr className="border-b border-white/10">
-                            {sizeChart.headers.map(h => (
-                              <th
-                                key={h}
-                                className="py-2 px-3 text-left font-semibold uppercase tracking-wider text-muted-foreground"
-                              >
-                                {h}
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {sizeChart.rows.map((row, i) => (
-                            <tr key={i} className="border-b border-white/5">
-                              {row.map((cell, ci) => (
-                                <td key={ci} className="py-2 px-3 text-foreground">
-                                  {cell}
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                )}
+                <SizeGuideDialog
+                  open={showSizeChart}
+                  onOpenChange={setShowSizeChart}
+                  category={product.category}
+                  availableSizes={product.sizes}
+                  selectedSize={selectedSize}
+                  onSelectSize={(s) => {
+                    setSelectedSize(s);
+                    toast.success(`Size UK ${s} selected`);
+                  }}
+                />
+
               </div>
             </div>
 
