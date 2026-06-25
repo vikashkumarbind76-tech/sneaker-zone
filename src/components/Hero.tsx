@@ -27,13 +27,14 @@ const Hero = () => {
         aria-hidden="true"
         className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none overflow-hidden opacity-[0.04]"
       >
-        <h2 className="font-display text-[30vw] leading-none uppercase tracking-tighter italic">
+        <h2 className="font-display text-[18vw] leading-none uppercase tracking-tighter italic whitespace-nowrap">
           SNEAKER
         </h2>
-        <h2 className="font-display text-[30vw] leading-none uppercase tracking-tighter italic">
+        <h2 className="font-display text-[18vw] leading-none uppercase tracking-tighter italic whitespace-nowrap">
           ZONE
         </h2>
       </div>
+
 
       {/* Ambient red glow */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
