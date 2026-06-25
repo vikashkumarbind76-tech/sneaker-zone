@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CartProvider } from '@/hooks/useCart';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import { Crown, MapPin, Users, Star, Award, Heart } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+const formatCount = (n: number) => {
+  if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}K+`;
+  return `${n}+`;
+};
 
 const values = [
   {
@@ -41,6 +47,27 @@ const milestones = [
 
 const AboutPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [customerCount, setCustomerCount] = useState<number>(0);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchCount = async () => {
+      const { data, error } = await supabase.rpc('get_customer_count');
+      if (!error && mounted && typeof data === 'number') setCustomerCount(data);
+    };
+    fetchCount();
+
+    const channel = supabase
+      .channel('profiles-count-about')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'profiles' }, () => fetchCount())
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'profiles' }, () => fetchCount())
+      .subscribe();
+
+    return () => {
+      mounted = false;
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   return (
     <CartProvider>
@@ -123,7 +150,7 @@ const AboutPage = () => {
                   <div className="space-y-4 pt-8">
                     <div className="aspect-square bg-accent/20 rounded-xl flex items-center justify-center">
                       <div className="text-center">
-                        <p className="font-display text-5xl text-accent">5K+</p>
+                        <p className="font-display text-5xl text-accent tabular-nums transition-all">{formatCount(customerCount)}</p>
                         <p className="text-sm text-muted-foreground">Customers</p>
                       </div>
                     </div>
