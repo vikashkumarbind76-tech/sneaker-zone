@@ -172,8 +172,8 @@ Deno.serve(async (req) => {
       totals: { subtotal, shipping, tax, total },
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
-    console.error(e);
-    return new Response(JSON.stringify({ error: (e as Error).message }), {
+    console.error("create-razorpay-order error:", e);
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
