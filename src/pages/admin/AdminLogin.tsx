@@ -269,7 +269,24 @@ const AdminLogin = () => {
                 </Alert>
               )}
 
-              {!isLockedOut && formError && (
+              {!isLockedOut && justUnlocked && (
+                <Alert className="border-accent/40 bg-accent/5">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <AlertTitle>Lockout cleared</AlertTitle>
+                  <AlertDescription className="flex items-center justify-between gap-3">
+                    <span>You can sign in again now.</span>
+                    <button
+                      type="button"
+                      onClick={handleTryAgain}
+                      className="text-accent font-medium underline underline-offset-2 hover:no-underline"
+                    >
+                      Try again →
+                    </button>
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {!isLockedOut && !justUnlocked && formError && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{formError}</AlertDescription>
