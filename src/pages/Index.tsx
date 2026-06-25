@@ -38,7 +38,7 @@ const Index = () => {
           <FeaturedProducts />
           
           <About />
-          <InstagramFeed />
+          
           <Contact />
         </main>
 
