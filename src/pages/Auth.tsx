@@ -1,4 +1,15 @@
 import { useState, useEffect } from 'react';
+import { z } from 'zod';
+
+const signInSchema = z.object({
+  email: z.string().trim().email('Invalid email').max(255),
+  password: z.string().min(1, 'Password required').max(128),
+});
+const signUpSchema = z.object({
+  email: z.string().trim().email('Invalid email').max(255),
+  password: z.string().min(8, 'Password must be at least 8 characters').max(128),
+  displayName: z.string().trim().min(1, 'Name required').max(80),
+});
 import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '@/hooks/useAuth';
