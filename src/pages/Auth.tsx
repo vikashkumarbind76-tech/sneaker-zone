@@ -44,11 +44,13 @@ const AuthPage = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = signInSchema.safeParse({ email, password });
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? 'Invalid input'); return; }
     setLoading(true);
-    const { error } = await signIn(email, password);
+    const { error } = await signIn(parsed.data.email, parsed.data.password);
     setLoading(false);
     if (error) {
-      toast.error(error.message);
+      toast.error('Sign in failed. Check your credentials.');
     } else {
       toast.success('Welcome back!');
       navigate('/');
@@ -57,8 +59,10 @@ const AuthPage = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = signUpSchema.safeParse({ email, password, displayName });
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? 'Invalid input'); return; }
     setLoading(true);
-    const { error } = await signUp(email, password, displayName);
+    const { error } = await signUp(parsed.data.email, parsed.data.password, parsed.data.displayName);
     setLoading(false);
     if (error) {
       toast.error(error.message);
