@@ -1,8 +1,20 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /auth
+Disallow: /checkout
+Disallow: /orders
+Disallow: /wishlist
+Disallow: /payment/
+Disallow: /admin
 
 User-agent: Bingbot
 Allow: /
+Disallow: /auth
+Disallow: /checkout
+Disallow: /orders
+Disallow: /wishlist
+Disallow: /payment/
+Disallow: /admin
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +24,11 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /checkout
+Disallow: /orders
+Disallow: /wishlist
+Disallow: /payment/
+Disallow: /admin
 
 Sitemap: https://royal-kicks-canvas.lovable.app/sitemap.xml
