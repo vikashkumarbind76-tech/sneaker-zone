@@ -132,6 +132,8 @@ const ContactPage = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          maxLength={255}
+                          autoComplete="email"
                           className="w-full px-4 py-3 bg-secondary rounded-lg border-0 focus:ring-2 focus:ring-accent"
                           placeholder="john@example.com"
                         />
