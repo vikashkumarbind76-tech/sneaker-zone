@@ -17,18 +17,17 @@ interface RzpResponse {
 
 interface OrderItem {
   id: string;
-  product_name: string;
+  name: string;
   size: string | null;
   quantity: number;
-  unit_price: number;
+  price: number;
   image_url: string | null;
 }
 
 interface OrderRow {
   id: string;
   status: string;
-  total_amount: number;
-  currency: string;
+  total: number;
   razorpay_payment_id: string | null;
   created_at: string;
   shipping_full_name: string | null;
