@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
 type PaymentMethod = 'credit' | 'debit' | 'upi' | 'qr';
@@ -82,13 +83,57 @@ const CheckoutPage = () => {
       toast.error(err);
       return;
     }
+    if (!user) {
+      navigate('/auth');
+      return;
+    }
     setProcessing(true);
-    // Simulated payment processing
-    await new Promise(r => setTimeout(r, 1600));
+    await new Promise(r => setTimeout(r, 1200));
+
+    const { data: orderRow, error: orderErr } = await supabase
+      .from('orders')
+      .insert({
+        user_id: user.id,
+        subtotal: totalPrice,
+        shipping,
+        tax,
+        total: grandTotal,
+        payment_method: method,
+        status: 'confirmed',
+      })
+      .select('id')
+      .single();
+
+    if (orderErr || !orderRow) {
+      console.error(orderErr);
+      toast.error('Could not place order. Please try again.');
+      setProcessing(false);
+      return;
+    }
+
+    const { error: itemsErr } = await supabase.from('order_items').insert(
+      items.map(i => ({
+        order_id: orderRow.id,
+        product_id: i.id,
+        name: i.name,
+        image_url: i.image ?? null,
+        size: i.size ?? null,
+        quantity: i.quantity,
+        price: i.price,
+      }))
+    );
+
+    if (itemsErr) {
+      console.error(itemsErr);
+      toast.error('Order saved but items failed to record.');
+      setProcessing(false);
+      return;
+    }
+
     toast.success(`Payment successful via ${methods.find(m => m.id === method)?.label}`);
     clearCart();
     setProcessing(false);
-    navigate('/');
+    navigate('/orders');
   };
 
   return (
