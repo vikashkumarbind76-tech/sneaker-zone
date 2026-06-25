@@ -177,7 +177,7 @@ const PaymentStatusPage = () => {
                     </div>
                     <div className="flex justify-between mt-1 pt-2 border-t border-border">
                       <span className="font-medium">Total Paid</span>
-                      <span className="font-display text-lg">{formatINR(Number(order.total_amount))}</span>
+                      <span className="font-display text-lg">{formatINR(Number(order.total))}</span>
                     </div>
                   </div>
 
@@ -192,7 +192,7 @@ const PaymentStatusPage = () => {
                             {it.image_url ? (
                               <img
                                 src={it.image_url}
-                                alt={it.product_name}
+                                alt={it.name}
                                 className="h-14 w-14 rounded-md object-cover bg-muted"
                                 loading="lazy"
                               />
@@ -200,12 +200,12 @@ const PaymentStatusPage = () => {
                               <div className="h-14 w-14 rounded-md bg-muted" />
                             )}
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium truncate">{it.product_name}</p>
+                              <p className="text-sm font-medium truncate">{it.name}</p>
                               <p className="text-xs text-muted-foreground">
                                 {it.size ? `Size ${it.size} · ` : ""}Qty {it.quantity}
                               </p>
                             </div>
-                            <span className="text-sm">{formatINR(Number(it.unit_price) * it.quantity)}</span>
+                            <span className="text-sm">{formatINR(Number(it.price) * it.quantity)}</span>
                           </li>
                         ))}
                       </ul>
