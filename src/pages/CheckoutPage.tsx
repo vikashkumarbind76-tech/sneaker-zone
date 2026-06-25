@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CartDrawer from '@/components/CartDrawer';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
@@ -27,6 +28,7 @@ const CheckoutPage = () => {
   const { user } = useAuth();
   const [method, setMethod] = useState<PaymentMethod>('upi');
   const [processing, setProcessing] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   // Card fields
   const [cardNumber, setCardNumber] = useState('');
