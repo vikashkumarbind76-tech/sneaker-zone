@@ -46,8 +46,13 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    toast.success('Message sent! We\'ll get back to you soon.');
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      toast.error(result.error.issues[0]?.message ?? 'Invalid input');
+      return;
+    }
+    // Validated payload would be sent to backend here.
+    toast.success("Message sent! We'll get back to you soon.");
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
