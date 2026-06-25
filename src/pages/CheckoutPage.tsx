@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { CreditCard, Smartphone, QrCode, Wallet, ShieldCheck, ArrowLeft, Loader2 } from 'lucide-react';
+import { CreditCard, Smartphone, QrCode, Wallet, Building2, ShieldCheck, ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
@@ -14,35 +11,35 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
-type PaymentMethod = 'credit' | 'debit' | 'upi' | 'qr';
+declare global {
+  interface Window {
+    Razorpay: new (options: Record<string, unknown>) => { open: () => void; on: (event: string, cb: (r: unknown) => void) => void };
+  }
+}
 
-const methods: { id: PaymentMethod; label: string; desc: string; icon: typeof CreditCard }[] = [
-  { id: 'credit', label: 'Credit Card', desc: 'Visa, Mastercard, Amex, Rupay', icon: CreditCard },
-  { id: 'debit', label: 'Debit Card', desc: 'All major Indian banks', icon: Wallet },
-  { id: 'upi', label: 'UPI', desc: 'GPay, PhonePe, Paytm, BHIM', icon: Smartphone },
-  { id: 'qr', label: 'Scan & Pay (QR)', desc: 'Scan with any UPI app', icon: QrCode },
+const supportedMethods = [
+  { icon: CreditCard, label: 'Credit / Debit Card', desc: 'Visa · Mastercard · Amex · Rupay' },
+  { icon: Smartphone, label: 'UPI', desc: 'GPay · PhonePe · Paytm · BHIM' },
+  { icon: QrCode, label: 'QR Code', desc: 'Scan with any UPI app' },
+  { icon: Building2, label: 'Net Banking', desc: '50+ Indian banks' },
+  { icon: Wallet, label: 'Wallets & EMI', desc: 'Paytm · Mobikwik · EMI options' },
 ];
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { items, totalPrice, clearCart } = useCart();
   const { user } = useAuth();
-  const [method, setMethod] = useState<PaymentMethod>('upi');
   const [processing, setProcessing] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-
-  // Card fields
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCvv, setCardCvv] = useState('');
-  // UPI
-  const [upiId, setUpiId] = useState('');
 
   if (!user) {
     navigate('/auth');
     return null;
   }
+
+  const shipping = totalPrice > 2000 ? 0 : 99;
+  const tax = Math.round(totalPrice * 0.05);
+  const grandTotal = totalPrice + shipping + tax;
 
   if (items.length === 0 && !processing) {
     return (
@@ -54,86 +51,72 @@ const CheckoutPage = () => {
           <Button onClick={() => navigate('/shop')}>Browse Shop</Button>
         </div>
         <Footer />
-      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+        <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       </div>
     );
   }
 
-  const shipping = totalPrice > 2000 ? 0 : 99;
-  const tax = Math.round(totalPrice * 0.05);
-  const grandTotal = totalPrice + shipping + tax;
-
-  const validate = (): string | null => {
-    if (method === 'credit' || method === 'debit') {
-      const digits = cardNumber.replace(/\s/g, '');
-      if (digits.length < 13 || digits.length > 19) return 'Enter a valid card number';
-      if (!cardName.trim()) return 'Enter the name on the card';
-      if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) return 'Expiry must be MM/YY';
-      if (!/^\d{3,4}$/.test(cardCvv)) return 'Enter a valid CVV';
-    }
-    if (method === 'upi') {
-      if (!/^[\w.\-]{2,}@[\w]{2,}$/.test(upiId)) return 'Enter a valid UPI ID (e.g. name@bank)';
-    }
-    return null;
-  };
-
   const handlePay = async () => {
-    const err = validate();
-    if (err) {
-      toast.error(err);
-      return;
-    }
-    if (!user) {
-      navigate('/auth');
+    if (typeof window === 'undefined' || !window.Razorpay) {
+      toast.error('Payment library failed to load. Please refresh.');
       return;
     }
     setProcessing(true);
-    await new Promise(r => setTimeout(r, 1200));
+    try {
+      const { data, error } = await supabase.functions.invoke('create-razorpay-order', {
+        body: {
+          items: items.map(i => ({
+            id: i.id, name: i.name, price: i.price, quantity: i.quantity,
+            size: i.size ?? null, image: i.image ?? null,
+          })),
+          paymentMethod: 'razorpay',
+        },
+      });
+      if (error || !data?.razorpayOrderId) {
+        toast.error(error?.message || data?.error || 'Could not start payment');
+        setProcessing(false);
+        return;
+      }
 
-    const { data: orderRow, error: orderErr } = await supabase
-      .from('orders')
-      .insert({
-        user_id: user.id,
-        subtotal: totalPrice,
-        shipping,
-        tax,
-        total: grandTotal,
-        payment_method: method,
-        status: 'confirmed',
-      })
-      .select('id')
-      .single();
-
-    if (orderErr || !orderRow) {
-      console.error(orderErr);
-      toast.error('Could not place order. Please try again.');
+      const rzp = new window.Razorpay({
+        key: data.keyId,
+        amount: data.amount,
+        currency: data.currency,
+        order_id: data.razorpayOrderId,
+        name: 'Sneaker Zone',
+        description: `Order #${String(data.orderId).slice(0, 8)}`,
+        prefill: {
+          email: user.email ?? '',
+          name: user.user_metadata?.display_name ?? '',
+        },
+        theme: { color: '#FF784E' },
+        handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
+          const { error: verifyErr } = await supabase.functions.invoke('verify-razorpay-payment', {
+            body: response,
+          });
+          if (verifyErr) {
+            toast.error('Payment verification failed. Contact support.');
+            setProcessing(false);
+            return;
+          }
+          toast.success('Payment successful!');
+          clearCart();
+          setProcessing(false);
+          navigate('/orders');
+        },
+        modal: {
+          ondismiss: () => {
+            toast.info('Payment cancelled');
+            setProcessing(false);
+          },
+        },
+      });
+      rzp.open();
+    } catch (e) {
+      console.error(e);
+      toast.error('Something went wrong');
       setProcessing(false);
-      return;
     }
-
-    const { error: itemsErr } = await supabase.from('order_items').insert(
-      items.map(i => ({
-        order_id: orderRow.id,
-        product_id: i.id,
-        name: i.name,
-        image_url: i.image ?? null,
-        size: i.size ?? null,
-        quantity: i.quantity,
-        price: i.price,
-      }))
-    );
-
-    if (itemsErr) {
-      console.error(itemsErr);
-      toast.error('Order saved but items failed to record.');
-      setProcessing(false);
-      return;
-    }
-
-    toast.success(`Payment successful via ${methods.find(m => m.id === method)?.label}`);
-    clearCart();
-    setProcessing(false);
-    navigate('/orders');
   };
 
   return (
@@ -155,134 +138,36 @@ const CheckoutPage = () => {
         <h1 className="font-display text-4xl md:text-5xl mb-8">CHECKOUT</h1>
 
         <div className="grid lg:grid-cols-[1fr_400px] gap-8">
-          {/* Left: Payment methods */}
           <div className="space-y-6">
             <div className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="font-display text-2xl mb-4">PAYMENT METHOD</h2>
+              <h2 className="font-display text-2xl mb-1">SECURE PAYMENT</h2>
+              <p className="text-sm text-muted-foreground mb-5">
+                Powered by Razorpay — choose your preferred method on the next screen.
+              </p>
 
-              <RadioGroup value={method} onValueChange={(v) => setMethod(v as PaymentMethod)} className="grid sm:grid-cols-2 gap-3">
-                {methods.map(m => {
+              <div className="grid sm:grid-cols-2 gap-3">
+                {supportedMethods.map((m) => {
                   const Icon = m.icon;
-                  const active = method === m.id;
                   return (
-                    <label
-                      key={m.id}
-                      htmlFor={`pm-${m.id}`}
-                      className={`flex items-start gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                        active ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/40'
-                      }`}
-                    >
-                      <RadioGroupItem id={`pm-${m.id}`} value={m.id} className="mt-1" />
-                      <Icon className={`w-5 h-5 mt-0.5 ${active ? 'text-accent' : 'text-muted-foreground'}`} />
+                    <div key={m.label} className="flex items-start gap-3 p-4 rounded-xl border border-border bg-secondary/30">
+                      <Icon className="w-5 h-5 mt-0.5 text-accent" />
                       <div className="flex-1 min-w-0">
-                        <div className="font-semibold">{m.label}</div>
+                        <div className="font-semibold text-sm">{m.label}</div>
                         <div className="text-xs text-muted-foreground">{m.desc}</div>
                       </div>
-                    </label>
+                      <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
+                    </div>
                   );
                 })}
-              </RadioGroup>
-
-              {/* Forms */}
-              <div className="mt-6">
-                {(method === 'credit' || method === 'debit') && (
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="sm:col-span-2">
-                      <Label htmlFor="cardNumber">Card Number</Label>
-                      <Input
-                        id="cardNumber"
-                        inputMode="numeric"
-                        placeholder="1234 5678 9012 3456"
-                        value={cardNumber}
-                        maxLength={23}
-                        onChange={(e) => {
-                          const v = e.target.value.replace(/\D/g, '').slice(0, 19);
-                          setCardNumber(v.replace(/(.{4})/g, '$1 ').trim());
-                        }}
-                      />
-                    </div>
-                    <div className="sm:col-span-2">
-                      <Label htmlFor="cardName">Name on Card</Label>
-                      <Input id="cardName" value={cardName} onChange={e => setCardName(e.target.value)} />
-                    </div>
-                    <div>
-                      <Label htmlFor="exp">Expiry (MM/YY)</Label>
-                      <Input
-                        id="exp"
-                        placeholder="08/28"
-                        value={cardExpiry}
-                        maxLength={5}
-                        onChange={(e) => {
-                          let v = e.target.value.replace(/\D/g, '').slice(0, 4);
-                          if (v.length >= 3) v = v.slice(0, 2) + '/' + v.slice(2);
-                          setCardExpiry(v);
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input
-                        id="cvv"
-                        type="password"
-                        inputMode="numeric"
-                        placeholder="•••"
-                        value={cardCvv}
-                        maxLength={4}
-                        onChange={e => setCardCvv(e.target.value.replace(/\D/g, ''))}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {method === 'upi' && (
-                  <div className="space-y-3">
-                    <div>
-                      <Label htmlFor="upi">UPI ID</Label>
-                      <Input
-                        id="upi"
-                        placeholder="yourname@okhdfcbank"
-                        value={upiId}
-                        onChange={e => setUpiId(e.target.value)}
-                      />
-                    </div>
-                    <div className="flex gap-2 flex-wrap text-xs text-muted-foreground">
-                      <span className="px-2 py-1 rounded bg-secondary">GPay</span>
-                      <span className="px-2 py-1 rounded bg-secondary">PhonePe</span>
-                      <span className="px-2 py-1 rounded bg-secondary">Paytm</span>
-                      <span className="px-2 py-1 rounded bg-secondary">BHIM</span>
-                    </div>
-                  </div>
-                )}
-
-                {method === 'qr' && (
-                  <div className="flex flex-col items-center text-center gap-3 py-4">
-                    <div className="w-48 h-48 rounded-xl bg-white p-3 grid grid-cols-8 gap-0.5">
-                      {Array.from({ length: 64 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className={`rounded-[1px] ${
-                            // Deterministic pseudo-QR pattern
-                            ((i * 7 + (i % 5)) % 3 === 0 || i % 9 === 0) ? 'bg-black' : 'bg-transparent'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm font-medium">Scan with any UPI app</p>
-                    <p className="text-xs text-muted-foreground">
-                      Amount: ₹{grandTotal.toFixed(2)} · Press "Pay Now" once you complete the scan.
-                    </p>
-                  </div>
-                )}
               </div>
 
               <div className="flex items-center gap-2 mt-6 text-xs text-muted-foreground">
                 <ShieldCheck className="w-4 h-4 text-accent" />
-                Payments are encrypted and PCI-DSS compliant. This is a demo checkout.
+                256-bit SSL encrypted · PCI-DSS Level 1 compliant · Powered by Razorpay
               </div>
             </div>
           </div>
 
-          {/* Right: Order summary */}
           <aside className="rounded-2xl border border-border bg-card p-6 h-fit lg:sticky lg:top-24">
             <h2 className="font-display text-2xl mb-4">ORDER SUMMARY</h2>
             <div className="space-y-3 max-h-64 overflow-y-auto mb-4 pr-1">
@@ -317,6 +202,9 @@ const CheckoutPage = () => {
                 `Pay ₹${grandTotal.toFixed(2)}`
               )}
             </Button>
+            <p className="text-[10px] text-center text-muted-foreground mt-3">
+              By paying you agree to our terms. Orders are confirmed after payment.
+            </p>
           </aside>
         </div>
       </div>
