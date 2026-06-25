@@ -24,6 +24,7 @@ import AdminErrors from "./pages/admin/AdminErrors";
 import AdminImages from "./pages/admin/AdminImages";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminResetPassword from "./pages/admin/AdminResetPassword";
 
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
                     <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                     <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
                     <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/reset-password" element={<AdminResetPassword />} />
                     <Route path="/admin" element={<AdminLayout />}>
 
                       <Route index element={<Navigate to="errors" replace />} />
