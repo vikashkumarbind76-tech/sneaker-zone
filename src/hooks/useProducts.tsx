@@ -68,7 +68,7 @@ const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product =>
 
 const fetchProducts = async (): Promise<Product[]> => {
   const { data: productRows, error: productError } = await supabase
-    .from('products')
+    .from('public_products')
     .select(PRODUCT_COLUMNS)
     .order('id', { ascending: true });
 
@@ -112,7 +112,7 @@ const fetchProduct = async (idOrSlug?: string): Promise<Product | undefined> => 
 
   const numericId = Number(idOrSlug);
   const productQuery = supabase
-    .from('products')
+    .from('public_products')
     .select(PRODUCT_COLUMNS)
     .limit(1);
 
