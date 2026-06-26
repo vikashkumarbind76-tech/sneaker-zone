@@ -36,7 +36,7 @@ type ProductImageRow = {
 };
 
 const PRODUCT_COLUMNS =
-  'id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku,cost_price,original_price,discount_percentage,save_amount';
+  'id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku,original_price,discount_percentage,save_amount';
 
 const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product => ({
   id: row.id,
