@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, User as UserIcon, LogOut, Heart, Package } from 'lucide-react';
-import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -54,13 +53,6 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <img
-              src={sneakerZoneLogo}
-              alt="Sneaker Zone"
-              width={36}
-              height={36}
-              className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
             <span className="font-display text-2xl tracking-wider">
               <span className="text-primary">SNEAKER</span>
               <span className="text-foreground"> ZONE</span>
