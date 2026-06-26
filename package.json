@@ -2,6 +2,7 @@
   "name": "sneaker-zone",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://sneaker-zone.lovable.app",
   "type": "module",
   "scripts": {
     "predev": "bunx tsx scripts/generate-sitemap.ts",
