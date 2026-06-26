@@ -4,7 +4,7 @@ import { CartProvider } from '@/hooks/useCart';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
-import { Crown, MapPin, Users, Star, Award, Heart } from 'lucide-react';
+import { MapPin, Users, Star, Award, Heart, Sparkles } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 const formatCount = (n: number) => {
@@ -14,7 +14,7 @@ const formatCount = (n: number) => {
 
 const values = [
   {
-    icon: Crown,
+    icon: Sparkles,
     title: 'Premium Quality',
     description: 'We source only the finest sneakers and apparel from trusted brands and verified suppliers.',
   },
@@ -91,7 +91,6 @@ const AboutPage = () => {
           {/* Hero Section */}
           <section className="bg-primary text-primary-foreground py-10">
             <div className="container-custom text-center">
-              <Crown className="w-8 h-8 text-bronze-light mx-auto mb-2" />
               <p className="text-bronze-light text-xs font-medium tracking-widest uppercase mb-1">
                 Our Story
               </p>

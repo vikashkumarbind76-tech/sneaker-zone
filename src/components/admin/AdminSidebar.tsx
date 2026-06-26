@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { AlertTriangle, ImageIcon, Users, Crown } from "lucide-react";
+import { AlertTriangle, ImageIcon, Users, Shield } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -29,7 +29,7 @@ export function AdminSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center gap-2">
-            <Crown className="h-4 w-4 text-accent" />
+            <Shield className="h-4 w-4 text-accent" />
             {!collapsed && <span>Admin</span>}
           </SidebarGroupLabel>
           <SidebarGroupContent>

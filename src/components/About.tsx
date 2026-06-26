@@ -1,4 +1,4 @@
-import { Crown, MapPin, Users } from 'lucide-react';
+import { Sparkles, MapPin, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -9,7 +9,7 @@ const formatCount = (n: number) => {
 
 const features = [
   {
-    icon: Crown,
+    icon: Sparkles,
     title: 'Premium Selection',
     description: 'Curated collection of the finest sneakers and streetwear from top brands.',
   },
