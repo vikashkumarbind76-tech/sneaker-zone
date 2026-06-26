@@ -21,7 +21,8 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    return new Response(JSON.stringify({ count: 0, error: String(e) }), {
+    console.error("get-customer-count error:", String(e));
+    return new Response(JSON.stringify({ count: 0 }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
