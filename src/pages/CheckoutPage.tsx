@@ -72,7 +72,7 @@ const CheckoutPage = () => {
     );
   }
 
-  const handlePay = async () => {
+  const handlePay = async (mode: 'all' | 'qr' = 'all') => {
     if (typeof window === 'undefined' || !window.Razorpay) {
       toast.error('Payment library failed to load. Please refresh.');
       return;
@@ -111,7 +111,7 @@ const CheckoutPage = () => {
         return;
       }
 
-      const rzp = new window.Razorpay({
+      const opts: Record<string, unknown> = {
         key: data.keyId,
         amount: data.amount,
         currency: data.currency,
@@ -121,6 +121,7 @@ const CheckoutPage = () => {
         prefill: {
           email: user.email ?? '',
           name: user.user_metadata?.display_name ?? '',
+          contact: addr.phone.replace(/\D/g, ''),
         },
         theme: { color: '#FF784E' },
         handler: (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
@@ -137,7 +138,26 @@ const CheckoutPage = () => {
             });
           },
         },
-      });
+      };
+
+      // QR-only flow: surface UPI QR straight away
+      if (mode === 'qr') {
+        opts.method = { upi: true, card: false, netbanking: false, wallet: false, emi: false, paylater: false };
+        opts.config = {
+          display: {
+            blocks: {
+              upiqr: {
+                name: 'Pay using UPI QR',
+                instruments: [{ method: 'upi', flows: ['qr'] }],
+              },
+            },
+            sequence: ['block.upiqr'],
+            preferences: { show_default_blocks: false },
+          },
+        };
+      }
+
+      const rzp = new window.Razorpay(opts);
       rzp.on('payment.failed', (resp: { error?: { description?: string } }) => {
         setProcessing(false);
         navigate(`/payment/status/${data.orderId}`, {
