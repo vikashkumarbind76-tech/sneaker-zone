@@ -468,7 +468,7 @@ const ProductDetail = () => {
           <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16">
             {[
               { icon: Truck, label: 'Free shipping over ₹1,999' },
-              { icon: RotateCcw, label: '30-day easy returns' },
+              { icon: RotateCcw, label: '7-day easy returns' },
               { icon: Shield, label: '100% authenticity guarantee' },
             ].map(({ icon: Icon, label }) => (
               <div
