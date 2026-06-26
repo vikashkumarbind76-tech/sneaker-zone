@@ -2,7 +2,9 @@
 
 > India-focused online destination for authentic sneakers, casual shoes, and streetwear.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live website**: [https://sneaker-zone.lovable.app](https://sneaker-zone.lovable.app)
+
+**Lovable project**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
 ## How can I edit this code?
 
@@ -62,7 +64,9 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+The project is deployed through Lovable at [https://sneaker-zone.lovable.app](https://sneaker-zone.lovable.app).
+
+Open the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click **Share → Publish** to publish updates.
 
 ## Can I connect a custom domain to my Lovable project?
 
