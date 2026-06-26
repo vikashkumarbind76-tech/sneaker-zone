@@ -47,7 +47,6 @@ const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product =>
   originalPrice: row.original_price ?? undefined,
   discountPercentage: row.discount_percentage ?? undefined,
   saveAmount: row.save_amount ?? undefined,
-  costPrice: row.cost_price ?? undefined,
   category: row.category as Product['category'],
   isNew: row.is_new,
   isFeatured: row.is_featured,
