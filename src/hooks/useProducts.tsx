@@ -23,7 +23,6 @@ type ProductRow = {
   colors: string[];
   material: string | null;
   sku: string;
-  cost_price?: number | null;
   original_price?: number | null;
   discount_percentage?: number | null;
   save_amount?: number | null;
