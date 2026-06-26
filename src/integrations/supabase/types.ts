@@ -227,15 +227,19 @@ export type Database = {
           brand: string
           category: string
           colors: string[]
+          cost_price: number | null
           created_at: string
           description: string
           details: string[]
+          discount_percentage: number | null
           id: number
           is_featured: boolean
           is_new: boolean
           material: string | null
           name: string
+          original_price: number | null
           price: number
+          save_amount: number | null
           sizes: string[]
           sku: string
           slug: string
@@ -245,15 +249,19 @@ export type Database = {
           brand: string
           category: string
           colors?: string[]
+          cost_price?: number | null
           created_at?: string
           description: string
           details?: string[]
+          discount_percentage?: number | null
           id: number
           is_featured?: boolean
           is_new?: boolean
           material?: string | null
           name: string
+          original_price?: number | null
           price: number
+          save_amount?: number | null
           sizes?: string[]
           sku: string
           slug: string
@@ -263,15 +271,19 @@ export type Database = {
           brand?: string
           category?: string
           colors?: string[]
+          cost_price?: number | null
           created_at?: string
           description?: string
           details?: string[]
+          discount_percentage?: number | null
           id?: number
           is_featured?: boolean
           is_new?: boolean
           material?: string | null
           name?: string
+          original_price?: number | null
           price?: number
+          save_amount?: number | null
           sizes?: string[]
           sku?: string
           slug?: string
@@ -329,6 +341,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      compute_original_price: { Args: { sale: number }; Returns: number }
+      compute_sale_price: { Args: { cost: number }; Returns: number }
       get_customer_count: { Args: never; Returns: number }
       has_role: {
         Args: {

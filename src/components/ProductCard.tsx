@@ -143,15 +143,34 @@ const ProductCard = ({ product }: ProductCardProps) => {
           >
             {product.name}
           </Link>
-          <div className="flex justify-between items-center pt-2">
-            <span className="font-display text-2xl text-[hsl(var(--primary-soft))]">
-              ₹{product.price.toLocaleString('en-IN')}
-            </span>
-            {product.sizes?.length > 0 && (
-              <span className="px-2 py-1 bg-white/[0.05] border border-white/10 rounded-md font-body text-[10px] text-muted-foreground tracking-wider">
-                UK {product.sizes[0]}-{product.sizes[product.sizes.length - 1]}
+          <div className="pt-2 space-y-1.5">
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="font-display text-2xl text-[hsl(var(--primary-soft))]">
+                ₹{product.price.toLocaleString('en-IN')}
               </span>
-            )}
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span className="font-body text-sm text-muted-foreground line-through decoration-primary/70">
+                  ₹{product.originalPrice.toLocaleString('en-IN')}
+                </span>
+              )}
+              {product.discountPercentage ? (
+                <span className="ml-auto bg-primary/15 text-[hsl(var(--primary-soft))] border border-primary/40 text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-md uppercase">
+                  {product.discountPercentage}% OFF
+                </span>
+              ) : null}
+            </div>
+            <div className="flex items-center justify-between gap-2">
+              {product.saveAmount ? (
+                <span className="font-body text-[11px] text-emerald-400/90 font-semibold">
+                  You save ₹{product.saveAmount.toLocaleString('en-IN')}
+                </span>
+              ) : <span />}
+              {product.sizes?.length > 0 && (
+                <span className="px-2 py-1 bg-white/[0.05] border border-white/10 rounded-md font-body text-[10px] text-muted-foreground tracking-wider">
+                  UK {product.sizes[0]}-{product.sizes[product.sizes.length - 1]}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

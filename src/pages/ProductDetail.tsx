@@ -137,7 +137,9 @@ const ProductDetail = () => {
             url: `https://sneaker-zone.lovable.app/product/${product.id}`,
             priceCurrency: 'INR',
             price: product.price,
+            ...(product.originalPrice ? { priceSpecification: { '@type': 'UnitPriceSpecification', priceType: 'https://schema.org/ListPrice', price: product.originalPrice, priceCurrency: 'INR' } } : {}),
             availability: 'https://schema.org/InStock',
+            itemCondition: 'https://schema.org/NewCondition',
           },
         })}</script>
       </Helmet>
@@ -199,13 +201,31 @@ const ProductDetail = () => {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-end gap-2">
-                  <span className="font-display text-5xl text-[hsl(var(--primary-soft))]">
-                    ₹{product.price.toLocaleString('en-IN')}
-                  </span>
-                  <span className="text-muted-foreground mb-2 font-body text-xs uppercase tracking-[0.25em]">
-                    INR
-                  </span>
+                <div className="space-y-2">
+                  <div className="flex items-end gap-3 flex-wrap">
+                    <span className="font-display text-5xl text-[hsl(var(--primary-soft))]">
+                      ₹{product.price.toLocaleString('en-IN')}
+                    </span>
+                    {product.originalPrice && product.originalPrice > product.price && (
+                      <span className="text-muted-foreground mb-2 font-body text-lg line-through decoration-primary/70">
+                        ₹{product.originalPrice.toLocaleString('en-IN')}
+                      </span>
+                    )}
+                    {product.discountPercentage ? (
+                      <span className="mb-2 bg-primary/15 text-[hsl(var(--primary-soft))] border border-primary/40 text-xs font-bold tracking-wider px-2.5 py-1 rounded-md uppercase">
+                        {product.discountPercentage}% OFF
+                      </span>
+                    ) : null}
+                  </div>
+                  {product.saveAmount ? (
+                    <p className="font-body text-sm text-emerald-400/90 font-semibold">
+                      You save ₹{product.saveAmount.toLocaleString('en-IN')} · Inclusive of all taxes
+                    </p>
+                  ) : (
+                    <span className="text-muted-foreground font-body text-xs uppercase tracking-[0.25em]">
+                      INR · Inclusive of all taxes
+                    </span>
+                  )}
                 </div>
 
                 {/* Sizes */}

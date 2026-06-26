@@ -23,6 +23,10 @@ type ProductRow = {
   colors: string[];
   material: string | null;
   sku: string;
+  cost_price?: number | null;
+  original_price?: number | null;
+  discount_percentage?: number | null;
+  save_amount?: number | null;
 };
 
 type ProductImageRow = {
@@ -32,12 +36,19 @@ type ProductImageRow = {
   sort_order: number;
 };
 
+const PRODUCT_COLUMNS =
+  'id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku,cost_price,original_price,discount_percentage,save_amount';
+
 const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product => ({
   id: row.id,
   name: row.name,
   slug: row.slug,
   brand: row.brand,
   price: row.price,
+  originalPrice: row.original_price ?? undefined,
+  discountPercentage: row.discount_percentage ?? undefined,
+  saveAmount: row.save_amount ?? undefined,
+  costPrice: row.cost_price ?? undefined,
   category: row.category as Product['category'],
   isNew: row.is_new,
   isFeatured: row.is_featured,
@@ -60,7 +71,7 @@ const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product =>
 const fetchProducts = async (): Promise<Product[]> => {
   const { data: productRows, error: productError } = await supabase
     .from('products')
-    .select('id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku')
+    .select(PRODUCT_COLUMNS)
     .order('id', { ascending: true });
 
   if (productError) {
@@ -104,7 +115,7 @@ const fetchProduct = async (idOrSlug?: string): Promise<Product | undefined> => 
   const numericId = Number(idOrSlug);
   const productQuery = supabase
     .from('products')
-    .select('id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku')
+    .select(PRODUCT_COLUMNS)
     .limit(1);
 
   const { data: productRow, error: productError } = Number.isFinite(numericId)
