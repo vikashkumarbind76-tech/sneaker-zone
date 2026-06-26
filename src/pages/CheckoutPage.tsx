@@ -284,7 +284,7 @@ const CheckoutPage = () => {
               variant="accent"
               size="lg"
               className="w-full mt-5"
-              onClick={handlePay}
+              onClick={() => handlePay('all')}
               disabled={processing}
             >
               {processing ? (
@@ -292,6 +292,15 @@ const CheckoutPage = () => {
               ) : (
                 `Pay ₹${grandTotal.toFixed(2)}`
               )}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full mt-2 gap-2"
+              onClick={() => handlePay('qr')}
+              disabled={processing}
+            >
+              <QrCode className="w-4 h-4" /> Pay via UPI QR Code
             </Button>
             <p className="text-[10px] text-center text-muted-foreground mt-3">
               By paying you agree to our terms. Orders are confirmed after payment.
