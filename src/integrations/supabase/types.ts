@@ -220,13 +220,6 @@ export type Database = {
             referencedRelation: "products"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "product_images_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "public_products"
-            referencedColumns: ["id"]
-          },
         ]
       }
       products: {
@@ -345,77 +338,36 @@ export type Database = {
       }
     }
     Views: {
-      public_products: {
-        Row: {
-          brand: string | null
-          category: string | null
-          colors: string[] | null
-          created_at: string | null
-          description: string | null
-          details: string[] | null
-          discount_percentage: number | null
-          id: number | null
-          is_featured: boolean | null
-          is_new: boolean | null
-          material: string | null
-          name: string | null
-          original_price: number | null
-          price: number | null
-          save_amount: number | null
-          sizes: string[] | null
-          sku: string | null
-          slug: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          brand?: string | null
-          category?: string | null
-          colors?: string[] | null
-          created_at?: string | null
-          description?: string | null
-          details?: string[] | null
-          discount_percentage?: number | null
-          id?: number | null
-          is_featured?: boolean | null
-          is_new?: boolean | null
-          material?: string | null
-          name?: string | null
-          original_price?: number | null
-          price?: number | null
-          save_amount?: number | null
-          sizes?: string[] | null
-          sku?: string | null
-          slug?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          brand?: string | null
-          category?: string | null
-          colors?: string[] | null
-          created_at?: string | null
-          description?: string | null
-          details?: string[] | null
-          discount_percentage?: number | null
-          id?: number | null
-          is_featured?: boolean | null
-          is_new?: boolean | null
-          material?: string | null
-          name?: string | null
-          original_price?: number | null
-          price?: number | null
-          save_amount?: number | null
-          sizes?: string[] | null
-          sku?: string | null
-          slug?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       compute_original_price: { Args: { sale: number }; Returns: number }
       compute_sale_price: { Args: { cost: number }; Returns: number }
       get_customer_count: { Args: never; Returns: number }
+      get_public_products: {
+        Args: never
+        Returns: {
+          brand: string
+          category: string
+          colors: string[]
+          created_at: string
+          description: string
+          details: string[]
+          discount_percentage: number
+          id: number
+          is_featured: boolean
+          is_new: boolean
+          material: string
+          name: string
+          original_price: number
+          price: number
+          save_amount: number
+          sizes: string[]
+          sku: string
+          slug: string
+          updated_at: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -423,6 +375,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_product_public: { Args: { _product_id: number }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "customer"
