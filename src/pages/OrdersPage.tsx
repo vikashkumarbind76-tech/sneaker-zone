@@ -47,8 +47,8 @@ const OrdersPage = () => {
   useEffect(() => {
     if (authLoading) return;
     if (!user) { navigate('/auth'); return; }
-    (async () => {
-      setLoading(true);
+
+    const fetchOrders = async () => {
       const { data, error } = await supabase
         .from('orders')
         .select('*, order_items(*)')
@@ -56,7 +56,19 @@ const OrdersPage = () => {
         .order('created_at', { ascending: false });
       if (!error && data) setOrders(data as unknown as Order[]);
       setLoading(false);
-    })();
+    };
+
+    setLoading(true);
+    fetchOrders();
+
+    // Realtime: refetch whenever this user's orders or items change
+    const channel = supabase
+      .channel(`orders-${user.id}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'orders', filter: `user_id=eq.${user.id}` }, fetchOrders)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'order_items' }, fetchOrders)
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
   }, [user, authLoading, navigate]);
 
   return (
