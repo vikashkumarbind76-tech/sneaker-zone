@@ -61,8 +61,9 @@ const Navbar = ({ onCartClick }: NavbarProps) => {
               height={36}
               className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
             />
-            <span className="font-display text-2xl tracking-wider text-primary">
-              SNEAKER ZONE
+            <span className="font-display text-2xl tracking-wider">
+              <span className="text-primary">SNEAKER</span>
+              <span className="text-foreground"> ZONE</span>
             </span>
           </Link>
 
