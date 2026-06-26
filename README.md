@@ -2,7 +2,9 @@
 
 > India-focused online destination for authentic sneakers, casual shoes, and streetwear.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live website**: [https://sneaker-zone.lovable.app](https://sneaker-zone.lovable.app)
+
+**Lovable project**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
 ## How can I edit this code?
 
