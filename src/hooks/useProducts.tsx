@@ -35,9 +35,6 @@ type ProductImageRow = {
   sort_order: number;
 };
 
-const PRODUCT_COLUMNS =
-  'id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku,original_price,discount_percentage,save_amount';
-
 const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product => ({
   id: row.id,
   name: row.name,
@@ -68,16 +65,15 @@ const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product =>
 
 const fetchProducts = async (): Promise<Product[]> => {
   const { data: productRows, error: productError } = await supabase
-    .from('public_products')
-    .select(PRODUCT_COLUMNS)
-    .order('id', { ascending: true });
+    .rpc('get_public_products')
+    .returns<ProductRow[]>();
 
-  if (productError) {
+  if (productError || !productRows) {
     console.warn('[product-image-validation] Unable to load backend products; using product metadata with empty image arrays', productError);
     return localProducts.map(product => ({ ...product, images: [] }));
   }
 
-  if (!productRows?.length) {
+  if (!productRows.length) {
     return localProducts.map(product => ({ ...product, images: [] }));
   }
 
@@ -111,22 +107,21 @@ const fetchProduct = async (idOrSlug?: string): Promise<Product | undefined> => 
   if (!idOrSlug) return undefined;
 
   const numericId = Number(idOrSlug);
-  const productQuery = supabase
-    .from('public_products')
-    .select(PRODUCT_COLUMNS)
-    .limit(1);
+  const { data: productRows, error: productError } = await supabase
+    .rpc('get_public_products')
+    .returns<ProductRow[]>();
 
-  const { data: productRow, error: productError } = Number.isFinite(numericId)
-    ? await productQuery.eq('id', numericId).maybeSingle()
-    : await productQuery.eq('slug', idOrSlug).maybeSingle();
-
-  if (productError) {
+  if (productError || !productRows) {
     console.warn('[product-image-validation] Unable to load current product from backend', {
       idOrSlug,
       productError,
     });
     return localProducts.find(product => product.id === numericId || product.slug === idOrSlug);
   }
+
+  const productRow = Number.isFinite(numericId)
+    ? productRows.find((p) => p.id === numericId)
+    : productRows.find((p) => p.slug === idOrSlug);
 
   if (!productRow) return undefined;
 
