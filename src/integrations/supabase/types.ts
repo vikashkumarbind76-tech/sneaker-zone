@@ -220,6 +220,13 @@ export type Database = {
             referencedRelation: "products"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "public_products"
+            referencedColumns: ["id"]
+          },
         ]
       }
       products: {
@@ -338,7 +345,72 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_products: {
+        Row: {
+          brand: string | null
+          category: string | null
+          colors: string[] | null
+          created_at: string | null
+          description: string | null
+          details: string[] | null
+          discount_percentage: number | null
+          id: number | null
+          is_featured: boolean | null
+          is_new: boolean | null
+          material: string | null
+          name: string | null
+          original_price: number | null
+          price: number | null
+          save_amount: number | null
+          sizes: string[] | null
+          sku: string | null
+          slug: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          brand?: string | null
+          category?: string | null
+          colors?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          details?: string[] | null
+          discount_percentage?: number | null
+          id?: number | null
+          is_featured?: boolean | null
+          is_new?: boolean | null
+          material?: string | null
+          name?: string | null
+          original_price?: number | null
+          price?: number | null
+          save_amount?: number | null
+          sizes?: string[] | null
+          sku?: string | null
+          slug?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          brand?: string | null
+          category?: string | null
+          colors?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          details?: string[] | null
+          discount_percentage?: number | null
+          id?: number | null
+          is_featured?: boolean | null
+          is_new?: boolean | null
+          material?: string | null
+          name?: string | null
+          original_price?: number | null
+          price?: number | null
+          save_amount?: number | null
+          sizes?: string[] | null
+          sku?: string | null
+          slug?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       compute_original_price: { Args: { sale: number }; Returns: number }
