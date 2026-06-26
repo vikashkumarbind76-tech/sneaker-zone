@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Browser-level security headers (those settable via <meta>). Transport headers (HSTS, X-Frame-Options, X-Content-Type-Options) are emitted by Lovable's edge over HTTPS. -->
+    <!-- Browser-level security headers (set via <meta>). Transport security headers (HSTS, X-Frame-Options, X-Content-Type-Options) are emitted by the hosting edge over HTTPS. -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://*.razorpay.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.razorpay.com https://lumberjack.razorpay.com; frame-src https://*.razorpay.com https://api.razorpay.com; form-action 'self' https://*.razorpay.com; upgrade-insecure-requests" />
