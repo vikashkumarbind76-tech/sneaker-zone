@@ -1,6 +1,6 @@
-# Welcome to your Lovable project
+# Sneaker Zone
 
-## Project info
+> India-focused online destination for authentic sneakers, casual shoes, and streetwear.
 
 **URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
