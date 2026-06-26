@@ -3,7 +3,16 @@ export interface Product {
   name: string;
   slug: string;
   brand: string;
+  /** Current selling price (post-discount). */
   price: number;
+  /** Strikethrough MRP. Always > price. */
+  originalPrice?: number;
+  /** Discount % off MRP. */
+  discountPercentage?: number;
+  /** Amount saved vs MRP. */
+  saveAmount?: number;
+  /** Internal product cost — never displayed. */
+  costPrice?: number;
   images: ProductImage[];
   category: 'sneakers' | 'shoes' | 'apparel';
   isNew?: boolean;
