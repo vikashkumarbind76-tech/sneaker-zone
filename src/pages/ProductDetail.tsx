@@ -13,7 +13,7 @@ import {
   Minus,
   Plus,
   Star,
-  RotateCw,
+  
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
