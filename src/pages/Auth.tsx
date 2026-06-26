@@ -116,7 +116,7 @@ const AuthPage = () => {
       <div className="w-full max-w-md">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
           <img src={sneakerZoneLogo} alt="Sneaker Zone" width={32} height={32} loading="lazy" className="w-8 h-8 object-contain" />
-          <span className="font-display text-2xl tracking-wider">SNEAKER ZONE</span>
+          <span className="font-display text-2xl tracking-wider"><span className="text-primary">SNEAKER</span><span className="text-foreground"> ZONE</span></span>
         </Link>
 
         <Tabs defaultValue="signin" className="bg-card p-8 rounded-lg shadow-soft-md">
