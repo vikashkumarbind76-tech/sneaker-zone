@@ -1,8 +1,7 @@
 {
-  "website_name": "Sneaker Zone",
   "website_url": "https://sneaker-zone.lovable.app",
-  "status": "ready_to_publish",
+  "status": "published",
   "last_updated": "2026-06-26",
-  "security_scan_status": "passed_with_warnings",
-  "notes": "SEO meta and sitemap aligned to the sneaker-zone.lovable.app slug. Public products view now excludes internal cost_price column from storefront queries."
+  "publish_visibility": "public",
+  "notes": "Published to https://sneaker-zone.lovable.app. SEO metadata, sitemap and robots.txt aligned to the sneaker-zone slug. Public product data is now served by a security-definer RPC that excludes the internal cost_price column. Orders are created only by the Razorpay edge function using service_role."
 }

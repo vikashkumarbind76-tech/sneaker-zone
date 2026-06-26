@@ -4,13 +4,14 @@
 https://sneaker-zone.lovable.app
 
 ## Status
-Ready to publish
+Published
 
 ## Recent changes
 - Updated project branding to **Sneaker Zone**.
-- Renamed live URL slug to **sneaker-zone**.
-- Aligned SEO metadata (title, Open Graph, JSON-LD) and sitemap/robots.txt to the new Lovable URL.
-- Secured storefront product queries by excluding the internal `cost_price` column from public access.
+- Live URL slug set to **sneaker-zone**.
+- Aligned SEO metadata (title, Open Graph, JSON-LD), sitemap and robots.txt to the new Lovable URL.
+- Secured storefront product queries: the internal `cost_price` column is no longer accessible to public users; products are served through the `get_public_products()` security-definer RPC.
+- Locked down order creation: `orders` and `order_items` are now only inserted by the `create-razorpay-order` edge function using `service_role`.
 
 ## Pages
 - Home `/`
