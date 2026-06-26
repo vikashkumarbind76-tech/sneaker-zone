@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { lovable } from '@/integrations/lovable';
-import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 const signInSchema = z.object({
   email: z.string().trim().email('Invalid email').max(255),
@@ -115,7 +114,6 @@ const AuthPage = () => {
       </Helmet>
       <div className="w-full max-w-md">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-          <img src={sneakerZoneLogo} alt="Sneaker Zone" width={32} height={32} loading="lazy" className="w-8 h-8 object-contain" />
           <span className="font-display text-2xl tracking-wider"><span className="text-primary">SNEAKER</span><span className="text-foreground"> ZONE</span></span>
         </Link>
 

@@ -1,5 +1,4 @@
 import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
-import sneakerZoneLogo from '@/assets/sneaker-zone-logo.png';
 
 const socialLinks = [
   { icon: Instagram, href: 'https://instagram.com/sneakerzone_india', label: 'Instagram' },
@@ -12,7 +11,6 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container-custom py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <a href="#home" className="flex items-center gap-2">
-          <img src={sneakerZoneLogo} alt="Sneaker Zone" width={28} height={28} loading="lazy" className="w-7 h-7 object-contain" />
           <span className="font-display text-xl tracking-wider bg-background px-2 py-1 rounded"><span className="text-primary">SNEAKER</span><span className="text-foreground"> ZONE</span></span>
         </a>
 
