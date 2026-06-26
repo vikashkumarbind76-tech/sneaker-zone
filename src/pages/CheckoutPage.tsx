@@ -72,8 +72,21 @@ const CheckoutPage = () => {
     );
   }
 
+  const loadRazorpay = () =>
+    new Promise<boolean>((resolve) => {
+      if (typeof window === 'undefined') return resolve(false);
+      if (window.Razorpay) return resolve(true);
+      const s = document.createElement('script');
+      s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      s.async = true;
+      s.onload = () => resolve(true);
+      s.onerror = () => resolve(false);
+      document.body.appendChild(s);
+    });
+
   const handlePay = async (mode: 'all' | 'qr' = 'all') => {
-    if (typeof window === 'undefined' || !window.Razorpay) {
+    const ok = await loadRazorpay();
+    if (!ok) {
       toast.error('Payment library failed to load. Please refresh.');
       return;
     }
