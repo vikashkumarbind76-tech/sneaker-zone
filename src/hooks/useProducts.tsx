@@ -71,7 +71,7 @@ const mapProductRow = (row: ProductRow, images: ProductImage[] = []): Product =>
 const fetchProducts = async (): Promise<Product[]> => {
   const { data: productRows, error: productError } = await supabase
     .from('products')
-    .select('id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku')
+    .select(PRODUCT_COLUMNS)
     .order('id', { ascending: true });
 
   if (productError) {
@@ -115,7 +115,7 @@ const fetchProduct = async (idOrSlug?: string): Promise<Product | undefined> => 
   const numericId = Number(idOrSlug);
   const productQuery = supabase
     .from('products')
-    .select('id,name,slug,brand,price,category,is_new,is_featured,description,details,sizes,colors,material,sku')
+    .select(PRODUCT_COLUMNS)
     .limit(1);
 
   const { data: productRow, error: productError } = Number.isFinite(numericId)
