@@ -1,0 +1,8 @@
+{
+  "website_name": "Sneaker Zone",
+  "website_url": "https://sneaker-zone.lovable.app",
+  "status": "ready_to_publish",
+  "last_updated": "2026-06-26",
+  "security_scan_status": "passed_with_warnings",
+  "notes": "SEO meta and sitemap aligned to the sneaker-zone.lovable.app slug. Public products view now excludes internal cost_price column from storefront queries."
+}
