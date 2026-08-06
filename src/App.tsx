@@ -28,6 +28,7 @@ const AdminImages = lazy(() => import("./pages/admin/AdminImages"));
 const AdminUsers = lazy(() => import("./pages/admin/AdminUsers"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminResetPassword = lazy(() => import("./pages/admin/AdminResetPassword"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
