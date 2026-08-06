@@ -28,6 +28,7 @@ const AdminImages = lazy(() => import("./pages/admin/AdminImages"));
 const AdminUsers = lazy(() => import("./pages/admin/AdminUsers"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminResetPassword = lazy(() => import("./pages/admin/AdminResetPassword"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +55,7 @@ const App = () => (
                       <Route path="/about" element={<AboutPage />} />
                       <Route path="/contact" element={<ContactPage />} />
                       <Route path="/auth" element={<Auth />} />
+                      <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
                       <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
                       <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                       <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
