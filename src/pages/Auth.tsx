@@ -32,14 +32,33 @@ const GoogleButton = ({ loading, onClick }: { loading: boolean; onClick: () => v
 const AuthPage = () => {
   const { user, signIn, signUp } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
 
+  // Only same-origin relative paths are allowed as a post-login redirect.
+  const rawNext = searchParams.get('next') ?? '';
+  const nextPath = /^\/(?!\/)/.test(rawNext) ? rawNext : '/';
+
   useEffect(() => {
-    if (user) navigate('/', { replace: true });
-  }, [user, navigate]);
+    if (user) {
+      if (nextPath.startsWith('/.lovable/')) {
+        window.location.href = nextPath;
+      } else {
+        navigate(nextPath, { replace: true });
+      }
+    }
+  }, [user, navigate, nextPath]);
+
+  const goNext = () => {
+    if (nextPath.startsWith('/.lovable/')) {
+      window.location.href = nextPath;
+    } else {
+      navigate(nextPath);
+    }
+  };
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +71,7 @@ const AuthPage = () => {
       toast.error('Sign in failed. Check your credentials.');
     } else {
       toast.success('Welcome back!');
-      navigate('/');
+      goNext();
     }
   };
 
@@ -61,7 +80,7 @@ const AuthPage = () => {
     const parsed = signUpSchema.safeParse({ email, password, displayName });
     if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? 'Invalid input'); return; }
     setLoading(true);
-    const { error } = await signUp(parsed.data.email, parsed.data.password, parsed.data.displayName);
+    const { error } = await signUp(parsed.data.email, parsed.data.password, parsed.data.displayName, nextPath);
     setLoading(false);
     if (error) {
       toast.error(error.message);
@@ -74,7 +93,7 @@ const AuthPage = () => {
     setLoading(true);
     try {
       const result = await lovable.auth.signInWithOAuth('google', {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}${nextPath}`,
       });
       if (result.error) {
         toast.error(result.error.message || 'Google sign-in failed');
@@ -83,7 +102,7 @@ const AuthPage = () => {
       }
       if (result.redirected) return;
       toast.success('Welcome!');
-      navigate('/');
+      goNext();
     } catch (err: any) {
       toast.error(err?.message || 'Google sign-in failed');
     } finally {
